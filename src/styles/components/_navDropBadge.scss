@@ -1,0 +1,44 @@
+#navDropBadge{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 18px;
+    background-color: $darkGrey;
+    margin-right: 2px;
+    cursor: pointer;
+
+    .left{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-right:  1px solid $grey1;
+        padding: 4px 0;
+
+        .img{
+            width: 28px;
+        }
+
+        .count{
+            font-size: 12px;
+            font-weight: 400;
+            color: $white;
+            padding: 0 2px;
+        }
+    }
+
+    .right{
+        padding: 2px;
+
+        .toggleArrow{
+            width: 16px;
+            margin-left: 4px;
+            transition: .3s all ease-in-out;
+
+            &.open{
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+}

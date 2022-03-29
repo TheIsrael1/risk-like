@@ -1,0 +1,99 @@
+#intro{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: url("../../assets/images/introBg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    // cursor: url('../../assets/icons/handCursor.svg'), auto ;
+
+
+    &::before{
+        content: "";
+        position: absolute;
+        left: 0; 
+        right: 0;
+        top: 0; 
+        bottom: 0;
+        background: rgba(0,0,0,.5);
+    }
+
+    .logo{
+        width: 50rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .craft{
+        width: 22rem;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .robot{
+        width: 23rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .tank{
+        width: 28rem;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .settingBtn{
+        width: 4rem;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+
+        &:active{
+            transform: translateY(3px)
+        }
+    }
+
+    .ctaBtnCon{
+        position: relative;
+        background: url("../../assets/icons/actionBtnBg.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 12rem;
+        height: 4rem;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+
+        &:active{
+            transform: translate(-50%, -45%);
+        }
+
+        .cta{
+            position: absolute;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-60%, -60%);
+            white-space: nowrap;
+            cursor: pointer;
+        }
+    }
+
+    
+}

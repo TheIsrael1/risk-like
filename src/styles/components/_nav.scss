@@ -1,0 +1,48 @@
+#Nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem;
+    background-color: $grey1;
+
+    .navCon{
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .centerLogo{
+            position: absolute;
+            background: url("../../assets/images/navCenterLogoBg.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 20rem;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+
+            .logoImg{
+                position: relative;
+                width: 12rem;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .navItemsRowLeft{
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .navItemsRowRight{
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            padding: 0;
+        }
+    }
+}
