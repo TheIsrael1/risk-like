@@ -1,9 +1,9 @@
 import React from 'react'
-import craft from '../assets/images/craft.svg'
-import logo from '../assets/images/riskLike.svg'
-import robot from '../assets/images/robot.svg'
-import tank from '../assets/images/tank.svg'
-import settingBtn from '../assets/icons/introSettingsBtn.svg'
+import craft from '../assets/images/craft.png'
+import logo from '../assets/images/riskLike.png'
+import robot from '../assets/images/robot.png'
+import tank from '../assets/images/tank.png'
+import settingBtn from '../assets/icons/introSettingBtn.png'
 import { useNavigate } from 'react-router'
 
 const Intro = () => {
