@@ -1,5 +1,5 @@
 import React from 'react'
-import riskLike from '../../assets/images/riskLike.svg'
+import riskLike from '../../assets/images/riskLike.png'
 import NavDropBadge from '../utility/NavDropBadge'
 import wood from '../../assets/icons/wood.svg'
 import metal from '../../assets/icons/metal.svg'
