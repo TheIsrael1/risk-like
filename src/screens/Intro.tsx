@@ -11,6 +11,8 @@ const Intro = () => {
   const navigate = useNavigate()
 
   return (
+
+    <React.Suspense fallback={<h1>Loading....</h1>}>
     <div id='intro'>
         <img className='craft' src={craft} alt="craft" />
         <img className='logo' src={logo} alt="logo" />
@@ -25,6 +27,7 @@ const Intro = () => {
         </button>
         </div>
     </div>
+    </React.Suspense>
   )
 }
 
