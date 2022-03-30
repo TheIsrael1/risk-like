@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import craft from '../assets/images/craft.png'
 import logo from '../assets/images/riskLike.png'
 import robot from '../assets/images/robot.png'
 import tank from '../assets/images/tank.png'
 import settingBtn from '../assets/icons/introSettingBtn.png'
 import { useNavigate } from 'react-router'
+import Loader from '../components/utility/Loader'
 
 const Intro = () => {
 
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(true)
 
-  return (
+  useEffect(()=>{
+    setTimeout(()=>setLoading(false), 3000)
+  },[])
 
-    <React.Suspense fallback={<h1>Loading....</h1>}>
+  return loading ?
+  <Loader />
+  :
+  (
     <div id='intro'>
         <img className='craft' src={craft} alt="craft" />
         <img className='logo' src={logo} alt="logo" />
@@ -27,7 +34,6 @@ const Intro = () => {
         </button>
         </div>
     </div>
-    </React.Suspense>
   )
 }
 

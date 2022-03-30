@@ -1,0 +1,67 @@
+#MainControl{
+    background-color: $cardBg;
+    border: 2px solid $lightBorder;
+    border-radius: 10px;
+    width: 100%;
+    height: 8.5rem;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 0 3px 2px $lightBorderActive;
+    margin-right: 1rem;
+
+
+    .right{
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+
+        .spanH{
+            font-size: 10px;
+            font-weight: 400;
+            color: $textDisabledLight;
+            margin-bottom: 1rem;
+        }  
+
+        .spanBody{
+            font-size: 12px;
+            font-weight: 400;
+            color: $textDisabled;
+            text-align: center;
+        } 
+    }
+
+    .left{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        border-right: 3px solid $grey1;
+        flex-grow: 1;
+
+        .spanH{
+            font-size: 10px;
+            font-weight: 400;
+            color: $textDisabledLight;
+        }  
+
+        .spanBody{
+            font-size: 12px;
+            font-weight: 400;
+            color: $textDisabled;
+            text-align: center;
+        } 
+
+        .notificationBadge{
+            width: 100%;
+            background-color: $grey1d1d;
+            height: 1.5rem;
+            display: grid;
+            place-items: center;
+            border-radius: 32px;
+        }
+    }
+
+}

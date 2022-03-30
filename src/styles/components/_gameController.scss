@@ -1,0 +1,86 @@
+#GameController{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: $grey1;
+
+    .wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        
+        //base info Card
+        .baseInfo{
+            background-color: $cardBg;
+            border: 2px solid $lightBorder;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 15rem;
+            height: 12rem;
+            padding: .5rem 0;
+            border-radius: 10px;
+
+            .content{
+                display: flex;
+                flex-direction: column;
+                border-bottom: 3px solid $lightBorder;
+
+                .contentRow{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: .3rem 1rem;
+
+                    .titleSpan{
+                        font-size: 10px;
+                        font-weight: 400;
+                        color: $textDisabledLight;
+                    }
+
+                    .span{
+                        font-size: 12px;
+                        font-weight: 700;
+                        color: $textDisabledLight;
+                    }
+                }
+            }
+
+            .bottom{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem 0;
+
+                .bottomTitle{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: $textDisabled;
+                }
+
+                .bottomValue{
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: $white;
+                }
+            }
+        }
+
+        .center{
+            display: flex;
+            flex-direction: column;
+            height: 13rem;
+            flex-grow: 1;
+            margin: 0 1rem;
+
+            .top{
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    }
+}

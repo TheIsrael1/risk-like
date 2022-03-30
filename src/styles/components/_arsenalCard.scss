@@ -1,0 +1,63 @@
+#ArsenalCard{
+    background-color: $cardBg;
+    width: 100%;
+    border: 2px solid $lightBorder;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: .25rem 1rem;
+    margin-top: 1rem;
+
+    .left{
+        display: flex;
+        flex-direction: row;
+
+        .leftItem{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0 .5rem;
+
+            .img{
+                width: 2rem;
+            }
+
+            .span{
+                font-size: 12px;
+                font-weight: 400;
+                color: $textDisabledLight;
+                margin-left: 4px;
+            }
+        }
+    }
+
+    .right{
+        .btnCon{
+            background: url("../../assets/icons/actionBtnBg.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 5rem;
+            height: 2rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+    
+            // .ctaRow{
+                .img{
+                    width: 16px;
+                }
+
+                .span{
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: $white;
+                    margin-left: 2px;
+                }
+            // }
+        }
+    }
+}

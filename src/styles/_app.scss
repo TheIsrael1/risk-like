@@ -6,6 +6,12 @@
 @import "./screens/intro";
 
 //components
-@import "./components//nav";
-@import "./components//navDropBadge";
+@import "./components/nav";
+@import "./components/navDropBadge";
 @import "./components/navNormalBadge";
+@import "./components/Loader";
+@import "./components/gameController";
+@import "./components/mainControl";
+@import "./components/radar";
+@import "./components/arsenalCard";
+
