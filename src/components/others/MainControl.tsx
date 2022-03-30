@@ -3,7 +3,7 @@ import React from 'react'
 const MainControl = () => {
   return (
     <div id='MainControl'>
-        <div className='left'>
+        <div className='mainControlLeft'>
             <span className='spanH'>
             Location Status
             </span>
@@ -14,7 +14,7 @@ const MainControl = () => {
 
             </span>
         </div>
-        <div className='right'>
+        <div className='mainControlRight'>
             <span className='spanH'>
             Actions
             </span>

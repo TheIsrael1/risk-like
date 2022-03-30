@@ -1,0 +1,32 @@
+#NotificationCard{
+    background-color: $cardBg;
+    border: 2px solid $lightBorder;
+    border-radius: 10px;
+    height: 6rem;
+    padding: .5rem 1rem;
+    margin-left: .5rem;
+    margin-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar{
+        display: none;
+        visibility: hidden;
+    }
+
+    .notificationRow{
+        margin-bottom: .4rem;
+
+        .notificationSpan{
+            font-size: 12px;
+            font-weight: 400;
+            color: $textDisabled;
+        }
+
+        .flag{
+            width:20px;
+        }
+    }
+
+}

@@ -2,7 +2,9 @@ import React from 'react'
 import ArsenalCard from '../others/ArsenalCard'
 import BaseInfo from '../others/BaseInfo'
 import MainControl from '../others/MainControl'
+import NotificationCard from '../others/NotificationCard'
 import Radar from '../others/Radar'
+import SideInfoCard from '../others/SideInfoCard'
 
 const GameController = () => {
   return (
@@ -17,6 +19,10 @@ const GameController = () => {
               <div className='botttom'>
                 <ArsenalCard />
               </div>
+          </div>
+          <div className='right'>
+              <SideInfoCard />
+              <NotificationCard />
           </div>
         </div>
     </div>

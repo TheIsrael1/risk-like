@@ -13,7 +13,7 @@ const Intro = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    setTimeout(()=>setLoading(false), 3000)
+    setTimeout(()=>setLoading(false), 5000)
   },[])
 
   return loading ?

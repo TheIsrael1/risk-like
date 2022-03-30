@@ -8,7 +8,7 @@ import store from '../../assets/images/store.png'
 const ArsenalCard = () => {
   return (
     <div id='ArsenalCard'>
-        <div className='left'>
+        <div className='arsenalLeft'>
             <div className='leftItem'>
                 <img src={soilder} alt="soilder" className='img' />
                 <span className='span'>
@@ -34,7 +34,7 @@ const ArsenalCard = () => {
                 </span> 
             </div>
         </div>
-        <div className='right'>
+        <div className='arsenalRight'>
             <div className='btnCon'>
                 <img src={store} className="img" alt='store' />
                 <span className='span'>
