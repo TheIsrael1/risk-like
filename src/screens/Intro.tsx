@@ -26,10 +26,10 @@ const Intro = () => {
         <img className='robot' src={robot} alt="robot" />
         <img className='tank' src={tank} alt="tank" />
         <img className='settingBtn' src={settingBtn} alt="settingBtn" />
-        <div className='ctaBtnCon'>
-        <button className='cta'
+        <div className='ctaBtnCon'
         onClick={()=>navigate("/home-base")}
         >
+        <button className='cta'>
           Play Now
         </button>
         </div>
