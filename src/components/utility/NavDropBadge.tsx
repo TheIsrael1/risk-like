@@ -4,26 +4,16 @@ import toggleArrow from '../../assets/icons/navToggleArrow.svg'
 interface NavDropBadgeInterface{
     img: string
     count: number
+    open: boolean
+    toggle: ()=> void
 }
 
-const NavDropBadge = ({count, img}:NavDropBadgeInterface) => {
+const NavDropBadge = ({count, img, open, toggle}:NavDropBadgeInterface) => {
 
-    const [state, setState] = useState({
-        clicked: false
-    })
-
-    const toggleDropDown = () =>{
-        setState((prev)=>{
-            return{
-                ...prev,
-                clicked: !prev.clicked
-            }
-        })
-    }
 
   return (
     <div id='navDropBadge'
-    onClick={()=>toggleDropDown()}
+    onClick={()=>toggle()}
     >
         <div className='left'>
             <img className='img' src={img} alt="img" />
@@ -32,7 +22,7 @@ const NavDropBadge = ({count, img}:NavDropBadgeInterface) => {
             </span>
         </div>
         <div className='right'>
-            <img className={`toggleArrow ${state.clicked && `open`}`} src={toggleArrow} alt="arrow" />
+            <img className={`toggleArrow ${open && `open`}`} src={toggleArrow} alt="arrow" />
         </div>
     </div>
   )

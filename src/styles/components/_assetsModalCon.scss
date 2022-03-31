@@ -1,0 +1,39 @@
+#AssetsModalCon{
+
+    &.main{
+        position: relative;
+    }
+    height: 13rem;
+    width: 11.5rem;
+    background-color: $cardBg;
+    border: 2px solid $lightBorder;
+    border-radius: 10px;
+    visibility: hidden;
+    z-index: 1;
+    padding: .5rem 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar{
+        display: none;
+        visibility: hidden;
+    }
+
+    &.visible{
+        visibility: visible;
+    }
+
+    .cancelCon{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: end;
+        padding: 0 1rem;
+
+        .cancelBtn{
+            width: 10px;
+            cursor: pointer;
+        }
+    }
+}

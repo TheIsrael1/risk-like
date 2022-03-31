@@ -18,11 +18,9 @@ const Homebase = () => {
     }), 3000)
   },[])
 
-  return state.loading ? 
-  <Loader />
-  :
-  (
+  return( 
     <>
+      {state.loading && <Loader />}
       <Nav />
       <GameController />
     </>

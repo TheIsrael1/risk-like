@@ -7,6 +7,7 @@
     background-color: $black;
     display: grid;
     place-items: center;
+    z-index: 5;
 
     .pulse-loader {
         position: relative;

@@ -1,6 +1,5 @@
-import React from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import riskLike from '../../assets/images/riskLike.png'
-import NavDropBadge from '../utility/NavDropBadge'
 import wood from '../../assets/icons/wood.svg'
 import metal from '../../assets/icons/metal.svg'
 import gold from '../../assets/icons/gold.svg'
@@ -9,17 +8,46 @@ import NavNormalBadge from '../utility/NavNormalBadge'
 import profileIcon from '../../assets/icons/profileIcon.svg'
 import messagesIcon from '../../assets/icons/messagesIcon.svg'
 import notificationIcon from '../../assets/icons/notificationIcon.svg'
-
+import NavResourceDropdown from '../others/NavResourceDropdown'
+import {mineData} from '../../util/mineDummyData'
 
 const Nav = () => {
+
+    const [state, setState] = useState({
+        wood: [],
+        silver: [],
+        gold: [],
+        diamond: []
+    })
+    
+    const getResourceData = useCallback(()=>{
+        const wood: any = mineData?.filter?.((item: any)=> item?.mineType === "wood" )
+        const silver: any = mineData?.filter?.((item: any)=> item?.mineType === "silver" )
+        const gold: any = mineData?.filter?.((item: any)=> item?.mineType === "gold" )
+        const diamond: any = mineData?.filter?.((item: any)=> item?.mineType === "diamond" )
+        setState((prev)=>{
+            return{
+                ...prev,
+                wood,
+                silver,
+                gold,
+                diamond
+            }   
+        })
+    },[])
+
+    useEffect(()=>{
+        getResourceData()
+    },[getResourceData])
+
   return (
     <div id="Nav">
         <div className='navCon'>
             <div className='navItemsRowLeft'>
-                <NavDropBadge count={18} img={wood} />
-                <NavDropBadge count={18} img={metal} />
-                <NavDropBadge count={18} img={gold} />
-                <NavDropBadge count={18} img={diamond} />
+                <NavResourceDropdown mines={state?.wood} img={wood} type="wood" />
+                <NavResourceDropdown mines={state?.silver} img={metal} type="silver"/>
+                <NavResourceDropdown mines={state.gold} img={gold} type="gold" />
+                <NavResourceDropdown mines={state.diamond} img={diamond} type="diamond" />
             </div>
             <div className='centerLogo'>
                 <img src={riskLike} className="logoImg" alt='logo' />
@@ -28,7 +56,6 @@ const Nav = () => {
                 <NavNormalBadge img={profileIcon} badgeName={`Profile`} />
                 <NavNormalBadge img={notificationIcon} badgeName={`Alerts`} />
                 <NavNormalBadge img={messagesIcon} badgeName={`Chat`} />
-
             </div>
         </div>
     </div>

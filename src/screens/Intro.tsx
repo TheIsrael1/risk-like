@@ -13,27 +13,27 @@ const Intro = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    setTimeout(()=>setLoading(false), 5000)
+    setTimeout(()=>setLoading(false), 3000)
   },[])
 
-  return loading ?
-  <Loader />
-  :
-  (
-    <div id='intro'>
-        <img className='craft' src={craft} alt="craft" />
-        <img className='logo' src={logo} alt="logo" />
-        <img className='robot' src={robot} alt="robot" />
-        <img className='tank' src={tank} alt="tank" />
-        <img className='settingBtn' src={settingBtn} alt="settingBtn" />
-        <div className='ctaBtnCon'
-        onClick={()=>navigate("/home-base")}
-        >
-        <button className='cta'>
-          Play Now
-        </button>
-        </div>
-    </div>
+  return (
+    <>
+      {loading && <Loader />}
+      <div id='intro'>
+          <img className='craft' src={craft} alt="craft" />
+          <img className='logo' src={logo} alt="logo" />
+          <img className='robot' src={robot} alt="robot" />
+          <img className='tank' src={tank} alt="tank" />
+          <img className='settingBtn' src={settingBtn} alt="settingBtn" />
+          <div className='ctaBtnCon'
+          onClick={()=>navigate("/home-base")}
+          >
+          <button className='cta'>
+            Play Now
+          </button>
+          </div>
+      </div>
+    </>
   )
 }
 
