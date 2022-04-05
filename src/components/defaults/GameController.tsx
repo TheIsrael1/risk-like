@@ -1,10 +1,10 @@
 import React from 'react'
-import ArsenalCard from '../others/ArsenalCard'
-import BaseInfo from '../others/BaseInfo'
-import MainControl from '../others/MainControl'
-import NotificationCard from '../others/NotificationCard'
-import Radar from '../others/Radar'
-import SideInfoCard from '../others/SideInfoCard'
+import ArsenalCard from '../subComponents/ArsenalCard'
+import BaseInfo from '../subComponents/BaseInfo'
+import MainControl from '../subComponents/MainControl'
+import NotificationCard from '../subComponents/NotificationCard'
+import Radar from '../subComponents/Radar'
+import SideInfoCard from '../subComponents/SideInfoCard'
 
 const GameController = () => {
   return (

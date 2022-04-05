@@ -3,6 +3,7 @@
     &.main{
         position: relative;
     }
+
     height: 13rem;
     width: 11.5rem;
     background-color: $cardBg;
@@ -14,14 +15,23 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    scrollbar-width: none;
+    display: none;
+
+    &.bigger{
+        width: 14rem;
+        height: 17rem;
+    }
 
     &::-webkit-scrollbar{
         display: none;
         visibility: hidden;
     }
 
+
     &.visible{
         visibility: visible;
+        display: flex;
     }
 
     .cancelCon{

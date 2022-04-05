@@ -5,11 +5,11 @@ import metal from '../../assets/icons/metal.svg'
 import gold from '../../assets/icons/gold.svg'
 import diamond from '../../assets/icons/diamond.svg'
 import NavNormalBadge from '../utility/NavNormalBadge'
-import profileIcon from '../../assets/icons/profileIcon.svg'
 import messagesIcon from '../../assets/icons/messagesIcon.svg'
 import notificationIcon from '../../assets/icons/notificationIcon.svg'
-import NavResourceDropdown from '../others/NavResourceDropdown'
+import NavResourceDropdown from '../subComponents/NavResourceDropdown'
 import {mineData} from '../../util/mineDummyData'
+import ProfileDropdown from '../subComponents/ProfileDropdown'
 
 const Nav = () => {
 
@@ -53,7 +53,7 @@ const Nav = () => {
                 <img src={riskLike} className="logoImg" alt='logo' />
             </div>
             <div className='navItemsRowRight'>
-                <NavNormalBadge img={profileIcon} badgeName={`Profile`} />
+                <ProfileDropdown />
                 <NavNormalBadge img={notificationIcon} badgeName={`Alerts`} />
                 <NavNormalBadge img={messagesIcon} badgeName={`Chat`} />
             </div>

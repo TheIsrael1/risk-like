@@ -3,11 +3,14 @@ import React from 'react'
 interface NavNormalBadgeInterface{
 img: string
 badgeName: string
+toggle?: ()=>void
 }
 
-const NavNormalBadge = ({badgeName, img}: NavNormalBadgeInterface) => {
+const NavNormalBadge = ({badgeName, img, toggle}: NavNormalBadgeInterface) => {
   return (
-    <div id='NavNormalBadge'>
+    <div id='NavNormalBadge'
+    onClick={()=>toggle?.()}  
+    >
         <div className='left'>
             <img src={img} className="img" alt="img" />
         </div>
