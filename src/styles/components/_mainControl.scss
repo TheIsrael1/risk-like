@@ -2,20 +2,25 @@
     background-color: $cardBg;
     border: 2px solid $lightBorder;
     border-radius: 10px;
-    width: 100%;
+    max-width: 40rem;
+    min-width: 40rem;
     height: 8.5rem;
     display: flex;
     flex-direction: row;
-    box-shadow: 0 0 3px 2px $lightBorderActive;
     margin-right: 1rem;
-
+    transition: .3s all ease-in;
+    transition-delay: .1s;
+    
+    &.active{
+        box-shadow: 0 0 3px 2px $lightBorderActive;
+    }
 
     .mainControlRight{
         width: 25%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem;
+        padding: 1rem .5rem;
 
         .spanH{
             font-size: 10px;
@@ -24,12 +29,27 @@
             margin-bottom: 1rem;
         }  
 
-        .spanBody{
+        .defaultText{
             font-size: 12px;
             font-weight: 400;
             color: $textDisabled;
             text-align: center;
+        }
+        .spanBody{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
         } 
+
+        img{
+            margin-bottom: .5rem;
+            cursor: pointer;
+
+            &:active{
+                transform: translateY(3px)
+            }
+        }
     }
 
     .mainControlLeft{
@@ -37,7 +57,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 2rem;
+        padding: 1rem 1rem;
         border-right: 3px solid $grey1;
         flex-grow: 1;
 
@@ -47,11 +67,50 @@
             color: $textDisabledLight;
         }  
 
-        .spanBody{
+        .defaultText{
             font-size: 12px;
             font-weight: 400;
             color: $textDisabled;
             text-align: center;
+        }
+
+        .spanBody{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+
+            img{
+               margin-right: .5rem;
+            }
+
+            .item{
+                margin: 0 .5rem;
+                display: flex;
+                flex-direction: column;
+               
+
+                .itemH{
+                    font-size: 10px;
+                    font-weight: 400;
+                    color: $textDisabledLight;
+                    margin-bottom: .5rem;
+                    transition: .3s all ease-in;
+                    transition-delay: .2s;
+                    white-space: nowrap;
+                }
+
+                .itemBody{
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: $textDisabledLight;
+                    transition: .3s all ease-in;
+                    transition-delay: .3s;
+                    white-space: nowrap;
+                }
+
+            }
         } 
 
         .notificationBadge{
@@ -61,6 +120,21 @@
             display: grid;
             place-items: center;
             border-radius: 32px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            img{
+                margin-right: 1rem;
+            }
+
+            .notificationText{
+                font-size: 8px;
+                font-weight: 400;
+                color: #5F6163;
+            }
+
         }
     }
 

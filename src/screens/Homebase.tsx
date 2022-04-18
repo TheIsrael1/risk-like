@@ -4,6 +4,7 @@ import Nav from '../components/defaults/Nav'
 import Loader from '../components/utility/Loader'
 import {useLoadScript} from '@react-google-maps/api'
 import Map from '../components/defaults/Map'
+import env from "react-dotenv";
 
 const Homebase = () => {
 
@@ -12,10 +13,11 @@ const Homebase = () => {
   })
 
   const {isLoaded} = useLoadScript({
-    googleMapsApiKey: "AIzaSyDk6kMjPzLWV2mwDWygxvV3CqjB5C_0Gmw",
+    googleMapsApiKey: env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: ["places"],
-  })
+  });
 
+  console.log("key", env.PUBLIC_GOOGLE_MAPS_API_KEY)
   
 
   useEffect(()=>{
@@ -30,12 +32,12 @@ const Homebase = () => {
   if(state.loading) return <Loader />
   if(!isLoaded) return <Loader />
   return( 
-    <>
+    <div id='HomeBase'>
       <Nav />
       <Map />
       <GameController />
-    </>
+    </div>
   )
 }
-
+ 
 export default Homebase

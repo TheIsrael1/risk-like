@@ -3,14 +3,50 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 1rem;
-    background-color: $grey1;
+    
+    .WalletAddressBar{
+        position: absolute;
+        width: 12rem;
+        height: 5rem;
+        margin-top: -4rem;
+        background-color: $grey1;
+        border-radius: 0 20px 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
+        .addressCard{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: .5rem;
+        background-color: $cardBg;
+        border: 2px solid $lightBorder;
+        border-radius: 10px;
+
+        img{
+            margin-right: .5rem;
+        }
+
+        .address{
+            font-size: 12px;
+            font-weight: 400;
+            color: $white;
+        }
+            
+        }
+    }
+    
     .wrapper{
+        background-color: $grey1;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         width: 100%;
+        padding: 1rem;
         
         //base info Card
         .baseInfo{
@@ -74,7 +110,7 @@
             display: flex;
             flex-direction: column;
             height: 13rem;
-            flex-grow: 1;
+            width: 55rem;
             margin: 0 1rem;
 
             .top{
@@ -86,7 +122,7 @@
         .right{
             display: flex;
             flex-direction: column;
-            width: 26rem;
+            flex-grow: 1;
         }
     }
 }

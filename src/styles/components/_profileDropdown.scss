@@ -4,6 +4,118 @@
     .drop{
         position: absolute;
         top: 3.5rem;
-        
+        display: flex;
+        flex-direction: column;
+
+        .title{
+            color: $textDisabledLight;
+            font-size: 10px;
+            font-weight: 400;
+            margin-bottom: .2rem;
+        }
+
+        .name{
+            color: $textDisabledLight;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .value{
+            color: $textDisabledLight;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .top{
+            padding: .5rem 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 3px solid $lightBorder;
+
+            .left{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .dpCon{
+                    margin-right: .5rem;
+
+                    img{
+                        width: 50px;
+                    }
+                }
+
+                .profileDetails{
+                    display: flex;
+                    flex-direction: column;   
+                }
+            }
+
+            .editBtn{
+                cursor: pointer;
+            }
+            
+        }
+
+        .middleSection{
+            padding: .5rem 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 3px solid $lightBorder;
+
+            .left, 
+            .right{
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .sectionDetail{ 
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-top: 1rem;
+
+                .imgCon{
+                    margin-right: .3rem;
+
+                    
+                }
+
+                .details{
+                    display: flex;
+                    flex-direction: column;   
+                }
+            }
+
+        }
+
+        .bottom{
+            padding: .5rem 0;
+            border-bottom: 3px solid $lightBorder;
+
+            .content{
+               display: flex;
+               flex-direction: row;
+               justify-content: center;
+
+                .title{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: $textDisabled;
+                    margin-right: 3px;
+                }
+    
+                .value{
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: $white;
+                }
+            }
+
+        }
     }
+
+
 }

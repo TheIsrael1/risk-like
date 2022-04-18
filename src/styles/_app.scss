@@ -4,6 +4,7 @@
 
 // screens
 @import "./screens/intro";
+@import "./screens/homeBase";
 
 //components
 @import "./components/nav";
@@ -20,3 +21,4 @@
 @import "./components/navResourceDropdown";
 @import "./components/profileDropdown";
 @import "./components/map";
+@import "./components/launchAttackModal";

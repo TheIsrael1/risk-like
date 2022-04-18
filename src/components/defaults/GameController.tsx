@@ -5,10 +5,12 @@ import MainControl from '../subComponents/MainControl'
 import NotificationCard from '../subComponents/NotificationCard'
 import Radar from '../subComponents/Radar'
 import SideInfoCard from '../subComponents/SideInfoCard'
+import WalletAddressBar from './WalletAddressBar'
 
 const GameController = () => {
   return (
     <div id='GameController'>
+        <WalletAddressBar />
         <div className='wrapper'>
           <BaseInfo />
           <div className='center'>
