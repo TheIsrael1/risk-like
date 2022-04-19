@@ -3,8 +3,38 @@
     height: 1.75rem;
     border: 2px solid $lightBorderActive;
     box-sizing: border-box;
-    filter: blur(.8px);
+    filter: blur(.6px);
     border-radius: 20px;
     margin-bottom: 4px;
-    
-}
+    padding: .5rem .75rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .countSpan{
+        font-size: 14px;
+        font-weight: 400;
+        color: $textDisabledLight;
+
+    }
+
+    .btnsCon{
+        display: flex;
+        flex-direction: column;
+
+        .arrowDrop{
+            cursor: pointer;
+
+            
+            &.topArr{
+                transform: rotate(180deg);
+                 
+            }
+
+
+        }
+    }
+
+
+}   

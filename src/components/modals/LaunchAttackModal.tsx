@@ -38,7 +38,6 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
 
   
 
-
   return (
     <div id='LaunchAttackModal'>
         <div className={`launchModalBackdrop ${open && `show`}`}>
@@ -75,14 +74,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
                                 </span>
                             </div>
 
-                            <div className='selectCon'>
-                                <span className='select'>
-                                    select
-                                </span>
-                                <span className="leftCount">
-                                    6 left
-                                </span>
-                            </div>
+                           <CountSelect initialCount={state.currData.soilders} />
 
                             <span className="max">
                                 MAX
@@ -98,18 +90,11 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
                                     Fighter Jets
                                 </span>
                                 <span className="value">
-                                    {state.currData.airCraft} available
+                                    {state.currData.aircraft} available
                                 </span>
                             </div>
 
-                            <div className='selectCon'>
-                                <span className='select'>
-                                    {/* <CountSelect /> */} select
-                                </span>
-                                <span className="leftCount">
-                                    6 left
-                                </span>
-                            </div>
+                            <CountSelect initialCount={state.currData.aircraft} />
 
                             <span className="max">
                                 MAX
@@ -129,14 +114,8 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
                                 </span>
                             </div>
 
-                            <div className='selectCon'>
-                                <span className='select'>
-                                    select
-                                </span>
-                                <span className="leftCount">
-                                    6 left
-                                </span>
-                            </div>
+                            <CountSelect initialCount={state.currData.tanks} />
+
 
                             <span className="max">
                                 MAX
@@ -156,14 +135,8 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
                                 </span>
                             </div>
 
-                            <div className='selectCon'>
-                                <span className='select'>
-                                    select
-                                </span>
-                                <span className="leftCount">
-                                    6 left
-                                </span>
-                            </div>
+                            <CountSelect initialCount={state.currData.mechanicSoilder}/>
+
 
                             <span className="max">
                                 MAX
