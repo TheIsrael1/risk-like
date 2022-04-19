@@ -135,7 +135,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
                                 </span>
                             </div>
 
-                            <CountSelect initialCount={state.currData.mechanicSoilder}/>
+                            <CountSelect initialCount={state.currData.mechanicSoilders}/>
 
 
                             <span className="max">

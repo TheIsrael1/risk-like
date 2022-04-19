@@ -40,7 +40,7 @@ const CountSelect = ({initialCount}: CountSelectInterface) => {
     </div>
     </span>
     <span className="leftCount">
-        {initialCount-currCount} left
+        {initialCount - currCount} left
     </span> 
   </div>
    
