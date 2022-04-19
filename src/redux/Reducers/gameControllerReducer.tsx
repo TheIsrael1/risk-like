@@ -16,8 +16,8 @@ const gameControllerReducer = (state = initialState, action: types.Actionsnterfa
             return {
                 ...state,
                 status: types.async_status.__LOADED__,
+                // not cloning prev state.data because we want a complete change rn
                 data: {
-                    ...state.data,
                     ...action.payload.data
                 }
             }

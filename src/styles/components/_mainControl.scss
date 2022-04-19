@@ -79,7 +79,7 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            margin-bottom: 1rem;
+            
 
             img{
                margin-right: .5rem;
@@ -116,7 +116,6 @@
         .notificationBadge{
             width: 100%;
             background-color: $grey1d1d;
-            height: 1.5rem;
             display: grid;
             place-items: center;
             border-radius: 32px;
@@ -124,6 +123,8 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
+            min-height: 1.5rem;
+            margin: .5rem 0;
 
             img{
                 margin-right: 1rem;
@@ -133,6 +134,7 @@
                 font-size: 8px;
                 font-weight: 400;
                 color: #5F6163;
+               
             }
 
         }

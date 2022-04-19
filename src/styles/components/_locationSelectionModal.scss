@@ -1,0 +1,183 @@
+#LocationSelectionModal{
+    margin: .5rem 0;
+    z-index: 11;
+
+    .dropBtn{
+        width: 11rem;
+        height: 2rem;
+        padding: 0 .5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #424047;
+        border-radius: 20px;
+        cursor: pointer;
+
+        &:active{
+            transform: translateY(1px)
+        }
+
+        .dropBtnText{
+            font-size: 14px;
+            font-weight: 400;
+            color: $textDisabledLight;
+        }
+    }
+
+    .locationModalCon{
+        position: relative;
+        
+        .locationModal{
+            position: absolute;
+            transition: all .25s ease-in-out;
+            width: 25rem;
+            transition-delay: .1s;
+            left: -130%;
+            background-color: #191919;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding-bottom: 1rem;
+
+
+            &.showLocationModal{
+                height: auto;
+                opacity: 1;
+            }
+            
+
+            
+            .locationModalTop{
+                width: 100%;
+                padding: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+
+                img{
+                    cursor: pointer;
+                }
+
+                .locationModalTopText{
+                    font-size: 16px !important;
+                    font-weight: 400;
+                    color: $textDisabledLight;
+                }
+
+            }
+
+            .locationModalBody{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 12rem;
+                min-height: 100%;
+                overflow-y: scroll;
+                padding: .5rem 4px;
+
+                &::-webkit-scrollbar{
+                    width: 8px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #606060;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #1E1D1D;
+                    border-radius: 20px;
+                  }
+
+
+
+                // selectionDropComponent
+                .SelectionDrop{
+                    position: relative;
+                    cursor: pointer;
+                    transition: all .2s ease-in;
+
+                    &.selectionDropSelected{
+                        box-shadow: 0 0 3px 2px $lightBorderActive;
+                    }
+
+                    .selectionDropNav{
+                        padding: 0 1rem;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .campNameCon{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+
+                            img{
+                                margin-right: 4px;
+                            }
+
+                            .campName{
+                                font-size: 13px;
+                                font-weight: 700;
+                                color: $textDisabledLight;
+                            }
+                        }
+
+                        .navText{
+                            font-size: 10px;
+                            font-weight: 400;
+                            color: $textDisabledLight;
+                        }
+
+                        .sectionDropArrow{
+                            cursor: pointer;
+                        }
+                    }
+
+                    .selectionContent{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-around;
+                        padding: 0 .5rem;
+                        background-color: #424047;
+                        border: 1px solid #5C5C5C;
+                        transition: all .1s ease-in-out;
+                        transition-delay: .1s;
+                        overflow: hidden;
+                        visibility: hidden;
+                        opacity: 0;
+                        height: 0;
+
+                        &.showSelectionContent{
+                            visibility: visible;
+                            height: 3rem;                            
+                            opacity: 1;
+                        }
+
+                        .selectionContentItem{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+
+                            .count{
+                                font-size: 12px;
+                                font-weight: 400;
+                                color: $textDisabledLight;
+                            }
+
+                            img{
+                                margin-right: 4px;
+                                width: 30px;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }   
+}

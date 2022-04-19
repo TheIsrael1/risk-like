@@ -7,7 +7,13 @@ export const allMinesLocation = [
     guard: 20,
     maxProduction: 200000,
     mineWorkers: "strong",
-    settlement: true
+    settlement: true,
+    country: "nigeria",
+    level: "destroyer",
+    victories: "228",
+    defeats: "25",
+    troops: "15,400",
+    wealth: "2M RTK"
     },
     {coord: [9.064945420091778, 7.5161756518743035],
         name: "Gold place",

@@ -66,7 +66,7 @@ const MainControl = () => {
             Select an element on the screen to see details about it here
           </span>
         </div>
-        <span className="notificationBadge"></span>
+        <div className="notificationBadge"></div>
       </div>
       <div className="mainControlRight">
         <span className="spanH">Actions</span>
@@ -90,48 +90,51 @@ const MainControl = () => {
             <div className="item">
               <span className="itemH">Country</span>
               <span className="itemBody">
-
+                {titleCase(state.gameControllerData.country)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Level</span>
               <span className="itemBody">
-
+                {titleCase(state.gameControllerData.level)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Victories</span>
-              
+              <span className="itemBody">
+                {titleCase(state.gameControllerData.victories)}
+              </span>
             </div>
 
             <div className="item">
               <span className="itemH">Defeats</span>
               <span className="itemBody">
-
+              {titleCase(state.gameControllerData.defeats)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Troops</span>
               <span className="itemBody">
-
+              {titleCase(state.gameControllerData.troops)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Wealth</span>
               <span className="itemBody">
+              {state.gameControllerData.wealth}
               </span>
             </div>
           </div>
-          <span className="notificationBadge">
+          <div className="notificationBadge">
             <img src={goodNotification} alt="notification" />
             <span className="notificationText">
               You have enough resources to take this mine
             </span>
-          </span>
+          </div>
         </div>
         <div className="mainControlRight">
           <span className="spanH">Actions</span>
@@ -208,12 +211,12 @@ const MainControl = () => {
               </span>
             </div>
           </div>
-          <span className="notificationBadge">
+          <div className="notificationBadge">
             <img src={goodNotification} alt="notification" />
             <span className="notificationText">
               You have enough resources to take this mine
             </span>
-          </span>
+          </div>
         </div>
         <div className="mainControlRight">
           <span className="spanH">Actions</span>
