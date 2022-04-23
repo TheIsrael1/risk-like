@@ -37,6 +37,31 @@
             flex-direction: row;
             position: relative;
             padding: 1rem 0;
+
+            .valueBadge{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0 .5rem;
+                background-color: #1F1F1F;
+                border: 1px solid #B4B7BD;
+                box-sizing: border-box;
+                border-radius: 24.7693px;
+                margin: 0 2px;
+
+                .badgeT{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: $textDisabledLight;
+                }
+
+                .badgeV{
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: $lightBorderActive;
+                }
+
+            }
         }
 
         .navItemsRowRight{

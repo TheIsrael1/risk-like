@@ -1,0 +1,86 @@
+#ShortCard{
+    min-width: 12rem;
+    max-width: 12rem;
+    
+   
+    .shortCardWrapper{
+        height: 15rem;
+        width: 100%;
+        background: linear-gradient(180deg, #6D7778 0%, #414A45 100%);
+        box-shadow: -5px 15px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 16px 16px 0 0;
+        display: flex;
+        flex-direction: column;
+        margin-right: 1rem;
+        transition: all .2s ease-in;
+    
+        .shortcardTop{
+            height: 3rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+    
+            .topSpan{
+                font-size: 20px;
+                font-weight: 400;
+                font-family: 'Righteous';
+                color: $white;
+            }
+        }
+    
+        .borderTop{
+            height: 8px;
+            width: 100%;
+            background: linear-gradient(268.19deg, #F3BA09 8.46%, #FFE680 102.44%);
+            border-radius: 16px 16px 0px 0px;
+        }
+
+        .shortCardBody{
+            flex-grow: 1;
+            background: #424242;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+
+            .cardText{
+                margin: 2rem 0 1rem;
+                font-family: 'Righteous';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                color: $textDisabledLight;
+            }
+        }
+    
+    }
+    .borderBottom{
+        height: 8px;
+        width: 100%;
+        background: linear-gradient(268.19deg, #F3BA09 8.46%, #FFE680 102.44%);
+        border-radius: 16px 16px 0px 0px;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+    }
+
+    .bottomDetail{
+        width: 6rem;
+        height: 2rem;
+        background: #687172;
+        border-radius: 0 0 16px 16px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+            .bottomSpan{
+                font-family: 'Righteous';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                color: $white;
+                margin-right: 4px;
+            }
+    }
+}

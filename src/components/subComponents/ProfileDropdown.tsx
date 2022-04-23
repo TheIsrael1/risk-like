@@ -9,6 +9,7 @@ import levelPlaceholder from "../../assets/icons/levelPlaceholder.svg";
 import retreatsIcon from "../../assets/icons/retreatsIcon.svg";
 import victoriesIcon from "../../assets/icons/victoriesIcon.svg";
 
+
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

@@ -20,8 +20,8 @@
 
         .launchmodal{
             position: relative;
-            transition: all .5s ease-in;
-            transition-delay: .3s;
+            transition: all .4s ease-in-out;
+            transition-delay: .1s;
             width: 25rem;
             height: 27.5rem;
             background-color: #191919;
@@ -29,6 +29,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10; 
+            display: flex;
+            flex-direction: column;
+
+            &.wider{
+                width: 35rem;
+            }
 
             .top{
                 width: 100%;
@@ -40,8 +46,16 @@
                 .left{
                     display: flex;
                     flex-direction: column;
-                    
 
+                    &.row{
+                        flex-direction: row;
+                        align-items: center;
+                        
+                        .thumbs{
+                            margin-right: .5rem;
+                        }
+                    }
+                    
                     .topText{
                         font-size: 18px;
                         font-weight: 400;
@@ -60,7 +74,24 @@
                 }
             }
 
+            .subTop{
+                min-height: 3rem;
+                display: grid;
+                place-items: center;
+                border-top: 1px solid #424047;
+                border-bottom: 1px solid #424047;
+
+                .span{
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: $textDisabledLight;
+                }
+            }
+
             .centerArea{
+                flex-grow: 1;
+                background-color: #424047;
+
                 .centerAreaItem{
                     display: flex;
                     flex-direction: row;
@@ -116,6 +147,112 @@
                         color: $textDisabledLight;
                     }
                 }
+
+                &.deploymentDetails{
+                    display: flex;
+                    flex-direction: row;
+                    height: 100%;
+
+                    .sectionLeft{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 2rem 0;
+                        align-items: center;
+                        min-width: 12rem;
+                        height: 100%;
+                        border-right: 1px solid #5C5C5C;
+
+
+                        .centerItem{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            width: 100%;
+                            padding: 0 1rem;
+                            
+                            .item{
+                                display: flex;
+                                flex-direction: column;
+                                margin-left: .5rem;
+
+                                .title{
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                    color: $textDisabledLight;
+                                    margin-bottom: 2px;
+                                }
+        
+                                .value{
+                                    font-size: 12px;
+                                    font-weight: 400;
+                                    color: $textDisabledLight;
+                                }
+                            }
+                        }
+                    }
+
+                    .sectionRight{
+                        display: flex;
+                        flex-direction: column;
+                        padding: 2rem;
+                        align-items: center;
+                        flex-grow: 1;
+                        overflow-x: hidden;
+
+                        
+                        .sectionRow{
+                            margin-bottom: 2rem;
+                            width: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            .centerItem{
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                width: 100%;
+
+
+                                img{
+                                    width: 45px;
+                                }
+                                
+                                .item{
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-left: .5rem;
+    
+                                    .title{
+                                        font-size: 15px;
+                                        font-weight: 700;
+                                        color: $textDisabledLight;
+                                        margin-bottom: 2px;
+                                        transition: all .2s ease-in-out;
+                                         transition-delay: .3s;   
+                                         white-space: nowrap;   
+                                    }
+            
+                                    .value{
+                                        font-size: 12px;
+                                        font-weight: 400;
+                                        color: $textDisabledLight;
+                                        transition: all .2s ease-in-out;
+                                         transition-delay: .3s;
+                                         white-space: nowrap;   
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .sectionRight{
+                        
+                    }
+                }
             }
 
             .bottom{
@@ -124,6 +261,7 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
+
 
                 .bottomLeft{
                     display: flex;

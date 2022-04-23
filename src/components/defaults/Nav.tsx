@@ -5,11 +5,12 @@ import metal from '../../assets/icons/metal.svg'
 import gold from '../../assets/icons/gold.svg'
 import diamond from '../../assets/icons/diamond.svg'
 import NavNormalBadge from '../utility/NavNormalBadge'
-import messagesIcon from '../../assets/icons/messagesIcon.svg'
 import notificationIcon from '../../assets/icons/notificationIcon.svg'
 import NavResourceDropdown from '../subComponents/NavResourceDropdown'
 import {mineData} from '../../util/mineDummyData'
 import ProfileDropdown from '../subComponents/ProfileDropdown'
+import CommentsDropdown from '../subComponents/CommentsDropdown'
+import FoodDropdown from '../subComponents/FoodDropdown'
 
 const Nav = () => {
 
@@ -48,14 +49,23 @@ const Nav = () => {
                 <NavResourceDropdown mines={state?.silver} img={metal} type="silver"/>
                 <NavResourceDropdown mines={state.gold} img={gold} type="gold" />
                 <NavResourceDropdown mines={state.diamond} img={diamond} type="diamond" />
+                <div className="valueBadge">
+                    <span className="badgeT">
+                    Value Total ($): {" "}
+                    </span>
+                    <span className="badgeV">
+                    $267,786,897
+                    </span>
+                </div>
             </div>
             <div className='centerLogo'>
                 <img src={riskLike} className="logoImg" alt='logo' />
             </div>
             <div className='navItemsRowRight'>
+                <FoodDropdown />
                 <ProfileDropdown />
                 <NavNormalBadge img={notificationIcon} badgeName={`Alerts`} />
-                <NavNormalBadge img={messagesIcon} badgeName={`Chat`} />
+                <CommentsDropdown />
             </div>
         </div>
     </div>

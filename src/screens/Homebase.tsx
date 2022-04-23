@@ -16,8 +16,6 @@ const Homebase = () => {
     googleMapsApiKey: env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: ["places"],
   });
-
-  // console.log("key", env.PUBLIC_GOOGLE_MAPS_API_KEY)
   
 
   useEffect(()=>{

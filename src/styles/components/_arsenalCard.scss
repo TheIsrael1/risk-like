@@ -10,6 +10,27 @@
     padding: .25rem 1rem;
     margin-top: 1rem;
 
+    .leftItem{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0 .5rem;
+        padding-left: 1rem;
+        border-left: 3px solid #36343A;
+        
+        
+        .img{
+            width: 2rem;
+        }
+
+        .span{
+            font-size: 12px;
+            font-weight: 400;
+            color: $textDisabledLight;
+            margin-left: 4px;
+        }
+    }
+
     .arsenalLeft{
         display: flex;
         flex-direction: row;
@@ -19,6 +40,8 @@
             flex-direction: row;
             align-items: center;
             margin: 0 .5rem;
+            padding-left: 0;
+            border-left: none;
 
             .img{
                 width: 2rem;
@@ -32,6 +55,8 @@
             }
         }
     }
+
+    
 
     .arsenalRight{
         
@@ -47,8 +72,13 @@
             justify-content: center;
             align-items: center;
     
+
+            &:active{
+                transform: translateY(3px);
+            }
                 .img{
                     width: 16px;
+
                 }
 
                 .span{

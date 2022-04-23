@@ -8,4 +8,54 @@
         width: 100%;
         height: 100%;
     }
+
+    .locationBtn{
+        position: absolute;
+        right: 0;
+        top: 45vh;
+        margin-right: 1rem;
+        cursor: pointer;
+
+        &:active{
+            transform: scale(.9);
+        }
+    }
+
+    .baseBtn{
+        position: absolute;
+        right: 0;
+        top: 55vh;
+        margin-right: 1rem;
+        cursor: pointer;
+        
+        &:active{
+            transform: scale(.9);
+        }
+
+    }
+
+    .zoomBtn{
+        position: absolute;
+        right: 0;
+        top: 10vh;
+        margin-right: 1rem;
+        cursor: pointer;
+
+        &:active{
+            transform: scale(.9);
+        }
+    }
+
+    .worldMapDrop{
+        position: absolute;
+        right: 0;
+        top: 10vh;
+        margin-right: 5rem;
+        cursor: pointer;
+
+        &:active{
+            transform: scale(.9);
+        }
+    }
+
 }

@@ -1,0 +1,95 @@
+#WideModal{
+    .wideModalBackdrop{
+        position: fixed;
+        opacity: 0;
+        visibility: hidden;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.4);
+        transition: all .2s ease-in;
+        transition-delay: .3s;
+
+        &.show{
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .wideModal{
+            position: relative;
+            transition: all .5s ease-in;
+            transition-delay: .3s;
+            width: 90vw;
+            height: 80vh;
+            background-color: #191919;
+            // border: 1px solid rgba(127, 125, 135, 0.5);
+            box-sizing: border-box;
+            filter: drop-shadow(0px 49.91px 79.0242px rgba(0, 0, 0, 0.14)) drop-shadow(0px 18.7163px 95.6609px rgba(0, 0, 0, 0.12)) drop-shadow(0px 22.8754px 31.1938px rgba(0, 0, 0, 0.2));
+            border-radius: 33.2734px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; 
+            display: flex;
+            flex-direction: column;
+            
+
+            .titleCon{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                min-height: 4rem;
+                
+                &::before{
+                content: "";
+                background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+                mix-blend-mode: overlay;
+                opacity: 0.5;   
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                bottom: 0;
+                }
+                
+                .title{
+                    font-size: 30px;
+                    font-weight: 800;
+                    color: #D1D1D1;
+                    text-transform: uppercase;
+                    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #D1D1D1;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-shadow: 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.14), 0px 2.07958px 2.07958px rgba(0, 0, 0, 0.12), 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.2);
+                }
+
+                .cancelBtn{
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    transform: translate(-50%, -50%);
+                    margin-right: 1rem;
+                    cursor: pointer;
+                }
+
+                .bottomLight{
+                    background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0.56%, #FFFFFF 49.61%, rgba(255, 255, 255, 0) 100.25%);
+                    position: absolute;
+                    height: 2px;
+                    bottom: 0;
+                    width: 100%;
+                    margin: 0 auto;
+                    // mix-blend-mode: overlay;
+                }
+            }
+
+            .contentCon{
+                flex-grow: 1;
+            }
+        }
+    }
+}

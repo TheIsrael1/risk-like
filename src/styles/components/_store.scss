@@ -1,0 +1,139 @@
+#Store{
+    height: 100%;
+    width: 100%;
+    padding-bottom: 8rem;
+
+
+    .navCon{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 3rem;
+        width: 100%;
+        height: 3rem;
+        position: relative;
+        background-color: rgba(#36343A, 0.3);
+
+        .topLight{
+            background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0.56%, #FFFFFF 49.61%, rgba(255, 255, 255, 0) 100.25%);
+            position: absolute;
+            height: 2px;
+            top: 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .bottomLight{
+            background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0.56%, #FFFFFF 49.61%, rgba(255, 255, 255, 0) 100.25%);
+            position: absolute;
+            height: 2px;
+            bottom: 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 22rem;
+            border-radius: 1000px;
+            background: #323232;
+            margin: 6px 3rem;
+
+            .navItem{
+                font-family: 'Righteous';
+                font-weight: 400;
+                font-size: 18px;
+                color: $white;
+                cursor: pointer;
+                z-index: 1;
+                padding: 4px 12px;
+                background: transparent;
+                transition: linear 1s ease-in;
+                transition-delay: .1s;
+
+
+                &.active{
+                    background: linear-gradient(180deg, #5A616A 0%, rgba(90, 97, 106, 0) 100%);
+                    border-radius: 1000px;
+
+                }
+            }
+        }
+
+        .navDetails{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0 3rem;
+
+            .detailItem{
+                margin-left: 2rem;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .detailImg{
+                    margin-right: .5rem;
+                }
+
+                .detailSpan{
+                    font-weight: 16px;
+                    font-size: 12px;
+                    color: $white;
+
+                    &.address{
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    } 
+
+    .contentAreaCon{
+        height: 100%;
+        width: 100%;
+        padding: 0 3rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+
+        .contentArea{
+            flex-grow: 1;
+            padding: 0 6rem;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            white-space: nowrap;
+
+            .arrowL{
+                cursor: pointer;
+                position: absolute;
+                top: 30%;
+                left: 0;
+                margin-left: -7rem;
+            
+                &:active{
+                    transform: scale(.9);
+                }
+            }
+
+            .arrowR{
+                cursor: pointer;
+                position: absolute;
+                top: 30%;
+                right: 0;
+                margin-right: -7rem;
+
+                &:active{
+                    transform: scale(.9);
+                }
+            }
+        }
+
+
+    }
+}

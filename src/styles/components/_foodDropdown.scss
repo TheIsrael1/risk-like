@@ -1,0 +1,59 @@
+#FoodDropdown{
+    align-self: center;
+    position: relative;
+
+    .drop{
+        position: absolute;
+        margin-top: .5rem;
+        margin-left: -70%;
+
+        .foodDropTop{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem .5rem;
+
+            .shopFood{
+                cursor: pointer;
+                
+                &:active{
+                    transform: scale(.9);
+                }
+            }
+        }
+
+        .foodDropBody{
+            display: flex;
+            flex-direction: column;
+            padding: 1rem .5rem;
+
+            .foodDropDetail{
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+                margin-bottom: .5rem;
+
+                .detailTitle{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color:#787878;
+                }
+                
+                .middle{
+                    flex-grow: 1;
+                    margin-bottom: 3px;
+                    border-bottom: 1px dashed #3A4A2D;
+                    margin-bottom: 4px;
+                }
+
+                .detailValue{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: $white;
+                }
+            }
+        }
+
+    }
+}

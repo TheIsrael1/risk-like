@@ -3,7 +3,7 @@ import toggleArrow from '../../assets/icons/navToggleArrow.svg'
 
 interface NavDropBadgeInterface{
     img: string
-    count: number
+    count: number | string
     open: boolean
     toggle: ()=> void
 }

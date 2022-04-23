@@ -4,6 +4,12 @@ import { allMinesLocation } from '../../util/minesLocationDummmy';
 import homeSettlement from "../../assets/icons/MapMarkers/homeSettlement.svg"
 import mineActive from "../../assets/icons/MapMarkers/mineActive.svg"
 import mineInactive from "../../assets/icons/MapMarkers/mineInactive.svg"
+import locationBtn from "../../assets/icons/MapControlIcons/locationSelectorBtn.svg"
+import baseSelectionBtn from "../../assets/icons/MapControlIcons/baseSelectionBtn.svg"
+import zoomBtn from "../../assets/icons/MapControlIcons/zoomBtn.svg"
+import worldMapBtn from "../../assets/icons/MapControlIcons/worldMapBtn.svg"
+
+
 
 import {
     GoogleMap,
@@ -69,6 +75,10 @@ const Map = () => {
             /> 
           ))}
         </GoogleMap>
+        <img width={50} src={locationBtn} alt="" className="locationBtn" />
+        <img  width={50} src={baseSelectionBtn} alt="" className="baseBtn" />
+        <img  width={50} src={zoomBtn} alt="" className="zoomBtn" />
+        <img  width={150} src={worldMapBtn} alt="" className="worldMapDrop" />
     </div>
   )
 }

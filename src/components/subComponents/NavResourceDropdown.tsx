@@ -44,6 +44,7 @@ const NavResourceDropdown = ({img, mines, type}:NavResourceDropdownInterface) =>
         })
     },[mines])
 
+    
   return (
     <div id='NavResourceDropdown' ref={ref}> 
         <NavDropBadge 
