@@ -8,7 +8,7 @@ import Armoury from "./Armoury"
 import FoodView from './FoodView'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/Reducers'
-import { shortenWalletAddress } from '../../Helpers/general'
+import { approximateNumber, shortenWalletAddress } from '../../Helpers/general'
 
 interface StoreInterface{
     open: boolean
@@ -73,7 +73,7 @@ const Store = ({open, toggle}: StoreInterface) => {
                     <div key={idx} className="detailItem">
                         <img width={30} src={tok?.image} alt="img" className='detailImg' />
                         <span className="detailSpan">
-                        {findTokenCount(tok?.name) ?? 0}
+                        {approximateNumber(findTokenCount(tok?.name)) ?? 0}
                         </span>
                     </div>  
                     ))}

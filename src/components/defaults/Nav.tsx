@@ -13,6 +13,7 @@ import CommentsDropdown from '../subComponents/CommentsDropdown'
 import FoodDropdown from '../subComponents/FoodDropdown'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/Reducers'
+import { approximateNumber } from '../Helpers/general'
 
 const Nav = () => {
 
@@ -59,7 +60,7 @@ const Nav = () => {
         <div className='navCon'>
           <div className='navItemsRowLeft'>
                 {userData.data.availableTokens.map((tok: any, idx: number)=>(
-                    <NavResourceDropdown key={idx} count={findTokenCount(tok?.name) ?? 0} mines={state?.wood} img={tok?.image} type={tok?.name} />
+                    <NavResourceDropdown key={idx} count={approximateNumber(findTokenCount(tok?.name)) ?? 0} mines={state?.wood} img={tok?.image} type={tok?.name} />
                 ))}
                 <div className="valueBadge">
                     <span className="badgeT">

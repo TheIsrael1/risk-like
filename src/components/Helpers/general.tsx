@@ -38,6 +38,11 @@ const z = r * Math.sin(rlat)
 return [x,y, z]
 }
 
+export const approximateNumber = (i: number)=>{
+   const rounded =  Math.round((i + Number.EPSILON) * 100) / 100
+   return rounded
+} 
+
 // export const getCountryNameFromCoord = (lat: number, lng: number)=>{
 //     new google.maps.Geocoder().geocode({location: {lat, lng}}, (results: any, status) => {
 //         if (status == google.maps.GeocoderStatus.OK) {

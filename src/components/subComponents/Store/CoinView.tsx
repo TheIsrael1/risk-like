@@ -59,7 +59,7 @@ const CoinView = () => {
       try{
         const {data: not} = await getMineNotifications(userId)
         not?.forEach((n: any)=>{
-          if(!n === null){
+          if(n !== null){
             timedToast?.(`${n?.msg}`)
           }
         })
