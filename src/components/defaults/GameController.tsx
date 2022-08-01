@@ -73,7 +73,7 @@ const GameController = () => {
         long: a.longitude,
         lat: a.latitude,
         location_type: "mine",
-        owner_id: "",
+        // owner_id: "",
         google_id: "",
         properties: [
           {key: "mine_type", value: currencyArr[Math.floor(Math.random() * currencyArr.length)]},
