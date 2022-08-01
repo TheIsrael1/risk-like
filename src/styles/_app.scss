@@ -5,6 +5,8 @@
 // screens
 @import "./screens/intro";
 @import "./screens/homeBase";
+@import "./screens/onBoarding";
+@import "./screens/admin";
 
 //components
 @import "./components/nav";
@@ -31,6 +33,22 @@
 @import "./components/comments";
 @import "./components/chatBox";
 @import "./components/foodDropdown";
+@import "./components/mineWrapper";
+@import "./components/baseIconWrapper";
+@import "./components/battleOngoingModal";
+@import "./components/generalModal";
+@import "./components/moveLocationWarning";
+@import "./components/locationInfoModal";
+@import "./components/adminViews";
+@import "./components/adminCreateModal";
+@import "./components/adminInputBox";
+@import "./components/adminBtn";
+@import "./components/adminDropDown";
+@import "./components/adminImgUpload";
+@import "./components/adminDetails";
+
+//global
+@import "./global/transitions";
 
 
 //libraries

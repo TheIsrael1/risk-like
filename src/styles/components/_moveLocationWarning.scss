@@ -1,0 +1,37 @@
+#MoveLocationWarning{
+    width: 100%;
+    height: 100%;
+
+    .modalWrapper{
+        padding: 1.5rem 3rem;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .description{
+            font-weight: 400;
+            color: #F5E3E3;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .btnCon{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            img{
+                 cursor: pointer; 
+
+                // transition: all .2s ease-out;
+
+                &:active{
+                    transform: scale(.9);
+                }
+            }
+        }
+    }
+}

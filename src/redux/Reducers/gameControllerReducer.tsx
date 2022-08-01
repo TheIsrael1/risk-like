@@ -5,7 +5,7 @@ const initialState = {
     data: {}
 }
 
-const gameControllerReducer = (state = initialState, action: types.Actionsnterface ) =>{
+const gameControllerReducer = (state = initialState, action: types.Actionsinterface ) =>{
     switch (action.type) {
         case types.GAME_CONTROLLER_DATA_LOADING:
             return{

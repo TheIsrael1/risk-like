@@ -1,13 +1,15 @@
 import React from 'react'
 import fox from "../../assets/icons/metamaskFox.svg"
+import { shortenWalletAddress } from '../Helpers/general'
 
 const WalletAddressBar = () => {
+  const address = sessionStorage.getItem("address") as string
   return (
     <div className='WalletAddressBar'>
            <div className="addressCard">
                <img src={fox} alt='img' />
                <span className='address'>
-               0xbywt7d.....09867
+               {shortenWalletAddress(address)}
                </span>
            </div>
     </div>

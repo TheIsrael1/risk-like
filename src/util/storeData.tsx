@@ -75,14 +75,14 @@ export const storeData = {
 
     coins: [
         {
-            resourceCount: 99999,
-            resourceName: "Wood",
+            resourceCount: 999,
+            resourceName: "Bronze",
             price: 0.002,
             img: wood
         },
         {
             resourceCount: 100,
-            resourceName: "Metal",
+            resourceName: "Silver",
             price: 0.003,
             img: metal
         },
@@ -93,7 +93,13 @@ export const storeData = {
             img: gold
         },
         {
-            resourceCount: 100000,
+            resourceCount: 1000,
+            resourceName: "Gold",
+            price: 0.004,
+            img: gold
+        },
+        {
+            resourceCount: 10000,
             resourceName: "Diamond",
             price: 0.005,
             img: diamond

@@ -9,6 +9,12 @@
     flex-direction: column;
     margin: 0 2rem;
     transition: all .2s ease-in;
+     cursor: pointer; 
+
+    
+    &:hover{
+        transform: scale(.95);
+    }
 
     .longcardTop{
         min-height: 1rem;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Reducers";
 import goodNotification from "../../assets/icons/mainControlNtfGood.svg";
@@ -10,25 +10,40 @@ import launhAttackBtn from "../../assets/icons/launhAttackBtn.svg";
 import moveHereBtn from "../../assets/icons/moveHereBtn.svg";
 import newBaseBtn from "../../assets/icons/newBase.svg";
 import moveBaseBtn from "../../assets/icons/moveBase.svg";
-
+import { MapdataType } from "../../redux/Reducers/mapDataReducer";
 import LaunchAttackModal from "../modals/LaunchAttackModal";
+import { useToast } from "../Toast/ToastContexProvidert";
+import { updateMapDataAction } from "../../redux/Actions/mapDataAction";
+import { useDispatch } from "react-redux";
+import LaunchMoveModal from "../modals/LaunchMoveModal";
+import { getSingleLocation } from "../../services/locations";
+import { handleError } from "../Helpers/general";
 
 
 interface MainControlInterface{
   controlActive: boolean,
     LaunchAttackModalOpen: boolean,
-    gameControllerData: any
+    gameControllerData: any,
+    LaunchMoveAssetModal: boolean
 }
 
 const MainControl = () => {
   const [state, setState] = useState<MainControlInterface>({
     controlActive: false,
     LaunchAttackModalOpen: false,
-    gameControllerData: []
+    gameControllerData: [],
+    LaunchMoveAssetModal: false
   });
 
-  const { gameControllerData } = useSelector((state: RootState) => state);
+  const [locDetails, setLocDetails] = useState<any>()
 
+  const dispatch = useDispatch()
+
+  const userId = sessionStorage.getItem("id")
+    
+  const {open, timedToast} = useToast()
+
+  const { gameControllerData} = useSelector((state: RootState) => state)
   useEffect(()=>{
     setState((prev) => {
       return {
@@ -46,7 +61,7 @@ const MainControl = () => {
         controlActive: check === 0 ? false : true,
       };
     })
-  }, [gameControllerData]);
+  }, [gameControllerData]); 
 
   const toggleLaunchAttackModal = () => {
     setState((prev) => {
@@ -56,6 +71,41 @@ const MainControl = () => {
       };
     });
   };
+
+const toggleLaunchMoveModal = () => {
+  setState((prev)=> {
+    return{
+      ...prev,
+      LaunchMoveAssetModal: !state.LaunchMoveAssetModal
+    }
+  })
+}
+
+  const moveBaseAction = () =>{
+  
+    if(gameControllerData.data.owner_id === userId){
+      open?.("choose a new location to migrate your base to")
+      dispatch( updateMapDataAction({newLocationAlertListener: true} as MapdataType) as any)
+    }else{
+      timedToast?.("This base is not your's")
+    }
+  }
+
+  const getLocDetails = useCallback(async()=>{
+    try{
+      if(gameControllerData.data?.id){
+        const {data} = await getSingleLocation(gameControllerData.data.id)
+        setLocDetails(data)
+      }
+    }catch(err){
+      timedToast?.(handleError(err))
+    }
+  },[gameControllerData.data])
+
+  useEffect(()=>{
+    getLocDetails()
+  },[getLocDetails])
+
 
   return !state.controlActive ? (
     <div id="MainControl" className={`${state.controlActive && `active`}`}>
@@ -75,7 +125,7 @@ const MainControl = () => {
         </span>
       </div>
     </div>
-  ) : state.gameControllerData?.settlement ? (
+  ) : state.gameControllerData?.location_type=== "base" ? (
     <>
       <div id="MainControl" className={`${state.controlActive && `active`}`}>
         <div className="mainControlLeft">
@@ -90,42 +140,42 @@ const MainControl = () => {
             <div className="item">
               <span className="itemH">Country</span>
               <span className="itemBody">
-                {titleCase(state.gameControllerData.country)}
+                {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "country")?.value)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Level</span>
               <span className="itemBody">
-                {titleCase(state.gameControllerData.level)}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "level")?.value)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Victories</span>
               <span className="itemBody">
-                {titleCase(state.gameControllerData.victories)}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "victories")?.value)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Defeats</span>
               <span className="itemBody">
-              {titleCase(state.gameControllerData.defeats)}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "defeats")?.value)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Troops</span>
               <span className="itemBody">
-              {titleCase(state.gameControllerData.troops)}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "troops")?.value)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Wealth</span>
               <span className="itemBody">
-              {state.gameControllerData.wealth}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "wealth")?.value)}
               </span>
             </div>
           </div>
@@ -139,6 +189,7 @@ const MainControl = () => {
         <div className="mainControlRight">
           <span className="spanH">Actions</span>
           <img
+            onClick={()=>{moveBaseAction()}}
             src={moveBaseBtn}
             alt="btn"
           />
@@ -154,13 +205,20 @@ const MainControl = () => {
           toggleLaunchAttackModal();
         }}
       />
+      <LaunchMoveModal 
+      open={state.LaunchMoveAssetModal}
+      toggle={()=> {
+        toggleLaunchMoveModal()
+      }}
+      />
       <div id="MainControl" className={`${state.controlActive && `active`}`}>
         <div className="mainControlLeft">
           <span className="spanH">Location Status</span>
           <div className="spanBody">
             <img
               src={
-                state.gameControllerData.status === "active"
+                // state.gameControllerData.status === "active" 
+                 true
                   ? mineActive
                   : mineInactive
               }
@@ -171,43 +229,46 @@ const MainControl = () => {
             <div className="item">
               <span className="itemH">Mine Type</span>
               <span className="itemBody">
-                {titleCase(state.gameControllerData.mineType)}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "mine_type")?.value)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Defense Level</span>
               <span className="itemBody">
-                {titleCase(state.gameControllerData.defenseLevel)}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "defenseLevel")?.value)}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Guards</span>
-              <span className="itemBody">{state.gameControllerData.guard}</span>
+              <span className="itemBody">
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "guard")?.value)}
+                </span>
             </div>
 
             <div className="item">
               <span className="itemH">Max Production</span>
               <span className="itemBody">
-                {state.gameControllerData.maxProduction}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "production_rate")?.value)}{" "}
+              {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "mine_type")?.value)}/hr
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Distance</span>
               <span className="itemBody">
-                {/* This will probably be a calculation of distance from homebase to mine location
+                    {/* This will probably be a calculation of distance from homebase to mine location
                         Might need an helper function for that
                    */}
-                {`300km`}
+                {`N/A`}
               </span>
             </div>
 
             <div className="item">
               <span className="itemH">Mine workers</span>
               <span className="itemBody">
-                {titleCase(state.gameControllerData.mineWorkers)}
+              {locDetails?.assets?.find((a: any) => a?.name === "miner")?.asset_quantity ?? "0"}
               </span>
             </div>
           </div>
@@ -227,7 +288,13 @@ const MainControl = () => {
               toggleLaunchAttackModal();
             }}
           />
-          <img src={moveHereBtn} alt="btn" />
+          <img 
+          src={moveHereBtn} 
+          alt="btn" 
+          onClick={()=> {
+            toggleLaunchMoveModal()
+          }}
+          />
         </div>
       </div>
     </>

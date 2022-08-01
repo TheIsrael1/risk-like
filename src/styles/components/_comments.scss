@@ -40,7 +40,8 @@
                 }
 
                 .cancelBtn{
-                    cursor: pointer;
+                     cursor: pointer; 
+
 
                     &:active{
                         transform: scale(.8);
@@ -75,7 +76,8 @@
 
                 .searchIcon{
                     margin-left: 1rem;
-                    cursor: pointer;
+                     cursor: pointer; 
+
 
                     &:active{
                         transform: scale(.8);
@@ -94,7 +96,8 @@
                     font-size: 12px;
                     font-weight: 700;
                     color: $textDisabledLight;
-                    cursor: pointer;
+                     cursor: pointer; 
+
                     border-bottom: 3px solid transparent;
                     transition: linear .5s ease-in-out;
                     transition-delay: .2s;      
@@ -130,7 +133,8 @@
                     flex-direction: row;
                     padding: 2px 1rem;
                     margin: 4px 0;
-                    cursor: pointer;
+                     cursor: pointer; 
+
                     transition: linear .3s ease-in-out;
                     transition-delay: .1s;      
 

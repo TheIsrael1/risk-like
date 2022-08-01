@@ -1,0 +1,36 @@
+#adminInputBox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-bottom: .5rem;
+    
+    label{
+        color: white;
+        padding-bottom: .5rem;
+        font-size: 18px;
+    }
+
+   input{
+    height: 2rem;
+    max-width: 100%;
+    padding: 1rem .5rem;
+    font-size: 18px;
+
+    &:active, &:focus{
+        outline: none;
+        border: 3px solid $lightBorderActive;
+    }
+
+    &:disabled{
+        background-color: white;
+        color: black;
+    }
+   }
+
+   span{
+       margin: 6px 0;
+       color: rgb(241, 54, 54);
+   }
+   
+}

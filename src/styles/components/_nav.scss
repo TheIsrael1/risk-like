@@ -6,6 +6,12 @@
     height: 4rem;
     background-color: $grey1;
     z-index: 1;
+    transition: all .5s ease-in-out;
+
+    
+    &.hide{
+        margin-top: -4.5rem;
+    }
 
     .navCon{
         padding: 0 1rem;
@@ -38,6 +44,7 @@
             position: relative;
             padding: 1rem 0;
 
+            
             .valueBadge{
                 display: flex;
                 flex-direction: row;

@@ -1,23 +1,27 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import yellowArrow from "../../assets/icons/yellowDropArrow.svg"
 
 
 interface CountSelectInterface{
   initialCount: number
+  setAssetsToUse?: (i: number) => void  //this will go back to required
 }
 
 
-const CountSelect = ({initialCount}: CountSelectInterface) => {
+
+const CountSelect = ({initialCount, setAssetsToUse}: CountSelectInterface) => {
 
   const [currCount, setCurrCount] = useState(0)
-  const [initial, setInitial] = useState(initialCount)
-
 
   const reduce = () =>{
+     setAssetsToUse?.(currCount > 0 ? currCount - 1 : 0)
+    //  persisting
     setCurrCount(currCount > 0 ? currCount - 1 : 0)
   }
 
   const increase = () =>{
+    setAssetsToUse?.(currCount < initialCount ? currCount + 1 : currCount)
+    // peristing
     setCurrCount(currCount < initialCount ? currCount + 1 : currCount)
   }
 

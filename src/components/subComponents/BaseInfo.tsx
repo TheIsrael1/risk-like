@@ -1,6 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/Reducers'
+// import { getCountryNameFromCoord } from '../Helpers/general'
 
 const BaseInfo = () => {
+
+const userId = sessionStorage.getItem("id") as string
+const {mineLocationsData, userData} = useSelector((state: RootState)=> state)
+const [baseLoc, setBaseLoc] = useState<any>()
+const [totalAsset, setTotalAsset] = useState(0)
+
+
+useEffect(()=>{
+    const loc = mineLocationsData.data.find((loc: any)=>{
+        return loc.owner_id === userId
+    })
+    setBaseLoc(loc)
+
+   const totalAss= userData.data.userAssets?.reduce((sum: any, curr: any)=>{
+       return sum + curr?.quantity
+   }, 0)
+
+   setTotalAsset(totalAss)
+},[userData.data.userAssets, mineLocationsData.data, userId])
+
+
+
   return (
     <div className='baseInfo'>
         <div className='content'>
@@ -11,26 +36,34 @@ const BaseInfo = () => {
             </div>
             <div className='contentRow'>
                 <span className='span'>
-                Millitary:
+                Name: 
                 </span>
                 <span className='span'>
-                Strong
-                </span>
-            </div>
-            <div className='contentRow'>
-                <span className='span'>
-                Wealth:
-                </span>
-                <span className='span'>
-                5,000,000RLT
+                {baseLoc?.name}
                 </span>
             </div>
             <div className='contentRow'>
                 <span className='span'>
-                Location:
+                Radius:
                 </span>
                 <span className='span'>
-                Nigeria
+                {baseLoc?.radius}
+                </span>
+            </div>
+            <div className='contentRow'>
+                <span className='span'>
+                Total Assets
+                </span>
+                <span className='span'>
+                {totalAsset ?? 0}
+                </span>
+            </div>
+            <div className='contentRow'>
+                <span className='span'>
+                    Country
+                </span>
+                <span className='span'>
+                    {"N/A"}
                 </span>
             </div>
             <div className='contentRow'>
@@ -38,15 +71,7 @@ const BaseInfo = () => {
                 Energy
                 </span>
                 <span className='span'>
-                Energy
-                </span>
-            </div>
-            <div className='contentRow'>
-                <span className='span'>
-                Energy
-                </span>
-                <span className='span'>
-                6
+                N/A
                 </span>
             </div>
         </div>

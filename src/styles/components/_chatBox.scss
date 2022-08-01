@@ -34,7 +34,8 @@
                 }
 
                 img{
-                    cursor: pointer;
+                     cursor: pointer; 
+
 
                     &:active{
                        transform: scale(.8); 
@@ -155,7 +156,8 @@
                 }
 
                 .sendImg{
-                    cursor: pointer;
+                     cursor: pointer; 
+
 
                     &:active{
                         transform: scale(.9);

@@ -1,0 +1,78 @@
+#adminViews{
+    width: 100%;
+    height: 100%;
+
+    .top{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+
+        .tableName{
+            font-size: 18px;
+            color: $lightBorder;
+        }
+
+        .createBtn{
+            padding: 8px 16px;
+            border-radius: 10px;
+            background-color: $lightBorder;
+            color: white;
+            cursor: pointer;
+            transition: all .3s ease-in;
+
+            &:hover{
+                color: yellow;
+            }
+        }
+    }
+
+    .tableArea{
+        height: 80%;
+        width: 100%;
+        overflow-x: scroll;
+        scrollbar-width: 0;
+
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
+        table{
+            max-width: 100%;
+            overflow-x: scroll;
+            border: 1px solid $textDisabledLight;
+
+            tr{
+                border-bottom: 1px solid $textDisabledLight;
+                cursor: pointer;
+                
+                &:hover{
+                  background-color: rgba(97, 94, 94, 0.322);
+                }
+
+                &:nth-child(odd) {
+                    background-color: #eee;
+                    &:hover{
+                        background-color: rgba(97, 94, 94, 0.322);
+                      }
+                  }
+
+                  
+                  th {
+                    background-color: #555;
+                    color: #fff;
+                  }
+                  
+                  th,
+                  td {
+                    text-align: left;
+                    padding: 0.5em 1em;
+                    white-space: no-wrap;
+                    min-width: 10rem;
+                  }
+            }
+        }
+    }
+
+}

@@ -1,7 +1,13 @@
 #ShortCard{
     min-width: 12rem;
     max-width: 12rem;
+     cursor: pointer; 
+
+    transition: all .2s ease-in;
     
+    &:hover{
+        transform: scale(.95);
+    }
    
     .shortCardWrapper{
         height: 15rem;
@@ -13,6 +19,8 @@
         flex-direction: column;
         margin-right: 1rem;
         transition: all .2s ease-in;
+
+        
     
         .shortcardTop{
             height: 3rem;

@@ -3,6 +3,12 @@
     bottom: 0;
     left: 0;
     width: 100%;
+    transition: all .5s ease-in-out;
+    
+    &.hide{
+        margin-bottom: -20rem;
+    }
+
     
     .WalletAddressBar{
         position: absolute;

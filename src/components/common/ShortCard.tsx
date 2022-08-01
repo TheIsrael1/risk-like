@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ethIcon from "../../assets/images/store/ethIcon.svg"
 import wood from "../../assets/icons/wood.svg"
 import metal from "../../assets/icons/metal.svg"
 import gold from "../../assets/icons/gold.svg"
 import diamond from "../../assets/icons/diamond.svg"
+import AlertModal from '../modals/AlertModal'
 
 interface ShortCardInterface{
 resourceCount: number
@@ -11,13 +12,16 @@ resourceName: string
 resourceImg: string
 price: number
 currency?: string
+clicked?: ()=>void
 }
 
-const ShortCard = ({price, resourceCount, resourceImg, resourceName, currency}: ShortCardInterface) => {
-
+const ShortCard = ({price, resourceCount, resourceImg, resourceName, currency, clicked}: ShortCardInterface) => {
 
   return (
-    <div id='ShortCard'>
+    <>
+    <div id='ShortCard'
+    onClick={clicked}
+    >
            <div className="shortCardWrapper">
                 <div className="shortcardTop">
                     <span className="topSpan">
@@ -37,8 +41,8 @@ const ShortCard = ({price, resourceCount, resourceImg, resourceName, currency}: 
                {currency && 
                <img alt='currency'
                src={
-                   currency === "wood" ? wood :
-                   currency === "metal" ? metal :
+                   currency === "bronze" ? wood :
+                   currency === "silver" ? metal :
                    currency === "gold" ? gold :
                    diamond
                   }
@@ -49,6 +53,7 @@ const ShortCard = ({price, resourceCount, resourceImg, resourceName, currency}: 
               {!currency && <img src={ethIcon} width={16} alt='img' />}
            </div>
     </div>
+</>
   )
 }
 

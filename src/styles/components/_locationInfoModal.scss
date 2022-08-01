@@ -1,0 +1,228 @@
+#LocationInfoModal {
+  .infoModalBackdrop {
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+
+    &.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .launchmodal {
+      position: relative;
+      transition: all 0.4s ease-in-out;
+      transition-delay: 0.1s;
+      width: 35rem;
+      height: 27.5rem;
+      background-color: #191919;
+      top: 42.5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+
+      .top {
+        width: 100%;
+        padding: 1rem 1rem 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .left {
+          display: flex;
+          flex-direction: column;
+
+          &.row {
+            flex-direction: row;
+            align-items: center;
+
+            .thumbs {
+              margin-right: 0.5rem;
+            }
+          }
+
+          .topText {
+            font-size: 18px;
+            font-weight: 400;
+            color: $textDisabledLight;
+          }
+        }
+
+        .right {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+
+          img {
+             cursor: pointer; 
+
+          }
+        }
+      }
+
+      .subTop {
+        min-height: 3rem;
+        display: grid;
+        place-items: center;
+        border-top: 1px solid #424047;
+        border-bottom: 1px solid #424047;
+
+        .span {
+          font-size: 14px;
+          font-weight: 700;
+          color: $textDisabledLight;
+        }
+      }
+
+      .centerArea {
+        flex-grow: 1;
+        background-color: #424047;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+
+        .sectionLeft {
+          display: grid;
+          place-items: center;
+          padding: 2rem 0;
+          align-items: center;
+          min-width: 12rem;
+          height: 100%;
+          border-right: 1px solid #5c5c5c;
+        }
+
+        .sectionRight {
+          display: flex;
+          flex-direction: column;
+          padding-top: 4rem;
+          align-items: center;
+          flex-grow: 1;
+          overflow-x: hidden;
+
+          .sectionRow {
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;     
+            align-items: center;
+
+            .centerItem {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              width: 100%;
+
+              img {
+                width: 17px;
+              }
+
+              .item {
+                display: flex;
+                flex-direction: column;
+                margin-left: 0.5rem;
+
+                .title {
+                  font-size: 15px;
+                  font-weight: 700;
+                  color: $textDisabledLight;
+                  margin-bottom: 2px;
+                  transition: all 0.2s ease-in-out;
+                  transition-delay: 0.3s;
+                  white-space: nowrap;
+                }
+
+                .value {
+                  font-size: 12px;
+                  font-weight: 400;
+                  color: $textDisabledLight;
+                  transition: all 0.2s ease-in-out;
+                  transition-delay: 0.3s;
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+
+          .resourceSectionH{
+              padding: .5rem 2rem;
+               background-color: #191919;
+               width: 100%;
+               border: 1px solid #5C5C5C;
+               display: flex;
+               flex-direction: row;
+               justify-content: space-between;
+
+               .hleft{
+                   display: flex;
+                   align-items: center;
+
+                   .title{
+                       font-weight: 700;
+                       padding: 0 .5rem;
+                       font-size: 15px;
+                       color: #B4B7BD;
+                   }
+               }
+
+               .value{
+                font-size: 12px;
+                font-weight: 400;
+                color: #B4B7BD;
+               }
+          }
+
+          .resourceSection{
+            width: 100%;
+            height: 100%;
+            padding:  4px 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;  
+            overflow-x: scroll;
+
+            scrollbar-width: 4px;
+
+              &::-webkit-scrollbar{
+                  height: 4px;
+              }
+
+              &::-webkit-scrollbar-track {
+                  background: #606060;
+              }
+
+              &::-webkit-scrollbar-thumb {
+                  background-color: #1E1D1D;
+                  border-radius: 20px;
+                }
+
+            .resourceItem{
+                display: flex;
+                align-items: center;
+                margin-right: .5rem;
+
+                .resourceValue{
+                    padding: 0 4px;
+                    font-size: 12px;
+                    color: #B4B7BD;
+                }
+            }
+          }
+
+        }
+      }
+      .bottom{
+        min-height: 3rem;
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 export const allMinesLocation = [
     {coord: [9.062460401930858, 7.519016094465376],
     name: "Aso Rock",
+    // mine
     status: "dormant",
     mineType: "gold",
     defenseLevel: "high",
@@ -8,7 +9,8 @@ export const allMinesLocation = [
     maxProduction: 200000,
     mineWorkers: "strong",
     settlement: true,
-    country: "nigeria",
+    // base
+    country: "nigeria", 
     level: "destroyer",
     victories: "228",
     defeats: "25",
@@ -44,7 +46,7 @@ export const allMinesLocation = [
         defenseLevel: "low",
         guard: 10,
         maxProduction: 700000,
-        mineWorkers: "strong",
+        mineWorkers: "  ",
         settlement: false
 
 
@@ -52,7 +54,7 @@ export const allMinesLocation = [
     {coord: [9.061698884993888, 7.507280244592243],
         name: "Rest and Refill",
         status: "dormant",
-        mineType: "silver",
+        mineType: "silver", 
         defenseLevel: "medium",
         guard: 8,
         maxProduction: 700000,
@@ -61,7 +63,7 @@ export const allMinesLocation = [
 
     },
     {coord: [9.05047139582367, 7.527430894091966],
-        name: "Diamond mine 1",
+        name: "Diamond mine",
         status: "active",
         mineType: "gold",
         defenseLevel: "low",
@@ -69,7 +71,6 @@ export const allMinesLocation = [
         maxProduction: 700000,
         mineWorkers: "weak",
         settlement: false
-
     },
 
 ]

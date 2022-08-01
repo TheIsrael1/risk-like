@@ -1,15 +1,14 @@
 import React, { useState} from 'react'
 import WideModal from '../../modals/WideModal'
 import metaMask from "../../../assets/icons/metamaskFox.svg"
-import wood from "../../../assets/icons/wood.svg"
-import metal from "../../../assets/icons/metal.svg"
-import gold from "../../../assets/icons/gold.svg"
-import diamond from "../../../assets/icons/diamond.svg"
 import 'react-alice-carousel/lib/alice-carousel.css';
 import NftView from './NftView'
 import CoinView from './CoinView'
 import Armoury from "./Armoury"
 import FoodView from './FoodView'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/Reducers'
+import { shortenWalletAddress } from '../../Helpers/general'
 
 interface StoreInterface{
     open: boolean
@@ -18,11 +17,21 @@ interface StoreInterface{
 
 const Store = ({open, toggle}: StoreInterface) => {
 
+    const {userData} = useSelector((state: RootState)=> state)
     const [currNav, setCurrNav] = useState("nfts")
-
+    
+    const address = sessionStorage.getItem("address") as string
 
     const changeNav = (i: string) =>{
         setCurrNav(i)
+    }
+
+    const findTokenCount = (i: string) =>{
+     const count  =userData.data.tokens.find((token: any)=>token.type.name.toLowerCase() === 
+        i.toLowerCase()
+        )?.quantity 
+
+        return count
     }
 
   return (
@@ -57,33 +66,17 @@ const Store = ({open, toggle}: StoreInterface) => {
                     <div className="detailItem">
                         <img src={metaMask} alt="img" className='detailImg' />
                         <span className="detailSpan address">
-                        0xbywt7d.....09867
+                        {shortenWalletAddress(address)}
                         </span>
                     </div>
-                    <div className="detailItem">
-                        <img src={wood} alt="img" className='detailImg' />
+                     {userData.data.availableTokens.map((tok: any, idx: number)=>(
+                    <div key={idx} className="detailItem">
+                        <img width={30} src={tok?.image} alt="img" className='detailImg' />
                         <span className="detailSpan">
-                        89
+                        {findTokenCount(tok?.name) ?? 0}
                         </span>
-                    </div>
-                    <div className="detailItem">
-                        <img src={metal} alt="img" className='detailImg' />
-                        <span className="detailSpan">
-                        89
-                        </span>
-                    </div>
-                    <div className="detailItem">
-                        <img src={gold} alt="img" className='detailImg' />
-                        <span className="detailSpan">
-                        89
-                        </span>
-                    </div>
-                    <div className="detailItem">
-                        <img src={diamond} alt="img" className='detailImg' />
-                        <span className="detailSpan">
-                        89
-                        </span>
-                    </div>
+                    </div>  
+                    ))}
                 </div>
             </div>
             <div className="contentAreaCon">

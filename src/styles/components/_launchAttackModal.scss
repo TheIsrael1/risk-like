@@ -23,9 +23,9 @@
             transition: all .4s ease-in-out;
             transition-delay: .1s;
             width: 25rem;
-            height: 27.5rem;
+            min-height: 28rem;
             background-color: #191919;
-            top: 42.5%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10; 
@@ -34,6 +34,7 @@
 
             &.wider{
                 width: 35rem;
+                height: 24rem;
             }
 
             .top{
@@ -69,7 +70,8 @@
                     align-items: flex-end;
 
                     img{
-                        cursor: pointer;
+                         cursor: pointer; 
+
                     }
                 }
             }
@@ -89,8 +91,25 @@
             }
 
             .centerArea{
-                flex-grow: 1;
                 background-color: #424047;
+                max-height: 40vh;
+                overflow-y: scroll;
+
+                scrollbar-width: 4px;
+
+                &::-webkit-scrollbar{
+                    height: 4px;
+                    width: 8px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #606060;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #1E1D1D;
+                    border-radius: 20px;
+                }
 
                 .centerAreaItem{
                     display: flex;
@@ -100,6 +119,7 @@
                     background-color: #424047;
                     border-bottom: 1px solid #5A616A;
                     padding: .6rem 1.5rem;
+
 
                     .imgCon{
                         width: 3rem;
@@ -204,9 +224,8 @@
                         .sectionRow{
                             margin-bottom: 2rem;
                             width: 100%;
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-between;
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;     
                             align-items: center;
 
                             .centerItem{
@@ -292,7 +311,8 @@
                 }
 
                 .commenceAttack{
-                    cursor: pointer;
+                     cursor: pointer; 
+
 
                     &:active{
                         transform: translateY(2px);

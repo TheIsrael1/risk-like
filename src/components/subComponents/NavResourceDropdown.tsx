@@ -7,9 +7,10 @@ interface NavResourceDropdownInterface{
     img: string
     mines: any[]
     type: string
+    count: any
 }
 
-const NavResourceDropdown = ({img, mines, type}:NavResourceDropdownInterface) => {
+const NavResourceDropdown = ({img, mines, type, count}:NavResourceDropdownInterface) => {
     const [open, setOpen] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
 
@@ -50,7 +51,7 @@ const NavResourceDropdown = ({img, mines, type}:NavResourceDropdownInterface) =>
         <NavDropBadge 
         toggle={()=>toggle()}
         open={open} 
-        count={state.totalResource} 
+        count={count} 
         img={img} />
         <div className='drop'>
             <AssetsModalCon 
@@ -60,7 +61,7 @@ const NavResourceDropdown = ({img, mines, type}:NavResourceDropdownInterface) =>
             mainDrop={true}
             >
             <div className='groupImg'>
-                <img src={img} alt="groupImg" className='img' />
+                <img width={40} src={img} alt="groupImg" className='img' />
             </div>
             <div className='top'>
                 <div className='topCol'>
@@ -68,7 +69,7 @@ const NavResourceDropdown = ({img, mines, type}:NavResourceDropdownInterface) =>
                     Total {type}
                     </span>
                     <span className='topColValue'>
-                        {state.totalResource}
+                        {count}
                     </span>
                 </div>
                 <div className='topCol'>

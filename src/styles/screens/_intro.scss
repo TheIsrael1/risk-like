@@ -9,8 +9,6 @@
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;
-    // cursor: url('../../assets/icons/handCursor.svg'), auto ;
-
 
     &::before{
         content: "";
@@ -73,7 +71,8 @@
         top: 70%;
         left: 50%;
         transform: translate(-50%, -50%);
-        cursor: pointer;
+         cursor: pointer; 
+
 
         &:active{
             transform: translate(-50%, -45%);
@@ -91,7 +90,8 @@
             left: 50%;
             transform: translate(-60%, -60%);
             white-space: nowrap;
-            cursor: pointer;
+             cursor: pointer; 
+
         }
     }
 

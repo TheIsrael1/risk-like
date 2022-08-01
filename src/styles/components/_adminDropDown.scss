@@ -1,0 +1,42 @@
+#AdminDropDown{
+    width: 100%;
+    margin-bottom: .5rem;
+
+    .label{
+        color: white;
+        margin-bottom: .5rem;
+        font-size: 18px;
+
+        &.lightBg{
+            color: $lightBorder;
+            font-weight: 700;
+            font-size: 14px;
+        }
+    }
+
+    select{
+    width: 100%;
+    height: 2.3rem;
+    max-width: 100%;
+    font-size: 18px;
+
+    
+    &:active, &:focus{
+        border: none;
+        outline: none;
+    }
+
+    &.lightBg{
+        color: $lightBorder;
+        font-weight: 700;
+        border: 1px solid black;
+
+        &:active, &:focus{
+            border: 1px solid black;
+            border:1px solid black;
+        }
+    }
+
+    }
+
+}

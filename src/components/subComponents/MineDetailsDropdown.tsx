@@ -56,7 +56,7 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
                 >
                 <div className='detailsTop'>
                     <div>
-                        <img src={mineDetails} alt="mine" className='mineImg' />
+                        <img  src={mineDetails} alt="mine" className='mineImg' />
                     </div>
                     <div>
                         <span className='rtkValue'>
@@ -69,7 +69,7 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
                     Mine Type:
                     </span>
                     <span className='detailValue bold'>
-                    <img src={img} alt="mineTpe" />
+                    <img width={40} src={img} alt="mineTpe" />
                     </span>
                 </div>
                 <div className='detailsRow'>

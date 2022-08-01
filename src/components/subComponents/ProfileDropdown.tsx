@@ -13,6 +13,8 @@ import victoriesIcon from "../../assets/icons/victoriesIcon.svg";
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const username = sessionStorage.getItem("name")
+
 
   const toggle = () => {
     setOpen(!open);
@@ -51,7 +53,7 @@ const ProfileDropdown = () => {
                             Nick Name
                          </span>
                          <span className="name">
-                            Danger Max
+                            {username}
                          </span>
                     </div>
               </div>

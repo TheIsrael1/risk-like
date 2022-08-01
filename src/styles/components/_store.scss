@@ -47,7 +47,8 @@
                 font-weight: 400;
                 font-size: 18px;
                 color: $white;
-                cursor: pointer;
+                 cursor: pointer; 
+
                 z-index: 1;
                 padding: 4px 12px;
                 background: transparent;
@@ -68,6 +69,13 @@
             flex-direction: row;
             align-items: center;
             margin: 0 3rem;
+            max-width: 40rem;
+            overflow-x: scroll;
+            scrollbar-width: 0;
+
+            &::-webkit-scrollbar{
+                display: none;
+            }
 
             .detailItem{
                 margin-left: 2rem;
@@ -110,7 +118,8 @@
             white-space: nowrap;
 
             .arrowL{
-                cursor: pointer;
+                 cursor: pointer; 
+
                 position: absolute;
                 top: 30%;
                 left: 0;
@@ -122,7 +131,8 @@
             }
 
             .arrowR{
-                cursor: pointer;
+                 cursor: pointer; 
+
                 position: absolute;
                 top: 30%;
                 right: 0;

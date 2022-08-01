@@ -1,0 +1,138 @@
+#BattleOngoingModal{
+    .battleModalBackdrop{
+        position: fixed;
+        visibility: hidden;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: all .2s ease-in-out;
+        transition-delay: .3s;
+
+        &.show{
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .battleModal{
+            position: relative;
+            transition: all .4s ease-in-out;
+            transition-delay: .1s;
+            width: 25rem;
+            height: 34rem;
+            background-color: #191919;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; 
+            display: flex;
+            flex-direction: column;
+
+            .top{
+                width: 100%;
+                padding: 1rem 1rem .5rem ;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+
+                .left{
+                    display: flex;
+                    flex-direction: column;
+                    
+                    .topText{
+                        font-size: 18px;
+                        font-weight: 400;
+                        color: $textDisabledLight;
+                    }
+                }
+
+                .right{
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+
+                    img{
+                         cursor: pointer; 
+
+                        &:active{
+                            transform: scale(.9);
+                        }
+                    }
+                }
+            }
+
+            .progressSection{
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                
+                .title{
+                    color: #B4B7BD;
+                    font-size: 13px;
+                }
+
+                .progressBar{
+
+                }
+            }
+
+            .battleDetailsSection{
+                flex-grow: 1;
+                background-color: #424047;
+                display: flex;
+                flex-direction: column;
+
+                .top{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    padding: 1rem 0;
+
+                    img{
+                        width: 150px;
+                    }
+                }
+
+                .mainSection{
+                    border-top: 1px solid #5A616A;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+
+                    .side{
+                        width: 50%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        &.left{
+                            border-right: 1px solid #5A616A;
+                        }
+
+                        .nameCon{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: .5rem 0;
+                            width: 100%;
+                            border-bottom: 1px solid #5A616A;
+
+                            .name{
+                                font-weight: 700;
+                                font-size: 15px;
+                                color: #B4B7BD;
+                                margin-right: .5rem ;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+}

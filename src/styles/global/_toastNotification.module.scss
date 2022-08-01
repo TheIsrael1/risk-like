@@ -1,0 +1,39 @@
+.ToastCon{
+    position: fixed;
+    top: 12.5%;
+    left: 10px;
+    z-index: 9999;
+
+    li{
+        list-style: none;
+    }
+
+    .Toast{
+        position: relative;
+        width: 350px;
+        height: auto;
+        min-height: 40px;
+        background: rgba(7, 12, 18, 0.76);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: .2rem;
+    
+        .iconCon{
+    
+        }
+    
+        .textCon{
+            flex-grow: 1;
+            margin: 0 1rem;
+
+            .text{
+                color: white;
+                font-size: 16px;
+    
+            }
+        }
+    }
+}

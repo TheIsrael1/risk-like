@@ -14,7 +14,8 @@
         right: 0;
         top: 45vh;
         margin-right: 1rem;
-        cursor: pointer;
+         cursor: pointer; 
+
 
         &:active{
             transform: scale(.9);
@@ -26,7 +27,8 @@
         right: 0;
         top: 55vh;
         margin-right: 1rem;
-        cursor: pointer;
+         cursor: pointer; 
+
         
         &:active{
             transform: scale(.9);
@@ -34,24 +36,46 @@
 
     }
 
+
     .zoomBtn{
         position: absolute;
         right: 0;
         top: 10vh;
         margin-right: 1rem;
-        cursor: pointer;
+         cursor: pointer; 
+
+         .zoomInPh{
+            position: fixed;
+            width: 3rem;
+            height: 3rem;
+           margin-top: 2px;
+           margin-left: 2px;
+            background-color:  transparent;
+        }
+         .zoomOutPh{
+            position: fixed;
+            width: 3rem;
+            height: 3rem;
+            margin-top: calc(3rem + 6px);
+           margin-left: 2px;
+            background-color:  transparent;
+        }
 
         &:active{
             transform: scale(.9);
         }
     }
 
+    
+
+
     .worldMapDrop{
         position: absolute;
         right: 0;
         top: 10vh;
         margin-right: 5rem;
-        cursor: pointer;
+         cursor: pointer; 
+
 
         &:active{
             transform: scale(.9);

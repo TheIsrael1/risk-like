@@ -11,9 +11,22 @@ import {mineData} from '../../util/mineDummyData'
 import ProfileDropdown from '../subComponents/ProfileDropdown'
 import CommentsDropdown from '../subComponents/CommentsDropdown'
 import FoodDropdown from '../subComponents/FoodDropdown'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/Reducers'
 
 const Nav = () => {
 
+    const {userData, mapData} = useSelector((state: RootState)=> state)
+
+    const findTokenCount = (i: string) =>{
+        const count  =userData.data.tokens.find((token: any)=>token.type.name.toLowerCase() === 
+           i.toLowerCase()
+           )?.quantity 
+   
+           return count
+       }
+
+    //temp.. logic will be refactored on real data from backend
     const [state, setState] = useState({
         wood: [],
         silver: [],
@@ -42,19 +55,18 @@ const Nav = () => {
     },[getResourceData])
 
   return (
-    <div id="Nav">
+    <div id="Nav" className={`${mapData.data.mapAnimationOngoing ? `hide`: ``}`}>
         <div className='navCon'>
-            <div className='navItemsRowLeft'>
-                <NavResourceDropdown mines={state?.wood} img={wood} type="wood" />
-                <NavResourceDropdown mines={state?.silver} img={metal} type="silver"/>
-                <NavResourceDropdown mines={state.gold} img={gold} type="gold" />
-                <NavResourceDropdown mines={state.diamond} img={diamond} type="diamond" />
+          <div className='navItemsRowLeft'>
+                {userData.data.availableTokens.map((tok: any, idx: number)=>(
+                    <NavResourceDropdown key={idx} count={findTokenCount(tok?.name) ?? 0} mines={state?.wood} img={tok?.image} type={tok?.name} />
+                ))}
                 <div className="valueBadge">
                     <span className="badgeT">
-                    Value Total ($): {" "}
+                    Total ($): {" "}
                     </span>
                     <span className="badgeV">
-                    $267,786,897
+                    $267,786
                     </span>
                 </div>
             </div>

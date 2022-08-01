@@ -47,7 +47,8 @@
             justify-content: space-between;
             padding: .5rem 1rem;
             align-items: center;
-            cursor: pointer;
+             cursor: pointer; 
+
 
             &.active{
                 background-color: $activeSelect;
@@ -80,7 +81,8 @@
             .detailsDropCon{
                 .arrowTo{
                     width: 16px;
-                    cursor: pointer;
+                     cursor: pointer; 
+
                 }
 
                 .detailsDrop{

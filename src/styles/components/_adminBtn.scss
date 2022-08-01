@@ -1,0 +1,17 @@
+#AdminBtn{
+    background-color: $lightBorder;
+    padding: 8px 14px;
+   display: inline;
+    border-radius: 10px;
+    cursor: pointer;
+
+    .text{
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    &:hover{
+        transform: scale(0.98);
+    }
+}

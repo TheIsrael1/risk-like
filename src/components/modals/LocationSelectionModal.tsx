@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import yellowDropArrow from "../../assets/icons/yellowDropArrow.svg"
 import cancel from '../../assets/icons/cancelBtn.svg'
 import SelectionDrop from '../subComponents/LocationModal/SelectionDrop'
-import { mySettlements } from '../../util/mySettlements'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/Reducers'
+import { isMyLocation } from '../Helpers/IsMyLocation'
 
 interface LocationSelectionModalInterface{
 setAttackForce: (id: number) => void
@@ -10,13 +12,16 @@ setAttackForce: (id: number) => void
 
 const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionModalInterface) => {
 
-    const [currentSelection, setCurrentSelection] = useState(mySettlements[0])
+    const {mineLocationsData} = useSelector((state: RootState)=> state)
+
+    const [currentSelection, setCurrentSelection] = useState(mineLocationsData.data?.[0])
     const [modalOpen, setModalOpen] = useState(false)
 
+
     const updateCurrSelection = (id: number) =>{
-        const selection = mySettlements?.find?.(item=>item.id === id)
+        const selection = mineLocationsData.data?.find?.(item=>item.id === id)
         setCurrentSelection(selection ?? currentSelection)
-        setAttackForce(currentSelection.id)
+        setAttackForce(selection.id)
     }
 
     const toggle = () =>{
@@ -48,16 +53,9 @@ const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionMo
                                 />
                         </div>
                         <div className="locationModalBody">
-                        { mySettlements?.map?.((item: any)=>(
-                            <SelectionDrop 
-                            campName={item.name}
-                            crafts={item.airCraft}
-                            distance={item.distance}
-                            eta={item.eta}
-                            id={item.id}
-                            mechanicSoilders={item.mechanicSoilders}
-                            soilders={item.soilders}
-                            tanks={item.tanks}
+                        { isMyLocation(mineLocationsData.data)?.map?.((item: any)=>(
+                            <SelectionDrop
+                            item={item}
                             key={item.id}
                             selectLocation={(id: number)=>{updateCurrSelection(id)}}
                             />

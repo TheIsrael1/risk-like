@@ -44,7 +44,8 @@
             border-left: none;
 
             .img{
-                width: 2rem;
+                width: 40px;
+                height: 40px;
             }
 
             .span{
@@ -66,7 +67,8 @@
             background-repeat: no-repeat;
             width: 5rem;
             height: 2rem;
-            cursor: pointer;
+             cursor: pointer; 
+
             display: flex;
             flex-direction: row;
             justify-content: center;

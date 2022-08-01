@@ -12,7 +12,8 @@
         justify-content: space-between;
         background-color: #424047;
         border-radius: 20px;
-        cursor: pointer;
+         cursor: pointer; 
+
 
         &:active{
             transform: translateY(1px)
@@ -56,7 +57,8 @@
                 align-items: flex-start;
 
                 img{
-                    cursor: pointer;
+                     cursor: pointer; 
+
                 }
 
                 .locationModalTopText{
@@ -75,6 +77,7 @@
                 min-height: 100%;
                 overflow-y: scroll;
                 padding: .5rem 4px;
+                scrollbar-width: 8px;
 
                 &::-webkit-scrollbar{
                     width: 8px;
@@ -94,7 +97,8 @@
                 // selectionDropComponent
                 .SelectionDrop{
                     position: relative;
-                    cursor: pointer;
+                     cursor: pointer; 
+
                     transition: all .2s ease-in;
 
                     &.selectionDropSelected{
@@ -131,12 +135,13 @@
                         }
 
                         .sectionDropArrow{
-                            cursor: pointer;
+                             cursor: pointer; 
+
                         }
                     }
 
                     .selectionContent{
-                        width: 100%;
+                        width: auto;
                         display: flex;
                         flex-direction: row;
                         align-items: center;
@@ -147,20 +152,38 @@
                         transition: all .1s ease-in-out;
                         transition-delay: .1s;
                         overflow: hidden;
+                        overflow-x: scroll;
                         visibility: hidden;
                         opacity: 0;
                         height: 0;
 
                         &.showSelectionContent{
                             visibility: visible;
-                            height: 3rem;                            
+                            height: auto;
+                             min-height: 3rem;                            
                             opacity: 1;
                         }
 
+                        scrollbar-width: 4px;
+
+                        &::-webkit-scrollbar{
+                            height: 4px;
+                        }
+        
+                        &::-webkit-scrollbar-track {
+                            background: #606060;
+                        }
+        
+                        &::-webkit-scrollbar-thumb {
+                            background-color: #1E1D1D;
+                            border-radius: 20px;
+                          }
+        
                         .selectionContentItem{
                             display: flex;
                             flex-direction: row;
                             align-items: center;
+                            min-width: 5rem;
 
                             .count{
                                 font-size: 12px;
