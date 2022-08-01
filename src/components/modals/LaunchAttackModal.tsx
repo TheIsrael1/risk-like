@@ -1,14 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 import cancel from '../../assets/icons/cancelBtn.svg'
 import LocationSelectionModal from './LocationSelectionModal'
-import soilder from "../../assets/images/soilder.png"
-import craft from "../../assets/icons/craftIcon.png"
-import tank from "../../assets/icons/tankIcon.png"
-import robot from "../../assets/icons/robotIcon.png"
 import attackBtn from "../../assets/icons/commenceAttack.svg"
 import thumbs from "../../assets/icons/greenThumbsUp.svg"
 import CountSelect from '../utility/CountSelect'
-import cancelDeploymentBtn from "../../assets/icons/cancelDeploymentBtn.svg"
+// import cancelDeploymentBtn from "../../assets/icons/cancelDeploymentBtn.svg"
 import etaIcon from "../../assets/icons/etaIcon.svg"
 import distanceIcon from "../../assets/icons/distanceIcon.svg"
 import deployFromIcon from "../../assets/icons/deployFromIcon.svg"
@@ -99,10 +95,10 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
     };
 
 
-      const getAssetNameWithId = (i: string)=>{
-        const name = userData.data.userAssets?.find((a: any)=> a?.id === i)?.asset?.name
-        return name
-      }
+    //   const getAssetNameWithId = (i: string)=>{
+    //     const name = userData.data.userAssets?.find((a: any)=> a?.id === i)?.asset?.name
+    //     return name
+    //   }
     
 
     const getLocAssetCount = (data: any, i: string)=>{
@@ -202,7 +198,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
         dispatch(backgroudLocationUpdate() as any)
         getAssetInfo()
         closeToast?.()
-        timedToast?.(`${attackResult.status}, ${attackResult.msg}`)
+        openToast?.(`${attackResult?.status}, ${attackResult?.msg}`)
        }
     },[mapData.data.mapAnimationOngoing])
 
@@ -215,6 +211,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
             chosenAssets: []
           }
         })
+        closeToast?.()
       }
       
   return (

@@ -9,12 +9,14 @@ import { adminRegister } from '../services/authentication'
 import {setAdmin } from '../services'
 import { setUserDetails } from '../redux/Actions/userAction'
 import { useDispatch } from 'react-redux'
+import btnLoader from "../assets/gifs/redLoader.gif"
 
 declare var window: any
 
 const AdminOnboarding = () => {
 
     const [view, setView] = useState(1)
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -54,6 +56,7 @@ const AdminOnboarding = () => {
 
      const doApiCall = async()=>{
         try{
+            setLoading(true)
             const {data} = await adminRegister({
                 name: userDetails.username,
                 email: userDetails.email,
@@ -66,6 +69,8 @@ const AdminOnboarding = () => {
             dispatch(setUserDetails(data) as any)
         }catch(err){
             timedToast?.("An error occured")
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -196,9 +201,13 @@ const AdminOnboarding = () => {
                             </span>
                     </div>
                     <div>
+                    {loading ?
+                        <img width={50} src={btnLoader} alt="" />
+                    :
                     <img 
                     onClick={()=>{doApiCall()}}
                     className='btn' width={200} src={Btn} alt="btn" />
+                    }
                     </div>
                 </div>
                 :

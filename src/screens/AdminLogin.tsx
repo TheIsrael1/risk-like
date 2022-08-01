@@ -9,11 +9,13 @@ import { adminLogin } from '../services/authentication'
 import { setAdmin } from '../services'
 import { setUserDetails } from '../redux/Actions/userAction'
 import { useDispatch } from 'react-redux'
+import btnLoader from "../assets/gifs/redLoader.gif"
 
 declare var window: any
 
 const AdminLogin = () => {
     const [view, setView] = useState(1)
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -51,6 +53,7 @@ const AdminLogin = () => {
 
      const doApiCall = async()=>{
         try{
+            setLoading(true)
             const {data} = await adminLogin({
                 address: userDetails.address,
                 signer_key: userDetails.signature
@@ -61,6 +64,8 @@ const AdminLogin = () => {
             navigate('/admin/dashboard')
         }catch(err: any){
             timedToast?.(`${err?.response?.data?.detail}` ?? "An error occured")
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -133,9 +138,13 @@ const AdminLogin = () => {
                            </div>
                         </div>
                         <div>
+                        {loading ?
+                        <img width={50} src={btnLoader} alt="" />
+                        :
                         <img 
                         onClick={()=>doApiCall()}
                         className='btn' width={200} src={Btn} alt="btn" />
+                        }
                         </div>
                     </div>
                 }

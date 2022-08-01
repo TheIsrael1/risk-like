@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import GeneralModal from '../components/modals/GeneralModal'
 import {ethers} from 'ethers'
 import Btn from "../assets/icons/proceedBtn.svg"
@@ -111,10 +111,9 @@ const Onboarding = () => {
             let lat = position.coords.latitude;
             let long = position.coords.longitude;
             createBaseLocation(
-                51.818970335530864,
-                10.581835352433767
-                ) 
-            
+                lat,
+                long
+                )  
           });
     }
 

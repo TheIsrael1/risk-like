@@ -87,7 +87,7 @@ const GameController = () => {
      await Promise.all(newMines)
     dispatch(initialMineLocations() as any)
     }
-    setCheckResult("We planted 3 mines in your location, go ahead and attack!")
+    setCheckResult("We planted 3 mines in your location, go ahead and move Attack")
     setTimeout(()=>{
       setCheckingForNeighbours(false)
     }, 8000)
