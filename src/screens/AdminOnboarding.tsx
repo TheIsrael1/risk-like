@@ -132,9 +132,11 @@ const AdminOnboarding = () => {
                        <div className="title">
                        Oops! You don't have metamask installed 
                        Click on this 
-                       <span className="link">
-                        Link 
-                        </span> 
+                       <a href="https://metamask.io/">
+                            <span className="link">
+                            Link 
+                            </span> 
+                        </a>
                         to get Metamask <img width={24} src={metamaskFox} alt='img'/>
                        </div>
                     </div>

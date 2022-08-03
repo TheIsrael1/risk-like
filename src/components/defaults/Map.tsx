@@ -7,13 +7,9 @@ import React, {
 } from "react";
 import { useDispatch } from "react-redux";
 import homeSettlement from "../../assets/icons/MapMarkers/homeSettlement.svg";
-import tankGif from "../../assets/icons/tankGif.gif";
-import tankIcon from "../../assets/images/tank.svg"
 import mineActive from "../../assets/icons/MapMarkers/mineActive.svg";
-import mineInactive from "../../assets/icons/MapMarkers/mineInactive.svg";
 import locationBtn from "../../assets/icons/MapControlIcons/locationSelectorBtn.svg";
 import baseSelectionBtn from "../../assets/icons/MapControlIcons/baseSelectionBtn.svg";
-import zoomBtn from "../../assets/icons/MapControlIcons/zoomBtn.svg";
 import worldMapBtn from "../../assets/icons/MapControlIcons/worldMapBtn.svg";
 import MineIcon from "../InteractiveIcons/MineIcon";
 import {
@@ -37,6 +33,7 @@ import { updateMapDataAction } from "../../redux/Actions/mapDataAction";
 import { MapdataType } from "../../redux/Reducers/mapDataReducer";
 import LocationInfoModal from "../modals/LocationInfoModal";
 import { getLocationDetail, updateLocation } from "../../services/locations";
+import {moveLocByMeteres} from "../Helpers/general"
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
@@ -203,7 +200,7 @@ const Map = () => {
 
   const getUserBaseLoc = () =>{
     const loca = mineLocationsData.data?.find((loc)=>loc?.owner_id === userId && loc?.location_type === "base" )
-    return {lng: loca?.long, lat: loca?.lat}
+    return {lng: parseFloat(loca?.long), lat: parseFloat(loca?.lat)}
   }
 
   const center = useMemo(()=>getUserBaseLoc(),[])
@@ -273,12 +270,8 @@ const Map = () => {
   }, []);
   
 
-  const setGameControlData = (coord: any) => {
-    const selected = mineLocationsData?.data?.find(
-      (location: any) =>
-        location.lat === coord.lat && location.long === coord.lng
-    );
-    dispatch(updateGameControllerDetails(selected) as any);
+  const setGameControlData = (loc: any) => {
+    dispatch(updateGameControllerDetails(loc) as any);
   };
 
   const openInfoModal = async (coord: any) => {
@@ -363,8 +356,7 @@ const Map = () => {
 
   const moveLocation = async() => {
     const updatedLocations = mineLocationsData.data.map?.((x: any)=>{
-      if( x.lat === gameControllerData.data.lat && 
-        x.long === gameControllerData.data.long 
+      if( x.id === gameControllerData.data.id
       ){
         return{
           ...x,
@@ -375,30 +367,16 @@ const Map = () => {
         return x
       }
     })
-    const LocToUpdate = mineLocationsData.data.find((curr) => {
-      if (
-        curr.lat === gameControllerData.data.lat &&
-        curr.long === gameControllerData.data.long
-      ) {
-        return {
-          ...curr,
-          lat: state.newLocationAlert?.lat,
-          long: state.newLocationAlert?.lng,
-        };
-      } else {
-        return curr;
-      }
-    })
 
     try{
     await updateLocation(gameControllerData.data.id, 
       {
-        owner_id: LocToUpdate?.owner_id,
-        name: LocToUpdate?.name,
-        location_type: LocToUpdate?.location_type,
-        long: LocToUpdate?.long,
-        lat: LocToUpdate?.lat,
-        properties: LocToUpdate?.properties
+        owner_id: gameControllerData.data?.owner_id,
+        name: gameControllerData.data?.name,
+        location_type: gameControllerData.data?.location_type,
+        long: state.newLocationAlert?.lng,
+        lat:state.newLocationAlert?.lat,
+        properties: gameControllerData.data?.properties
     })
 
    doMoveAnimation(
@@ -406,7 +384,7 @@ const Map = () => {
     lat: gameControllerData.data.lat,
     lng: gameControllerData.data.long,
     },
-   {
+    {
     lat: state.newLocationAlert?.lat,
     lng: state.newLocationAlert?.lng,
     },
@@ -532,15 +510,23 @@ const Map = () => {
         >
           <MarkerClusterer>
             {(clusterer)=>
-          mineLocationsData?.data?.map?.((i: any, idx: number) => (
+            mineLocationsData?.data?.map?.((i: any, idx: number) => (
             <Marker
               key={idx}
-              position={{ lat: i.lat, lng: i.long }}
+              position={i.owner_id !== userId && i.location_type === "base" ?
+              moveLocByMeteres(i.lat, i.long, 200)
+              :
+              {lat: parseFloat(i.lat), lng: (parseFloat(i.long))}
+               }
               icon={{
-                url: i.location_type === "base" ? homeSettlement : mineActive,
+                url: i.location_type === "base"  ? homeSettlement : mineActive,
               }}
               onClick={(e) => {
-                setGameControlData(e.latLng?.toJSON());
+                setGameControlData({
+                 ...i,
+                 lat: e.latLng?.toJSON().lat,
+                 long: e.latLng?.toJSON().lng
+                });
               }}
               onRightClick={(e) => {i.location_type === "base" ?
                 timedToast?.("You can only view mine details")
@@ -550,13 +536,13 @@ const Map = () => {
               zIndex={9}
               clusterer={clusterer}
             />
-          ))
-          }
-          </MarkerClusterer>
+          ))}
+        </MarkerClusterer>
 
          { Object.keys(gameControllerData.data)[0] &&
          <Circle 
-          center={{lat: gameControllerData.data?.lat, lng: gameControllerData.data?.long}}
+          center={{lat: parseFloat(gameControllerData.data?.lat), 
+            lng: parseFloat(gameControllerData.data?.long)}}
            radius={10000}
            options={{radius: 10000, ...circleOptions}}
            />
@@ -564,8 +550,8 @@ const Map = () => {
           {Object.keys(gameControllerData.data)[0] && 
             <OverlayView
               position={{
-                lat: gameControllerData.data.lat,
-                lng: gameControllerData.data.long,
+                lat: parseFloat(gameControllerData.data.lat),
+                lng: parseFloat(gameControllerData.data.long),
               }}
               mapPaneName={OverlayView.MARKER_LAYER}
             >
@@ -578,7 +564,7 @@ const Map = () => {
               !mapData?.data.locationDragging && (
                 <OverlayView
                   key={idx * Math.random()}
-                  position={{ lat: i.lat, lng: i.long }}
+                  position={{ lat: parseFloat(i.lat), lng: parseFloat(i.long) }}
                   mapPaneName={OverlayView.MARKER_LAYER}
                 >
                   <BaseIcon />
@@ -594,7 +580,6 @@ const Map = () => {
               <BaseIcon />
             </OverlayView>
           )}
-=
           {state.needPolyLine && (
             <Polyline
             onLoad={onPolyLoad}

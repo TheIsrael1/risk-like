@@ -11,6 +11,7 @@ import {setUser } from '../services'
 import { setNewUserFlag } from '../redux/Actions/userAction'
 import { useDispatch } from 'react-redux'
 import btnLoader from "../assets/gifs/redLoader.gif"
+import { getCountryNameFromCoord } from '../components/Helpers/general'
 // import { getCountryNameFromCoord } from '../components/Helpers/general'
 
 
@@ -80,6 +81,8 @@ const Onboarding = () => {
 
 
     const createBaseLocation = async(lat: number, long: number) =>{
+        const locdetails = await getCountryNameFromCoord(lat, long)
+
         try{
             const base = {
                 owner_id: userId,
@@ -91,7 +94,7 @@ const Onboarding = () => {
                 properties: [
                   {
                     key: "country",
-                    value:  "Nigeria"
+                    value:  locdetails["_country"]
                   }
                 ]
               }
@@ -101,7 +104,7 @@ const Onboarding = () => {
         }catch(err){
             timedToast?.(`An Error Occured`)
         }finally{
-            setLoading(false)
+            // setLoading(false)
         }
     }
 
@@ -180,9 +183,11 @@ const Onboarding = () => {
                    <div className="title">
                    Oops! You don't have metamask installed 
                    Click on this 
+                   <a href="https://metamask.io/">
                    <span className="link">
                     Link 
                     </span> 
+                   </a>
                     to get Metamask <img width={24} src={metamaskFox} alt='img'/>
                    </div>
                 </div>

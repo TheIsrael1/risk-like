@@ -150,7 +150,7 @@ const getUserAssetCount = (i: string) => {
          timedToast?.(handleError(err))
        }  
     }
-  },[state.currData, userData])
+  },[state.currData, userData.data.userAssets])
 
   useEffect(()=>{
     getAssetInfo()

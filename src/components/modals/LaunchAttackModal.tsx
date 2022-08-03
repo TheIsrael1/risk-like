@@ -41,6 +41,7 @@ interface chosenAssets{
 
 const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
 
+    const userId = sessionStorage.getItem("id") as string
     const [state, setState] = useState<LaunchAttackModalState>({
         currData: {},
         commenceAttackView: false,
@@ -50,7 +51,6 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
 
     const [attackResult, setAttackResult] = useState<any>()
 
-    const userId = sessionStorage.getItem("id") as string
     const {timedToast, open: openToast, closeAll: closeToast} = useToast()
     const dispatch = useDispatch()
 
@@ -138,7 +138,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
                  timedToast?.(handleError(err))
                }     
         }
-      },[state.currData, userData])
+      },[state.currData, userData.data.userAssets])
 
       useEffect(()=>{
         getAssetInfo()
@@ -167,7 +167,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
                             user_asset_id: userData.data.userAssets.find((a: any)=> a?.asset?.name === item.name)?.id
                         })
                     }),
-                    attacked_id: gameControllerData.data.owner_id,
+                    attacked_id: gameControllerData?.data?.owner_id ?? "",
                     attacked_location_id: gameControllerData.data.id,
                     })
                     setAttackResult(data)
@@ -192,13 +192,15 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
 
     useEffect(()=>{
        if(!mapData.data.mapAnimationOngoing && state.chosenAssets.length){
+        closeToast?.()
         toggle()
         toggleView()
         dispatch(updateUserAssets(userId) as any)
         dispatch(backgroudLocationUpdate() as any)
         getAssetInfo()
-        closeToast?.()
-        openToast?.(`${attackResult?.status}, ${attackResult?.msg}`)
+        setTimeout(()=>{
+            openToast?.(`${attackResult?.status}, ${attackResult?.msg}`)
+        }, 1500)
        }
     },[mapData.data.mapAnimationOngoing])
 

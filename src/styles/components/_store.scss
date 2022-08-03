@@ -71,7 +71,8 @@
             margin: 0 3rem;
             max-width: 40rem;
             overflow-x: scroll;
-            scrollbar-width: 0;
+            scrollbar-width: none;
+    
 
             &::-webkit-scrollbar{
                 display: none;

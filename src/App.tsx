@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homebase from './screens/Homebase';
 import Intro from './screens/Intro';
@@ -15,9 +15,19 @@ import TokenDetails from './components/admin/detailsPages/TokenDetails';
 import AssetTypeDetails from './components/admin/detailsPages/AssetTypeDetails';
 import AssetDetails from './components/admin/detailsPages/AssetDetails';
 import LocationDetails from './components/admin/detailsPages/LocationDetails';
+import Loader from './components/utility/Loader'
+import {useJsApiLoader} from '@react-google-maps/api'
+import env from "react-dotenv";
 
 
 function App() {
+  const {isLoaded} = useJsApiLoader({
+    googleMapsApiKey: env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
+    libraries: ["places"],
+  });
+
+
+  if(!isLoaded) return <Loader />
   return (
     <ToastContextProvider>
     <Provider store={store}>

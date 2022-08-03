@@ -45,6 +45,7 @@ const GameController = () => {
       setCheckResult(`There are mines in your location already!`)
       setTimeout(()=>{
         setCheckingForNeighbours(false)
+        return
       },3000)
     }else{
       setTimeout(()=>{
@@ -86,11 +87,12 @@ const GameController = () => {
 
      await Promise.all(newMines)
     dispatch(initialMineLocations() as any)
-    }
-    setCheckResult("We planted 3 mines in your location, go ahead and move Attack")
+
+    setCheckResult("We planted 3 mines in your location, you can now move and attack")
     setTimeout(()=>{
       setCheckingForNeighbours(false)
     }, 8000)
+    }
   },[]) 
 
   useEffect(()=>{

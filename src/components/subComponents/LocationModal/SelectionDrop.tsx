@@ -86,7 +86,7 @@ const SelectionDrop = React.memo(({
          timedToast?.(handleError(err))
        }  
      }
- },[userData.data.assets])
+ },[userData.data.userAssets])
 
  useEffect(()=>{
   getLocationInfo()

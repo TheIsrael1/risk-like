@@ -11,10 +11,19 @@ setAttackForce: (id: number) => void
 }
 
 const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionModalInterface) => {
+    const userId = sessionStorage.getItem("id") as string
 
     const {mineLocationsData} = useSelector((state: RootState)=> state)
 
-    const [currentSelection, setCurrentSelection] = useState(mineLocationsData.data?.[0])
+    const [currentSelection, setCurrentSelection] = useState<any>()
+
+    useEffect(()=>{
+        const initLoc = mineLocationsData.data?.find((i)=>{
+            return i.owner_id === userId && i.location_type === "base"
+        })
+        setCurrentSelection(initLoc)
+    },[])
+
     const [modalOpen, setModalOpen] = useState(false)
 
 
@@ -29,8 +38,8 @@ const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionMo
     }
 
     useEffect(()=>{
-        setAttackForce(currentSelection.id)
-    },[currentSelection.id])
+        setAttackForce(currentSelection?.id)
+    },[currentSelection?.id])
 
   return (
     <div id='LocationSelectionModal'>
@@ -38,7 +47,7 @@ const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionMo
         onClick={()=>toggle()}
         >
             <span className='dropBtnText'>
-                    {currentSelection.name}
+                    {currentSelection?.name}
             </span>
             <img width={12} alt="dropArrow" src={yellowDropArrow} />
         </div>
@@ -61,7 +70,6 @@ const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionMo
                             />
                         ))   
                         }
-
                         </div>
                 </div>
         </div>

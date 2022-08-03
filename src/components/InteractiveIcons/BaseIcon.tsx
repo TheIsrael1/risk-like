@@ -7,7 +7,6 @@ return (
         <div className="pulse"></div>
         <div className="pulse"></div>
     </div>
-)
-}
+)}
 
 export default BaseIcon

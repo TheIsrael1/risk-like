@@ -12,9 +12,7 @@ const [totalAsset, setTotalAsset] = useState(0)
 
 
 useEffect(()=>{
-    const loc = mineLocationsData.data.find((loc: any)=>{
-        return loc.owner_id === userId
-    })
+    const loc = mineLocationsData.data.find((loc: any)=> loc.owner_id === userId  && loc?.location_type === "base")
     setBaseLoc(loc)
 
    const totalAss= userData.data.userAssets?.reduce((sum: any, curr: any)=>{
@@ -23,7 +21,6 @@ useEffect(()=>{
 
    setTotalAsset(totalAss)
 },[userData.data.userAssets, mineLocationsData.data, userId])
-
 
 
   return (
@@ -36,7 +33,7 @@ useEffect(()=>{
             </div>
             <div className='contentRow'>
                 <span className='span'>
-                Name: 
+                 Name:
                 </span>
                 <span className='span'>
                 {baseLoc?.name}
@@ -63,7 +60,7 @@ useEffect(()=>{
                     Country
                 </span>
                 <span className='span'>
-                    {"N/A"}
+                    {baseLoc?.properties?.country ?? "N/A"}
                 </span>
             </div>
             <div className='contentRow'>
