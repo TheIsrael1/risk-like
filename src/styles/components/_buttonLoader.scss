@@ -1,0 +1,41 @@
+
+.buttonLoader {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 4px solid transparent;
+    border-radius: 50%;
+    border-top: 4px solid red;
+    animation: rotate 1.5s linear infinite;
+  }
+  
+  .buttonLoader::before,
+  .buttonLoader::after {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 4px solid transparent;
+  }
+  
+  .buttonLoader::after {
+    inset: 0;
+    border-bottom: 4px solid red;
+    animation: rotate 0.5s linear infinite reverse;
+  }
+  
+  .buttonLoader::before {
+    inset: 4px;
+    border-left: 4px solid red;
+    animation: rotate 1.5s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

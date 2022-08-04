@@ -10,8 +10,8 @@ import { createBase } from '../services/userService'
 import {setUser } from '../services'
 import { setNewUserFlag } from '../redux/Actions/userAction'
 import { useDispatch } from 'react-redux'
-import btnLoader from "../assets/gifs/redLoader.gif"
 import { getCountryNameFromCoord } from '../components/Helpers/general'
+import ButtonLoader from '../components/utility/BtnLoader'
 // import { getCountryNameFromCoord } from '../components/Helpers/general'
 
 
@@ -255,7 +255,7 @@ const Onboarding = () => {
                 </div>
                 <div>
                 {loading ?
-                        <img width={50} src={btnLoader} alt="" />
+                         <ButtonLoader />
                     :
                         <img 
                     onClick={()=>doApiCall()}
@@ -273,7 +273,7 @@ const Onboarding = () => {
                 </div>
                 <div>
                 {loading ?
-                <img width={50} src={btnLoader} alt="" />
+                <ButtonLoader />
                 :
                 <img 
                 onClick={()=>{getUserLocation()}}

@@ -1,15 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cancel from "../../assets/icons/cancelBtn.svg";
 import LocationSelectionModal from "./LocationSelectionModal";
-import soilder from "../../assets/images/soilder.png";
-import craft from "../../assets/icons/craftIcon.png";
-import tank from "../../assets/icons/tankIcon.png";
-import robot from "../../assets/icons/robotIcon.png";
-import miner from "../../assets/images/store/mineWorker.svg"
 import attackBtn from "../../assets/icons/proceedBtn.svg";
 import thumbs from "../../assets/icons/greenThumbsUp.svg";
 import CountSelect from "../utility/CountSelect";
-import cancelDeploymentBtn from "../../assets/icons/cancelDeploymentBtn.svg";
+// import cancelDeploymentBtn from "../../assets/icons/cancelDeploymentBtn.svg";
 import etaIcon from "../../assets/icons/etaIcon.svg";
 import distanceIcon from "../../assets/icons/distanceIcon.svg";
 import deployFromIcon from "../../assets/icons/deployFromIcon.svg";
@@ -21,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { updateUserAssets } from "../../redux/Actions/userAction";
 import { handleError } from "../Helpers/general";
 import { getLocationDetail } from "../../services/locations";
-import { backgroudLocationUpdate } from "../../redux/Actions/mineLocationsAction";
+import { backgroupUserLocUpdate } from "../../redux/Actions/userAction";
 import { updateMapDataAction } from "../../redux/Actions/mapDataAction";
 import titleCase from "../Helpers/titleCase";
 
@@ -166,6 +161,11 @@ const getUserAssetCount = (i: string) => {
       })
   }
 
+  const getChoosenAssets = () =>{
+    const ass = state.chosenAssets
+    return ass
+  }
+
 const moveAsset = async() =>{
   const initLocDetails = mineLocationsData.data.find((l: any)=> l.name === state.currData.name)
     try{
@@ -174,7 +174,7 @@ const moveAsset = async() =>{
           {destination_id: gameControllerData.data.id,
           initial_location_id: initLocDetails?.id,
           mover_id: userId,
-          assets: state.chosenAssets
+          assets: getChoosenAssets()
           }
           ) 
           toggle()
@@ -201,7 +201,8 @@ if(!mapData.data.mapAnimationOngoing && state.chosenAssets.length){
   toggle()
   toggleView()
   dispatch(updateUserAssets(userId) as any)
-  dispatch(backgroudLocationUpdate() as any)
+  dispatch(backgroupUserLocUpdate(userId) as any)
+  // dispatch(backgroudLocationUpdate() as any)
   getAssetInfo()
   closeToast?.()
 }
@@ -213,7 +214,8 @@ const cleanUp = () =>{
   setState((prev)=>{
     return{
       ...prev,
-      chosenAssets: []
+      chosenAssets: [],
+      resource: {},
     }
   })
 }

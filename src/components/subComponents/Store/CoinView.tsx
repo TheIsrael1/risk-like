@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import arrowLeftBig from "../../../assets/icons/arrowLeftBig.svg"
 import arrowRightBig from "../../../assets/icons/arrrowRightBig.svg"
 import AliceCarousel from 'react-alice-carousel';
-import {storeData} from "../../../util/storeData"
 import ShortCard from '../../common/ShortCard';
 import AlertModal from '../../modals/AlertModal';
 import { buyToken, getTokens } from '../../../services/tokenService';

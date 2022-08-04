@@ -197,7 +197,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
         toggleView()
         dispatch(updateUserAssets(userId) as any)
         dispatch(backgroupUserLocUpdate(userId) as any)
-        dispatch(backgroudLocationUpdate() as any)
+        // dispatch(backgroudLocationUpdate() as any)
         getAssetInfo()
         setTimeout(()=>{
             openToast?.(`${attackResult?.status}, ${attackResult?.msg}`)
@@ -211,7 +211,8 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
         setState((prev)=>{
           return{
             ...prev,
-            chosenAssets: []
+            chosenAssets: [],
+            resource: {}
           }
         })
         closeToast?.()

@@ -9,7 +9,7 @@ import { adminRegister } from '../services/authentication'
 import {setAdmin } from '../services'
 import { setUserDetails } from '../redux/Actions/userAction'
 import { useDispatch } from 'react-redux'
-import btnLoader from "../assets/gifs/redLoader.gif"
+import ButtonLoader from '../components/utility/BtnLoader'
 
 declare var window: any
 
@@ -204,7 +204,7 @@ const AdminOnboarding = () => {
                     </div>
                     <div>
                     {loading ?
-                        <img width={50} src={btnLoader} alt="" />
+                         <ButtonLoader />
                     :
                     <img 
                     onClick={()=>{doApiCall()}}

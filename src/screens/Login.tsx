@@ -9,7 +9,7 @@ import { login } from '../services/authentication'
 import { setUser } from '../services'
 import { setUserDetails } from '../redux/Actions/userAction'
 import { useDispatch } from 'react-redux'
-import btnLoader from "../assets/gifs/redLoader.gif"
+import ButtonLoader from '../components/utility/BtnLoader'
 
 declare var window: any
 
@@ -65,7 +65,7 @@ const Login = () => {
         }catch(err: any){
             timedToast?.(`${err?.response?.data?.detail}` ?? "An error occured")
         }finally{
-            setLoading(false)
+            // setLoading(false)
         }
     }
 
@@ -140,7 +140,7 @@ const Login = () => {
                     </div>
                     <div>
                     {loading ?
-                        <img width={50} src={btnLoader} alt="" />
+                        <ButtonLoader />
                     :
                     <img 
                     onClick={()=>doApiCall()}

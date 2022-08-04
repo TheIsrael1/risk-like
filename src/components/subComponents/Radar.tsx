@@ -31,7 +31,6 @@ const relativeCoord = cartCord?.map((c: any)=>{
   return {x: (c[0] - centerCartCoord[0]) , y: (c[1] - centerCartCoord[1]), z: (c[2] - centerCartCoord[2])}
 })
 // 
-// console.log("rell", relativeCoord) 
 console.log("rell", relativeCoord) 
 },[otherLocCoords, gameControllerData.data])
 
@@ -42,7 +41,11 @@ useEffect(()=>{
   return (
     <div id='Radar'>
         <span className='span'>
-        Your radar detects 3 mines close by
+          {gameControllerData?.data?.lat ? 
+          `Your radar detects ${neigbourCount} ${neigbourCount === 1 ? `location` : `locations`} close by`
+          :
+          `Select a target location`
+          }
         </span>
         <img className='radar' src={radar} alt="radar" />
     </div>

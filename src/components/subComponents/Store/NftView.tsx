@@ -1,9 +1,9 @@
 import React from 'react'
-import arrowLeftBig from "../../../assets/icons/arrowLeftBig.svg"
-import arrowRightBig from "../../../assets/icons/arrrowRightBig.svg"
-import LongResourceCard from '../../common/LongResourceCard'
-import AliceCarousel from 'react-alice-carousel';
-import {storeData} from "../../../util/storeData"
+// import arrowLeftBig from "../../../assets/icons/arrowLeftBig.svg"
+// import arrowRightBig from "../../../assets/icons/arrrowRightBig.svg"
+// import LongResourceCard from '../../common/LongResourceCard'
+// import AliceCarousel from 'react-alice-carousel';
+// import {storeData} from "../../../util/storeData"
 
 
 const NftView = () => {

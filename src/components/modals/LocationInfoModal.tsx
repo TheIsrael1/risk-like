@@ -41,7 +41,7 @@ const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModal
           }
         })
       })
-      },[userData])
+      },[])
 
     const getLocAssetCount = (i: string)=>{
       const count = details?.assets?.find((asset: any)=> asset?.name=== 

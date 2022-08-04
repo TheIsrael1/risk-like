@@ -26,7 +26,7 @@ useEffect(()=>{
    }, 0)
 
    setTotalAsset(totalAss)
-},[userData.data.userAssets, mineLocationsData.data, userId])
+},[userData.data.userAssets, mineLocationsData.data])
 
 
 

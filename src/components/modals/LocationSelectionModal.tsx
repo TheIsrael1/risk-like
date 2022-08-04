@@ -13,7 +13,7 @@ setAttackForce: (id: number) => void
 const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionModalInterface) => {
     const userId = sessionStorage.getItem("id") as string
 
-    const {mineLocationsData} = useSelector((state: RootState)=> state)
+    const {mineLocationsData, userData} = useSelector((state: RootState)=> state)
 
     const [currentSelection, setCurrentSelection] = useState<any>()
 
@@ -62,10 +62,10 @@ const LocationSelectionModal = React.memo(({setAttackForce}: LocationSelectionMo
                                 />
                         </div>
                         <div className="locationModalBody">
-                        { isMyLocation(mineLocationsData.data)?.map?.((item: any)=>(
+                        {userData.data.userLocations?.map?.((item: any)=>(
                             <SelectionDrop
-                            item={item}
-                            key={item.id}
+                            item={item.location}
+                            key={item.location?.id}
                             selectLocation={(id: number)=>{updateCurrSelection(id)}}
                             />
                         ))   
