@@ -1,4 +1,4 @@
-import { getLocations, updateLocation } from "../../services/locations"
+import { getLocations } from "../../services/locations"
 import * as types from "../Types"
 
 

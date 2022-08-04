@@ -15,7 +15,7 @@ const NavResourceDropdown = ({img, mines, type, count}:NavResourceDropdownInterf
     const ref = useRef<HTMLDivElement>(null)
 
     const [state, setState] = useState({
-        totalResource: 0,
+        // totalResource: 0,
         totalMines: 0
     })
     
@@ -24,7 +24,7 @@ const NavResourceDropdown = ({img, mines, type, count}:NavResourceDropdownInterf
     }
 
     document.addEventListener('click', (e)=>handleClickOutside(e))
-
+    
     const handleClickOutside = (e: any) =>{
         if(open && ref.current && !ref.current.contains(e.target)){
             toggle()
@@ -32,14 +32,14 @@ const NavResourceDropdown = ({img, mines, type, count}:NavResourceDropdownInterf
     }
 
     useEffect(()=>{
-        const resourceCount = mines?.reduce?.((acc, curr)=>{
-            const add = acc + curr.totalResource
-            return add
-        },0)
+        // const resourceCount = mines?.reduce?.((acc, curr)=>{
+        //     const add = acc + curr.totalResource
+        //     return add
+        // },0)
         setState((prev)=>{
             return{
                 ...prev,
-                totalResource: resourceCount,
+                // totalResource: resourceCount,
                 totalMines: mines?.length
             }
         })

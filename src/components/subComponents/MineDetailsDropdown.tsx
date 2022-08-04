@@ -1,7 +1,8 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useCallback, useEffect} from 'react'
 import AssetsModalCon from '../modals/AssetsModalCon'
 import arrowCircled from '../../assets/icons/arrowCircled.svg'
 import mineDetails from '../../assets/icons/mineDetails.png'
+import { getCountryNameFromCoord, getValueByKey } from '../Helpers/general'
 
 
 interface MineDetailsDropdownInterface{
@@ -12,6 +13,7 @@ interface MineDetailsDropdownInterface{
 const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
 
     const [open, setOpen] = useState(false)
+    const [locationName, setLocationName] = useState("")
 
     const toggle = (i: boolean) =>{
         setOpen(i)
@@ -29,19 +31,29 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
         }
     }
 
+    const getCountry = useCallback(async(lat: any, lng: any)=>{
+        const data = await getCountryNameFromCoord(lat, lng)
+        setLocationName(`${data["_locality"]}, ${data["_country"]}`)
+    },[])
+
+    useEffect(()=>{
+        getCountry(item?.location?.lat, item?.location?.long)
+    },[getCountry, item])
+
   return (
     <div className={`mineCard ${open && `active`}`} ref={ref}
     onClick={()=>toggle(true)}
     >
         <div className='mineName'>
-            Mine {item?.id}
+        {item?.location?.name}
         </div>
         <div className='rateCon'> 
             <span className='rateH'>
             Minning Rate: 
             </span>
             <span className='rateValue'>
-                {item?.miningRate}
+                {getValueByKey(item?.location.properties, "production_rate")}{" "}
+                {getValueByKey(item?.location.properties, "mine_type")}/hr
             </span>
         </div>
         <div className='detailsDropCon'>
@@ -60,7 +72,7 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
                     </div>
                     <div>
                         <span className='rtkValue'>
-                            {item?.rtkValue}
+                            {item?.rtkValue ?? "N/A"}
                         </span>
                     </div>
                 </div>
@@ -77,7 +89,7 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
                     Mine Level:
                     </span>
                     <span className='detailValue bold'>
-                    {item?.mineLevel}
+                    {item?.mineLevel ?? "N/A"}
                     </span>
                 </div>
                 <div className='detailsRow'>
@@ -85,7 +97,8 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
                     Mining Rate:
                     </span>
                     <span className='detailValue bold'>
-                    {item?.miningRate}
+                    {getValueByKey(item?.location.properties, "production_rate")}{" "}
+                    {getValueByKey(item?.location.properties, "mine_type")}/hr
                     </span>
                 </div>
                 <div className='detailsRow'>
@@ -93,7 +106,7 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
                     Location:
                     </span>
                     <span className='detailValue bold'>
-                    {item?.mineLocation}
+                    {locationName ?? "N/A"}
                     </span>
                 </div>
                 <div className='detailsRow'>
@@ -101,7 +114,7 @@ const MineDetailsDropdown = ({item, img}:MineDetailsDropdownInterface) => {
                     Decomissioned:
                     </span>
                     <span className='detailValue bold'>
-                    {item?.decomissioned}
+                    {item?.decomissioned ?? "N/A"}
                     </span>
                 </div>
                 </AssetsModalCon>

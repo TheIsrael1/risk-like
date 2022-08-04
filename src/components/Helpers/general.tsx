@@ -44,6 +44,11 @@ export const approximateNumber = (i: number)=>{
    return isNaN(rounded) ? 0 : rounded
 } 
 
+export const getValueByKey = (obj: any, key: string) =>{
+    const res = obj.find((p: any)=>p?.key === key)?.value
+    return res
+}
+
 export const getCountryNameFromCoord = async(lat: number, lng: number)=>{
     const GEOCODE_API = 'https://maps.googleapis.com/maps/api/geocode/json';
     const GEOCODE_KEY = env.PUBLIC_GOOGLE_MAPS_API_KEY as string  

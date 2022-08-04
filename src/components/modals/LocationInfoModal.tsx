@@ -1,9 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cancel from "../../assets/icons/cancelBtn.svg";
-import soilder from "../../assets/images/soilder.png";
-import craft from "../../assets/icons/craftIcon.png";
-import tank from "../../assets/icons/tankIcon.png";
-import robot from "../../assets/icons/robotIcon.png";
 import mine from "../../assets/icons/bigMine.png";
 import peopleMiningIcon from "../../assets/icons/peopleMiningIcon.png";
 import productionRateIcon from "../../assets/icons/productionRateIcon.png";
@@ -11,7 +7,7 @@ import locationIcon from "../../assets/icons/locationIcon.png";
 import mineTypeIcon from "../../assets/icons/mineTypeIcon.png";
 import armyIcon from "../../assets/icons/armyIcon.png";
 import titleCase from "../Helpers/titleCase";
-import { useToast } from "../Toast/ToastContexProvidert";
+// import { useToast } from "../Toast/ToastContexProvidert";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Reducers";
 import { getCountryNameFromCoord } from "../Helpers/general";
@@ -25,9 +21,7 @@ interface LocationInfoModalInterface {
 }
 
 const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModalInterface) => {
-    
-    const {timedToast} = useToast()
-    
+        
     const { userData} = useSelector((state: RootState)=> state)
     const [state, setState] = useState<any>({})
     const [locationName, setLocationName] = useState("")

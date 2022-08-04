@@ -8,8 +8,9 @@ const initialState = {
         tokens: [] as any,      //userTokens
         assets: [] as any,    //info about particular assets
         userAssets: [] as any,  //each asset held by user
+        userLocations: [] as any, //locations owned by the user
         availableTokens: [] as any, //tokens in store currently
-        newUser: false
+        newUser: false 
     }
 }
 

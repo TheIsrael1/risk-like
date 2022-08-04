@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Reducers";
 import { useToast } from "../Toast/ToastContexProvidert";
 import { useDispatch } from "react-redux";
-import { updateUserAssets } from "../../redux/Actions/userAction";
+import { backgroupUserLocUpdate, updateUserAssets } from "../../redux/Actions/userAction";
 import { doAttack } from '../../services/attackService'
 import { handleError } from '../Helpers/general'
 import { backgroudLocationUpdate } from '../../redux/Actions/mineLocationsAction'
@@ -196,6 +196,7 @@ const LaunchAttackModal = ({open, toggle}: LaunchAttackModalInterface) => {
         toggle()
         toggleView()
         dispatch(updateUserAssets(userId) as any)
+        dispatch(backgroupUserLocUpdate(userId) as any)
         dispatch(backgroudLocationUpdate() as any)
         getAssetInfo()
         setTimeout(()=>{

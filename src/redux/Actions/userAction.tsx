@@ -1,8 +1,8 @@
 import { getAssets, getUserAssets } from "../../services/assetsService"
+import { getSingleLocation } from "../../services/locations"
 import { getTokens, getUserTokens } from "../../services/tokenService"
+import { getSingleUserLocations } from "../../services/userService"
 import * as types from "../Types"
-
-const id = sessionStorage.getItem("id") as string
 
 export const setUserDetails = (data: any) => async(dispatch: any) =>{
     dispatch({
@@ -28,10 +28,23 @@ export const initialUserDetails = (userId: string) =>async (dispatch: any) => {
         const {data: tokens} = await getUserTokens(userId)
         const {data: assets} = await getAssets()
         const {data: availableTokens} = await getTokens()
+        const {data: temp} = await getSingleUserLocations(userId)
+
+        const userLocations = await Promise.all(temp?.map(async(item: any)=>{
+            try{
+                const {data} = await getSingleLocation(item?.id)
+                return data
+            }catch(err){
+                dispatch({
+                    type: types.USER_DATA_FAILED,
+                    payload: {}
+            })
+            }
+        }))
 
         dispatch({
             type: types.USER_DATA_SUCCESS,
-            payload: {tokens, assets, userAssets, availableTokens}
+            payload: {tokens, assets, userAssets, availableTokens, userLocations}
         })
     }catch (err){
         dispatch({
@@ -63,6 +76,34 @@ export const updateUserAssets= (id: any) =>async (dispatch: any) => {
         dispatch({
             type: types.USER_DATA_SUCCESS,
             payload: { userAssets}
+        })
+    }catch (err){
+        dispatch({
+            type: types.USER_DATA_FAILED,
+            payload: {}
+        })
+    }
+}
+
+export const backgroupUserLocUpdate = (userId: string) =>async (dispatch: any) => {
+    try{
+        const {data: temp} = await getSingleUserLocations(userId)
+
+        const userLocations = await Promise.all(temp?.map(async(item: any)=>{
+            try{
+                const {data} = await getSingleLocation(item?.id)
+                return data
+            }catch(err){
+                dispatch({
+                    type: types.USER_DATA_FAILED,
+                    payload: {}
+            })
+            }
+        }))
+        
+        dispatch({
+            type: types.USER_DATA_SUCCESS,
+            payload: {userLocations}
         })
     }catch (err){
         dispatch({

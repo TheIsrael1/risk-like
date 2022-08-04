@@ -58,7 +58,8 @@
                 font-size: 12px;
                 font-weight: 700;
                 color: $white;
-                white-space: nowrap;
+                max-width: 3rem;
+                white-space: pre-wrap;
             }
 
             .rateCon{
