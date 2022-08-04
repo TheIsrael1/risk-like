@@ -14,6 +14,7 @@ import titleCase from "../Helpers/titleCase";
 import { useToast } from "../Toast/ToastContexProvidert";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Reducers";
+import { getCountryNameFromCoord } from "../Helpers/general";
 
 
 interface LocationInfoModalInterface {
@@ -29,6 +30,12 @@ const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModal
     
     const { userData} = useSelector((state: RootState)=> state)
     const [state, setState] = useState<any>({})
+    const [locationName, setLocationName] = useState("")
+
+    const getCountry = useCallback(async(lat: any, lng: any)=>{
+      const data = await getCountryNameFromCoord(lat, lng)
+      setLocationName(`${data["_locality"]}, ${data["_country"]}`)
+  },[])
 
     useEffect(()=>{
       const assetNames = userData.data.assets?.map((a: any)=>a.name)
@@ -59,6 +66,7 @@ const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModal
               }
             })
           })
+          getCountry(details.location.lat, details.location.long)
         }
     },[details])
 
@@ -123,7 +131,7 @@ const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModal
                   <img src={locationIcon} alt="img" />
                   <div className="item">
                     <span className="title">Location</span>
-                    <span className="value">{details?.properties?.location ?? "N/A"}</span>
+                    <span className="value">{locationName ?? "N/A"}</span>
                   </div>
                 </div>
                 <div className="centerItem">

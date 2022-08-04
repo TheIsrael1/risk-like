@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/Reducers'
+import { getCountryNameFromCoord } from '../Helpers/general'
 // import { getCountryNameFromCoord } from '../Helpers/general'
 
 const BaseInfo = () => {
@@ -9,18 +10,25 @@ const userId = sessionStorage.getItem("id") as string
 const {mineLocationsData, userData} = useSelector((state: RootState)=> state)
 const [baseLoc, setBaseLoc] = useState<any>()
 const [totalAsset, setTotalAsset] = useState(0)
+const [country, setCountry] = useState("")
 
+const getCountry = useCallback(async(lat: any, lng: any)=>{
+    const data = await getCountryNameFromCoord(lat, lng)
+    setCountry(data["_country"])
+},[])
 
 useEffect(()=>{
     const loc = mineLocationsData.data.find((loc: any)=> loc.owner_id === userId  && loc?.location_type === "base")
     setBaseLoc(loc)
-
+    getCountry(loc?.lat, loc?.long)
    const totalAss= userData.data.userAssets?.reduce((sum: any, curr: any)=>{
        return sum + curr?.quantity
    }, 0)
 
    setTotalAsset(totalAss)
 },[userData.data.userAssets, mineLocationsData.data, userId])
+
+
 
 
   return (
@@ -60,7 +68,7 @@ useEffect(()=>{
                     Country
                 </span>
                 <span className='span'>
-                    {baseLoc?.properties?.country ?? "N/A"}
+                    {country ?? "N/A"}
                 </span>
             </div>
             <div className='contentRow'>

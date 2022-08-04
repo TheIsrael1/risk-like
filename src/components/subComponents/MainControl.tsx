@@ -17,7 +17,7 @@ import { updateMapDataAction } from "../../redux/Actions/mapDataAction";
 import { useDispatch } from "react-redux";
 import LaunchMoveModal from "../modals/LaunchMoveModal";
 import { getSingleLocation } from "../../services/locations";
-import { handleError } from "../Helpers/general";
+import { getCountryNameFromCoord, handleError } from "../Helpers/general";
 
 
 interface MainControlInterface{
@@ -36,12 +36,18 @@ const MainControl = () => {
   });
 
   const [locDetails, setLocDetails] = useState<any>()
+  const [baseCountry, setBaseCountry] = useState("")
 
   const dispatch = useDispatch()
 
   const userId = sessionStorage.getItem("id")
     
   const {open, timedToast} = useToast()
+
+  const getCountry = useCallback(async(lat: any, lng: any)=>{
+    const data = await getCountryNameFromCoord(lat, lng)
+    setBaseCountry(data["_country"])
+},[])
 
   const { gameControllerData} = useSelector((state: RootState) => state)
   useEffect(()=>{
@@ -51,6 +57,9 @@ const MainControl = () => {
         gameControllerData: gameControllerData.data
       };
     })
+    if(gameControllerData?.data?.location_type=== "base"){
+      getCountry(gameControllerData.data?.lat, gameControllerData.data?.long)
+    }
   }, [gameControllerData])
 
   useEffect(() => {
@@ -140,7 +149,7 @@ const toggleLaunchMoveModal = () => {
             <div className="item">
               <span className="itemH">Country</span>
               <span className="itemBody">
-                {titleCase(state.gameControllerData.properties?.find?.((i: any)=>i.key === "country")?.value)}
+                {baseCountry ?? "N/A"}
               </span>
             </div>
 
