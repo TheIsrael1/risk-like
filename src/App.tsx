@@ -22,7 +22,7 @@ import env from "react-dotenv";
 
 function App() {
   const {isLoaded} = useJsApiLoader({
-    googleMapsApiKey: env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
+    googleMapsApiKey: process.env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: ["places"],
   });
 
