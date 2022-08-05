@@ -541,10 +541,11 @@ const Map = () => {
 
          { Object.keys(gameControllerData.data)[0] &&
          <Circle 
-          center={{lat: parseFloat(gameControllerData.data?.lat), 
-            lng: parseFloat(gameControllerData.data?.long)}}
-           radius={10000}
-           options={{radius: 10000, ...circleOptions}}
+          center={{lat: -1 * gameControllerData.data?.lat, 
+            lng:  -Math.sign(gameControllerData.data?.long) * 
+            Math.abs((Math.abs(gameControllerData.data?.long) - 180) % 180)}}
+           radius={20037508.34 - 10000}
+           options={{radius: 20037508.34 - 10000, ...circleOptions}}
            />
          }
           {Object.keys(gameControllerData.data)[0] && 
