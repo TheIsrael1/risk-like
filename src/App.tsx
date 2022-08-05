@@ -17,12 +17,12 @@ import AssetDetails from './components/admin/detailsPages/AssetDetails';
 import LocationDetails from './components/admin/detailsPages/LocationDetails';
 import Loader from './components/utility/Loader'
 import {useJsApiLoader} from '@react-google-maps/api'
-import env from "react-dotenv";
+// import env from "react-dotenv";
 
 
 function App() {
   const {isLoaded} = useJsApiLoader({
-    googleMapsApiKey: process.env.PUBLIC_GOOGLE_MAPS_API_KEY as string,
+    googleMapsApiKey: process.env.REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: ["places"],
   });
 

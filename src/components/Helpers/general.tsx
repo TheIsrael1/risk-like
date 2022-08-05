@@ -51,7 +51,7 @@ export const getValueByKey = (obj: any, key: string) =>{
 
 export const getCountryNameFromCoord = async(lat: number, lng: number)=>{
     const GEOCODE_API = 'https://maps.googleapis.com/maps/api/geocode/json';
-    const GEOCODE_KEY = env.PUBLIC_GOOGLE_MAPS_API_KEY as string  
+    const GEOCODE_KEY = env.REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY as string  
 
     try {
     const coords = `${lat}, ${lng}`;
