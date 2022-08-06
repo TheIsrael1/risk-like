@@ -26,7 +26,7 @@ const AlertModal = ({
       <div id="MoveLocationWarning">
         <div className="modalWrapper">
           <div className="iconCon">
-            <img width={70} src={img ?? alertIcon} alt="" />
+            <img width={70} height={120} src={img ?? alertIcon} alt="" />
           </div>
           <p className="description">
               {description}
