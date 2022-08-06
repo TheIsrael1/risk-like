@@ -63,6 +63,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
         return {
           ...prev,
           currData: data,
+          
         };
       });
     },
