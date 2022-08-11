@@ -87,7 +87,7 @@ const CoinView = () => {
     // innerWidth={window.innerWidth}
     mouseTracking
     controlsStrategy='alternate'
-    disableDotsControls
+    disableDotsControls 
     autoPlay={false}
     keyboardNavigation={true}
     responsive={ {
