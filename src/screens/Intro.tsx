@@ -35,7 +35,6 @@ const Intro = () => {
       title='User Confirmation'
       open={userModal}
       toggle={()=>setUserModal(false)}
-      img={``}
       />
       <div id='intro'>
           <img className='craft' src={craft} alt="craft" />

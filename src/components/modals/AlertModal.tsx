@@ -9,7 +9,7 @@ interface MoveLocationInterface {
   toggle: () => void;
   title: string;
   description: string;
-  img: string;
+  img?: string;
   getResponse: (i: boolean) => void;
 }
 

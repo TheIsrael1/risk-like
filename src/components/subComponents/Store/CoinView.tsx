@@ -80,7 +80,7 @@ const CoinView = () => {
     toggle={()=>setConfirmationOpen(!confirmationOpen)}
     description={`Sure you want to purchase this amount of ${cart?.name} ?`}
     title={`Confirm`}
-    img={``}
+    img={cart?.image}
     getResponse={(i: boolean)=> getResponse(i)}
     />
     <AliceCarousel 
