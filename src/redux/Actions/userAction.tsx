@@ -38,7 +38,7 @@ export const initialUserDetails = (userId: string) =>async (dispatch: any) => {
                 dispatch({
                     type: types.USER_DATA_FAILED,
                     payload: {}
-            })
+                })
             }
         }))
 

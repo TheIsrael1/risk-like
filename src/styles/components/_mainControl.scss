@@ -1,144 +1,137 @@
-#MainControl{
-    background-color: $cardBg;
-    border: 2px solid $lightBorder;
-    border-radius: 10px;
-    max-width: 40rem;
-    min-width: 40rem;
-    height: 8.5rem;
+#MainControl {
+  background-color: $cardBg;
+  border: 2px solid $lightBorder;
+  border-radius: 10px;
+  max-width: 40rem;
+  min-width: 40rem;
+  height: 8.5rem;
+  display: flex;
+  flex-direction: row;
+  margin-right: 1rem;
+  transition: 0.3s all ease-in;
+  transition-delay: 0.1s;
+
+  &.active {
+    box-shadow: 0 0 3px 2px $lightBorderActive;
+  }
+
+  .mainControlRight {
+    width: 25%;
     display: flex;
-    flex-direction: row;
-    margin-right: 1rem;
-    transition: .3s all ease-in;
-    transition-delay: .1s;
-    
-    &.active{
-        box-shadow: 0 0 3px 2px $lightBorderActive;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.5rem;
+
+    .spanH {
+      font-size: 10px;
+      font-weight: 400;
+      color: $textDisabledLight;
+      margin-bottom: 1rem;
     }
 
-    .mainControlRight{
-        width: 25%;
+    .defaultText {
+      font-size: 12px;
+      font-weight: 400;
+      color: $textDisabled;
+      text-align: center;
+    }
+    .spanBody {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    img {
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+
+      &:active {
+        transform: translateY(3px);
+      }
+    }
+  }
+
+  .mainControlLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+    border-right: 3px solid $grey1;
+    flex-grow: 1;
+
+    .spanH {
+      font-size: 10px;
+      font-weight: 400;
+      color: $textDisabledLight;
+    }
+
+    .defaultText {
+      font-size: 12px;
+      font-weight: 400;
+      color: $textDisabled;
+      text-align: center;
+    }
+
+    .spanBody {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        margin-right: 0.5rem;
+      }
+
+      .item {
+        margin: 0 0.5rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        padding: 1rem .5rem;
 
-        .spanH{
-            font-size: 10px;
-            font-weight: 400;
-            color: $textDisabledLight;
-            margin-bottom: 1rem;
-        }  
-
-        .defaultText{
-            font-size: 12px;
-            font-weight: 400;
-            color: $textDisabled;
-            text-align: center;
+        .itemH {
+          font-size: 10px;
+          font-weight: 400;
+          color: $textDisabledLight;
+          margin-bottom: 0.5rem;
+          transition: 0.3s all ease-in;
+          transition-delay: 0.2s;
+          white-space: nowrap;
         }
-        .spanBody{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-        } 
 
-        img{
-            margin-bottom: .5rem;
-             cursor: pointer; 
-
-
-            &:active{
-                transform: translateY(3px)
-            }
+        .itemBody {
+          font-size: 12px;
+          font-weight: 700;
+          color: $textDisabledLight;
+          transition: 0.3s all ease-in;
+          transition-delay: 0.3s;
+          white-space: nowrap;
         }
+      }
     }
 
-    .mainControlLeft{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 1rem;
-        border-right: 3px solid $grey1;
-        flex-grow: 1;
+    .notificationBadge {
+      width: 100%;
+      background-color: $grey1d1d;
+      display: grid;
+      place-items: center;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      min-height: 1.5rem;
+      margin: 0.5rem 0;
 
-        .spanH{
-            font-size: 10px;
-            font-weight: 400;
-            color: $textDisabledLight;
-        }  
+      img {
+        margin-right: 1rem;
+      }
 
-        .defaultText{
-            font-size: 12px;
-            font-weight: 400;
-            color: $textDisabled;
-            text-align: center;
-        }
-
-        .spanBody{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            
-
-            img{
-               margin-right: .5rem;
-            }
-
-            .item{
-                margin: 0 .5rem;
-                display: flex;
-                flex-direction: column;
-               
-
-                .itemH{
-                    font-size: 10px;
-                    font-weight: 400;
-                    color: $textDisabledLight;
-                    margin-bottom: .5rem;
-                    transition: .3s all ease-in;
-                    transition-delay: .2s;
-                    white-space: nowrap;
-                }
-
-                .itemBody{
-                    font-size: 12px;
-                    font-weight: 700;
-                    color: $textDisabledLight;
-                    transition: .3s all ease-in;
-                    transition-delay: .3s;
-                    white-space: nowrap;
-                }
-
-            }
-        } 
-
-        .notificationBadge{
-            width: 100%;
-            background-color: $grey1d1d;
-            display: grid;
-            place-items: center;
-            border-radius: 32px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            min-height: 1.5rem;
-            margin: .5rem 0;
-
-            img{
-                margin-right: 1rem;
-            }
-
-            .notificationText{
-                font-size: 8px;
-                font-weight: 400;
-                color: #5F6163;
-               
-            }
-
-        }
+      .notificationText {
+        font-size: 10px;
+        font-weight: 400;
+        color: #5f6163;
+      }
     }
-
+  }
 }

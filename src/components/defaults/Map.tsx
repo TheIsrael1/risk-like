@@ -53,7 +53,7 @@ interface ZoomBtnInterface{
   zoomIn: ()=>void
   zoomOut: ()=>void
 }
-
+  
 const Map = () => {
   const mapRef = useRef<GoogleMap>();
   const PolyRef = useRef<Polyline>();
@@ -617,7 +617,7 @@ const Map = () => {
         <ZoomBtn zoomIn={()=>increaseZoom()} zoomOut ={()=>decreaseZoom()} />
         <img width={150} src={worldMapBtn} alt="" className="worldMapDrop" />
         </>}
-      </div>
+      </div>  
     </>
   );
 };
