@@ -4,6 +4,7 @@ import { RootState } from "../../redux/Reducers";
 import goodNotification from "../../assets/icons/mainControlNtfGood.svg";
 import mineActive from "../../assets/icons/MapMarkers/mineActive.svg";
 import mineInactive from "../../assets/icons/MapMarkers/mineInactive.svg";
+import locationPin from "../../assets/icons/MapMarkers/locationPin.svg";
 import homeSettlement from "../../assets/icons/MapMarkers/homeSettlement.svg";
 import titleCase from "../Helpers/titleCase";
 import launhAttackBtn from "../../assets/icons/launhAttackBtn.svg";
@@ -136,102 +137,98 @@ const MainControl = () => {
       </div>
     </div>
   ) : state.gameControllerData?.location_type === "base" ? (
-    <>
-      <div id="MainControl" className={`${state.controlActive && `active`}`}>
-        <div className="mainControlLeft">
-          <span className="spanH">Location Status</span>
-          <div className="spanBody">
-            <img key={"SETTLEMENT"} src={homeSettlement} alt="mineStatus" />
+    <div id="MainControl" className={`${state.controlActive && `active`}`}>
+      <div className="mainControlLeft">
+        <span className="spanH">Location Status</span>
+        <div className="spanBody">
+          <img key={"SETTLEMENT"} src={homeSettlement} alt="mineStatus" />
 
-            <div className="item">
-              <span className="itemH">Country</span>
-              <span className="itemBody">{baseCountry ?? "N/A"}</span>
-            </div>
-
-            <div className="item">
-              <span className="itemH">Level</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "level"
-                  )?.value
-                )}
-              </span>
-            </div>
-
-            <div className="item">
-              <span className="itemH">Victories</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "victories"
-                  )?.value
-                )}
-              </span>
-            </div>
-
-            <div className="item">
-              <span className="itemH">Defeats</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "defeats"
-                  )?.value
-                )}
-              </span>
-            </div>
-
-            <div className="item">
-              <span className="itemH">Troops</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "troops"
-                  )?.value
-                )}
-              </span>
-            </div>
-
-            <div className="item">
-              <span className="itemH">Wealth</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "wealth"
-                  )?.value
-                )}
-              </span>
-            </div>
+          <div className="item">
+            <span className="itemH">Country</span>
+            <span className="itemBody">{baseCountry ?? "N/A"}</span>
           </div>
-          {gameControllerData.data.owner_id !== userId ? (
-            <div className="notificationBadge">
-              <img src={goodNotification} alt="notification" />
-              <span className="notificationText">This is an enemy's base</span>
-            </div>
-          ) : (
-            <div className="notificationBadge">
-              <img src={goodNotification} alt="notification" />
-              <span className="notificationText">
-                This is your base location
-              </span>
-            </div>
-          )}
+
+          <div className="item">
+            <span className="itemH">Level</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "level"
+                )?.value
+              )}
+            </span>
+          </div>
+
+          <div className="item">
+            <span className="itemH">Victories</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "victories"
+                )?.value
+              )}
+            </span>
+          </div>
+
+          <div className="item">
+            <span className="itemH">Defeats</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "defeats"
+                )?.value
+              )}
+            </span>
+          </div>
+
+          <div className="item">
+            <span className="itemH">Troops</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "troops"
+                )?.value
+              )}
+            </span>
+          </div>
+
+          <div className="item">
+            <span className="itemH">Wealth</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "wealth"
+                )?.value
+              )}
+            </span>
+          </div>
         </div>
-        <div className="mainControlRight">
-          <span className="spanH">Actions</span>
-          <img
-            onClick={() => {
-              moveBaseAction();
-            }}
-            src={moveBaseBtn}
-            alt="btn"
-          />
-          <img src={newBaseBtn} alt="btn" />
-        </div>
+        {gameControllerData.data.owner_id !== userId ? (
+          <div className="notificationBadge">
+            <img src={goodNotification} alt="notification" />
+            <span className="notificationText">This is an enemy's base</span>
+          </div>
+        ) : (
+          <div className="notificationBadge">
+            <img src={goodNotification} alt="notification" />
+            <span className="notificationText">This is your base location</span>
+          </div>
+        )}
       </div>
-    </>
-  ) : (
-    <>
+      <div className="mainControlRight">
+        <span className="spanH">Actions</span>
+        <img
+          onClick={() => {
+            moveBaseAction();
+          }}
+          src={moveBaseBtn}
+          alt="btn"
+        />
+        <img src={newBaseBtn} alt="btn" />
+      </div>
+    </div>
+  ) : state.gameControllerData?.location_type === "mine" ? (
+    <div id="MainControl" className={`${state.controlActive && `active`}`}>
       <LaunchAttackModal
         open={state.LaunchAttackModalOpen}
         toggle={() => {
@@ -244,126 +241,206 @@ const MainControl = () => {
           toggleLaunchMoveModal();
         }}
       />
-      <div id="MainControl" className={`${state.controlActive && `active`}`}>
-        <div className="mainControlLeft">
-          <span className="spanH">Location Status</span>
-          <div className="spanBody">
-            <img
-              src={
-                // state.gameControllerData.status === "active"
-                true ? mineActive : mineInactive
-              }
-              key="MINE"
-              alt="mineStatus"
-            />
+      <div className="mainControlLeft">
+        <span className="spanH">Location Status</span>
+        <div className="spanBody">
+          <img
+            src={
+              // state.gameControllerData.status === "active"
+              true ? mineActive : mineInactive
+            }
+            key="MINE"
+            alt="mineStatus"
+          />
 
-            <div className="item">
-              <span className="itemH">Mine Type</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "mine_type"
-                  )?.value
-                )}
-              </span>
-            </div>
+          <div className="item">
+            <span className="itemH">Mine Type</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "mine_type"
+                )?.value
+              )}
+            </span>
+          </div>
 
-            <div className="item">
-              <span className="itemH">Defense Level</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "defenseLevel"
-                  )?.value
-                )}
-              </span>
-            </div>
+          <div className="item">
+            <span className="itemH">Defense Level</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "defenseLevel"
+                )?.value
+              )}
+            </span>
+          </div>
 
-            <div className="item">
-              <span className="itemH">Guards</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "guard"
-                  )?.value
-                )}
-              </span>
-            </div>
+          <div className="item">
+            <span className="itemH">Guards</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "guard"
+                )?.value
+              )}
+            </span>
+          </div>
 
-            <div className="item">
-              <span className="itemH">Max Production</span>
-              <span className="itemBody">
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "production_rate"
-                  )?.value
-                )}{" "}
-                {titleCase(
-                  state.gameControllerData.properties?.find?.(
-                    (i: any) => i.key === "mine_type"
-                  )?.value
-                )}
-                /hr
-              </span>
-            </div>
+          <div className="item">
+            <span className="itemH">Max Production</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "production_rate"
+                )?.value
+              )}{" "}
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "mine_type"
+                )?.value
+              )}
+              /hr
+            </span>
+          </div>
 
-            <div className="item">
-              <span className="itemH">Distance</span>
-              <span className="itemBody">
-                {/* This will probably be a calculation of distance from homebase to mine location
+          <div className="item">
+            <span className="itemH">Distance</span>
+            <span className="itemBody">
+              {/* This will probably be a calculation of distance from homebase to mine location
                         Might need an helper function for that
                    */}
-                {`N/A`}
-              </span>
-            </div>
-
-            <div className="item">
-              <span className="itemH">Mine workers</span>
-              <span className="itemBody">
-                {locDetails?.assets?.find((a: any) => a?.name === "miner")
-                  ?.asset_quantity ?? "0"}
-              </span>
-            </div>
+              {`N/A`}
+            </span>
           </div>
-          {gameControllerData.data.owner_id !== userId ? (
-            <div className="notificationBadge">
-              <img src={goodNotification} alt="notification" />
-              <span className="notificationText">
-                This Location is not yours, you need to attack this mine to take
-                control
-              </span>
-            </div>
-          ) : (
-            <div className="notificationBadge">
-              <img src={goodNotification} alt="notification" />
-              <span className="notificationText">
-                This Location is yours, go ahead and move assets here
-              </span>
-            </div>
-          )}
+
+          <div className="item">
+            <span className="itemH">Mine workers</span>
+            <span className="itemBody">
+              {locDetails?.assets?.find((a: any) => a?.name === "miner")
+                ?.asset_quantity ?? "0"}
+            </span>
+          </div>
         </div>
-        <div className="mainControlRight">
-          <span className="spanH">Actions</span>
-          {gameControllerData.data.owner_id !== userId ? (
-            <img
-              src={launhAttackBtn}
-              alt="btn"
-              onClick={() => {
-                toggleLaunchAttackModal();
-              }}
-            />
-          ) : (
-            <img
-              src={moveHereBtn}
-              alt="btn"
-              onClick={() => {
-                toggleLaunchMoveModal();
-              }}
-            />
-          )}
-        </div>
+        {gameControllerData.data.owner_id !== userId ? (
+          <div className="notificationBadge">
+            <img src={goodNotification} alt="notification" />
+            <span className="notificationText">
+              This Location is not yours, you need to attack this mine to take
+              control
+            </span>
+          </div>
+        ) : (
+          <div className="notificationBadge">
+            <img src={goodNotification} alt="notification" />
+            <span className="notificationText">
+              This Location is yours, go ahead and move assets here
+            </span>
+          </div>
+        )}
       </div>
-    </>
+      <div className="mainControlRight">
+        <span className="spanH">Actions</span>
+        {gameControllerData.data.owner_id !== userId ? (
+          <img
+            src={launhAttackBtn}
+            alt="btn"
+            onClick={() => {
+              toggleLaunchAttackModal();
+            }}
+          />
+        ) : (
+          <img
+            src={moveHereBtn}
+            alt="btn"
+            onClick={() => {
+              toggleLaunchMoveModal();
+            }}
+          />
+        )}
+      </div>
+    </div>
+  ) : (
+    <div id="MainControl" className={`${state.controlActive && `active`}`}>
+      <LaunchAttackModal
+        open={state.LaunchAttackModalOpen}
+        toggle={() => {
+          toggleLaunchAttackModal();
+        }}
+      />
+      <LaunchMoveModal
+        open={state.LaunchMoveAssetModal}
+        toggle={() => {
+          toggleLaunchMoveModal();
+        }}
+      />
+      <div className="mainControlLeft">
+        <span className="spanH">Location Status</span>
+        <div className="spanBody">
+          <img src={locationPin} alt="" />
+
+          <div className="item">
+            <span className="itemH">Location</span>
+            <span className="itemBody">Default</span>
+          </div>
+
+          <div className="item">
+            <span className="itemH">Defense Level</span>
+            <span className="itemBody">
+              {titleCase(
+                state.gameControllerData.properties?.find?.(
+                  (i: any) => i.key === "defenseLevel"
+                )?.value
+              )}
+            </span>
+          </div>
+
+          <div className="item">
+            <span className="itemH">Distance</span>
+            <span className="itemBody">
+              {/* This will probably be a calculation of distance from homebase to mine location
+                        Might need an helper function for that
+                   */}
+              {`N/A`}
+            </span>
+          </div>
+        </div>
+        {gameControllerData.data.owner_id !== userId ? (
+          <div className="notificationBadge">
+            <img src={goodNotification} alt="notification" />
+            <span className="notificationText">
+              This Location is unclaimed, attack to take control and win spoils
+            </span>
+          </div>
+        ) : (
+          <div className="notificationBadge">
+            <img src={goodNotification} alt="notification" />
+            <span className="notificationText">
+              This Location is yours, go ahead and move assets here
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="mainControlRight">
+        <span className="spanH">Actions</span>
+        {gameControllerData.data.owner_id !== userId ? (
+          <img
+            src={launhAttackBtn}
+            alt="btn"
+            onClick={() => {
+              toggleLaunchAttackModal();
+            }}
+          />
+        ) : (
+          <img
+            src={moveHereBtn}
+            alt="btn"
+            onClick={() => {
+              toggleLaunchMoveModal();
+            }}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 

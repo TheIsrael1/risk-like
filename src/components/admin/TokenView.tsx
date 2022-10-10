@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 const TokenView = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [tokens, setTokens] = useState<any[]>([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -52,17 +52,16 @@ const TokenView = () => {
         label="Create Token"
       >
         <div className="modalBody">
-            <InputBox
-              formik={formik}
-              label={"Name"}
-              name={"name"}
-              onChange={formik.handleChange}
-              value={formik?.values?.name}
-            />
+          <InputBox
+            formik={formik}
+            label={"Name"}
+            name={"name"}
+            onChange={formik.handleChange}
+            value={formik?.values?.name}
+          />
         </div>
         <div className="modalBottom">
-            <div>
-          </div>
+          <div></div>
           <div>
             <AdminBtn onClick={() => formik.handleSubmit()} label="CREATE" />
           </div>
@@ -71,12 +70,10 @@ const TokenView = () => {
       <div className="top">
         <h3 className="tableName">Tokens</h3>
         <div>
-            <span className="createBtn"
-            onClick={()=>setModalOpen(true)}
-            >
+          <span className="createBtn" onClick={() => setModalOpen(true)}>
             Create Token
-            </span>
-          </div>
+          </span>
+        </div>
       </div>
       <div className="tableArea">
         <table>
@@ -89,17 +86,15 @@ const TokenView = () => {
           </thead>
           <tbody>
             {tokens?.map?.((loc: any, idx) => (
-              <tr key={idx} 
-              // onClick={()=>navigate(`tokens/${loc?.id}`)}
-              >
+              <tr key={idx}>
                 <td>{loc?.id}</td>
                 <td>{loc?.name}</td>
-                <td style={{display: "flex", justifyContent: "center",}}>
-                {loc?.image ? 
-                  <img src={loc?.image} alt="img" width={40} />  
-                  :
-                 "N/A"
-                  }
+                <td style={{ display: "flex", justifyContent: "center" }}>
+                  {loc?.image ? (
+                    <img src={loc?.image} alt="img" width={40} />
+                  ) : (
+                    "N/A"
+                  )}
                 </td>
               </tr>
             ))}

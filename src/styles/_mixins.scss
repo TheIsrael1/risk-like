@@ -1,9 +1,22 @@
-.cursor-pointer{
-     cursor: pointer; 
+.cursor-pointer {
+  cursor: pointer;
 }
 
-.row{
-     display: grid;
-     grid-template-columns: 50% 50%;
-     gap: 6px;
+.row {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 6px;
+}
+
+.d-flex {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
 }

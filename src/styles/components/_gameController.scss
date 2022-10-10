@@ -1,134 +1,132 @@
-#GameController{
-    position: fixed;
-    bottom: 0;
-    left: 0;
+#GameController {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  height: 34vh;
+
+  &.hide {
+    margin-bottom: -20rem;
+  }
+
+  .WalletAddressBar {
+    position: absolute;
+    width: 12rem;
+    height: 5rem;
+    margin-top: -4rem;
+    background-color: $grey1;
+    border-radius: 0 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .addressCard {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: $cardBg;
+      border: 2px solid $lightBorder;
+      border-radius: 10px;
+
+      img {
+        margin-right: 0.5rem;
+      }
+
+      .address {
+        font-size: 12px;
+        font-weight: 400;
+        color: $white;
+      }
+    }
+  }
+
+  .wrapper {
+    background-color: $grey1;
+    display: grid;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
-    transition: all .5s ease-in-out;
-    
-    &.hide{
-        margin-bottom: -20rem;
-    }
+    padding: 1rem;
+    grid-template-columns: 20% 60% 20%;
 
-    
-    .WalletAddressBar{
-        position: absolute;
-        width: 12rem;
-        height: 5rem;
-        margin-top: -4rem;
-        background-color: $grey1;
-        border-radius: 0 20px 0 0;
+    //base info Card
+    .baseInfo {
+      background-color: $cardBg;
+      border: 2px solid $lightBorder;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 12rem;
+      padding: 0.5rem 0;
+      border-radius: 10px;
+
+      .content {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        border-bottom: 3px solid $lightBorder;
 
-        .addressCard{
-        width: 90%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: .5rem;
-        background-color: $cardBg;
-        border: 2px solid $lightBorder;
-        border-radius: 10px;
+        .contentRow {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.3rem 1rem;
 
-        img{
-            margin-right: .5rem;
-        }
-
-        .address{
-            font-size: 12px;
+          .titleSpan {
+            font-size: 10px;
             font-weight: 400;
-            color: $white;
+            color: $textDisabledLight;
+          }
+
+          .span {
+            font-size: 12px;
+            font-weight: 700;
+            color: $textDisabledLight;
+          }
         }
-            
-        }
-    }
-    
-    .wrapper{
-        background-color: $grey1;
+      }
+
+      .bottom {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        padding: 1rem;
-        
-        //base info Card
-        .baseInfo{
-            background-color: $cardBg;
-            border: 2px solid $lightBorder;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 15rem;
-            height: 12rem;
-            padding: .5rem 0;
-            border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0;
 
-            .content{
-                display: flex;
-                flex-direction: column;
-                border-bottom: 3px solid $lightBorder;
-
-                .contentRow{
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: .3rem 1rem;
-
-                    .titleSpan{
-                        font-size: 10px;
-                        font-weight: 400;
-                        color: $textDisabledLight;
-                    }
-
-                    .span{
-                        font-size: 12px;
-                        font-weight: 700;
-                        color: $textDisabledLight;
-                    }
-                }
-            }
-
-            .bottom{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: .5rem 0;
-
-                .bottomTitle{
-                    font-size: 12px;
-                    font-weight: 400;
-                    color: $textDisabled;
-                }
-
-                .bottomValue{
-                    font-size: 12px;
-                    font-weight: 700;
-                    color: $white;
-                }
-            }
+        .bottomTitle {
+          font-size: 12px;
+          font-weight: 400;
+          color: $textDisabled;
         }
 
-        .center{
-            display: flex;
-            flex-direction: column;
-            height: 13rem;
-            width: 55rem;
-            margin: 0 1rem;
-
-            .top{
-                display: flex;
-                flex-direction: row;
-            }
+        .bottomValue {
+          font-size: 12px;
+          font-weight: 700;
+          color: $white;
         }
-
-        .right{
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
+      }
     }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      height: 13rem;
+      margin: 0 1rem;
+      flex-grow: 1;
+
+      .top {
+        display: grid;
+        grid-template-columns: 80% 20%;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

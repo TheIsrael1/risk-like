@@ -12,70 +12,75 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Reducers";
 import { getCountryNameFromCoord } from "../Helpers/general";
 
-
 interface LocationInfoModalInterface {
   open: boolean;
   toggle: () => void;
-  details: any
-  loading: boolean
+  details: any;
+  loading: boolean;
 }
 
-const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModalInterface) => {
-        
-    const { userData} = useSelector((state: RootState)=> state)
-    const [state, setState] = useState<any>({})
-    const [locationName, setLocationName] = useState("")
+const LocationInfoModal = ({
+  open,
+  toggle,
+  details,
+  loading,
+}: LocationInfoModalInterface) => {
+  const { userData } = useSelector((state: RootState) => state);
+  const [state, setState] = useState<any>({});
+  const [locationName, setLocationName] = useState("");
 
-    const getCountry = useCallback(async(lat: any, lng: any)=>{
-      const data = await getCountryNameFromCoord(lat, lng)
-      setLocationName(`${data["_locality"]}, ${data["_country"]}`)
-  },[])
+  const getCountry = useCallback(async (lat: any, lng: any) => {
+    const data = await getCountryNameFromCoord(lat, lng);
+    setLocationName(`${data["_locality"]}, ${data["_country"]}`);
+  }, []);
 
-    useEffect(()=>{
-      const assetNames = userData.data.assets?.map((a: any)=>a.name)
-      assetNames.forEach((a: any)=>{
-        setState((prev: any)=>{
-          return{
+  useEffect(() => {
+    const assetNames = userData.data.assets?.map((a: any) => a.name);
+    assetNames.forEach((a: any) => {
+      setState((prev: any) => {
+        return {
+          ...prev,
+          [a]: 0,
+        };
+      });
+    });
+  }, []);
+
+  const getLocAssetCount = (i: string) => {
+    const count = details?.assets?.find(
+      (asset: any) => asset?.name === i
+    )?.asset_quantity;
+    return count;
+  };
+
+  const getAssetDetails = useCallback(() => {
+    if (details?.location?.name) {
+      userData.data.assets.forEach((a: any) => {
+        setState((prev: any) => {
+          return {
             ...prev,
-            [a]: 0
-          }
-        })
-      })
-      },[])
-
-    const getLocAssetCount = (i: string)=>{
-      const count = details?.assets?.find((asset: any)=> asset?.name=== 
-      i)?.asset_quantity
-      return count
+            [a.name]: getLocAssetCount(a.name) ?? 0,
+          };
+        });
+      });
+      getCountry(details.location.lat, details.location.long);
     }
+  }, [details]);
 
+  useEffect(() => {
+    getAssetDetails();
+  }, [getAssetDetails]);
 
-    const getAssetDetails = useCallback(()=>{
-        if(details?.location?.name){
-          userData.data.assets.forEach((a: any)=>{
-            setState((prev: any)=>{
-              return{
-                ...prev,
-                [a.name]: getLocAssetCount(a.name) ?? 0
-              }
-            })
-          })
-          getCountry(details.location.lat, details.location.long)
-        }
-    },[details])
+  const getProperty = (k: string) => {
+    const v = details?.location?.properties?.find(
+      (item: any) => item?.key === k
+    )?.value;
+    return v;
+  };
 
-    useEffect(()=>{
-      getAssetDetails()
-    },[getAssetDetails])
-
-  const getProperty = (k: string)=>{
-   const v =  details?.location?.properties?.find((item: any)=> item?.key === k)?.value
-   return v
-  }
-
-  const getPeopleMining = () =>{
+  const getPeopleMining = () => {
     // will use mining rate property
-  }
+  };
 
   return (
     <div id="LocationInfoModal">
@@ -97,7 +102,10 @@ const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModal
             </div>
           </div>
           <div className="subTop">
-            <div className="span">{`${titleCase(details?.location?.location_type) ?? ""}`} Details</div>
+            <div className="span">
+              {`${titleCase(details?.location?.location_type) ?? ""}`} Location
+              Details
+            </div>
           </div>
           <div className="centerArea">
             <div className="sectionLeft">
@@ -109,14 +117,18 @@ const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModal
                   <img src={peopleMiningIcon} alt="img" />
                   <div className="item">
                     <span className="title">People Minning</span>
-                    <span className="value">{(getLocAssetCount("miner") ?? 0) ?? "N/A"}</span>
+                    <span className="value">
+                      {getLocAssetCount("miner") ?? "N/A"}
+                    </span>
                   </div>
                 </div>
                 <div className="centerItem">
                   <img src={productionRateIcon} alt="img" />
                   <div className="item">
                     <span className="title">Production rate</span>
-                    <span className="value">{getProperty("production_rate") ?? "N/A"}</span>
+                    <span className="value">
+                      {getProperty("production_rate") ?? "N/A"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -132,34 +144,32 @@ const LocationInfoModal = ({ open, toggle, details, loading }: LocationInfoModal
                   <img src={mineTypeIcon} alt="img" />
                   <div className="item">
                     <span className="title">Mine Type</span>
-                    <span className="value">{getProperty("mine_type") ?? "N/A"}</span>
+                    <span className="value">
+                      {getProperty("mine_type") ?? "N/A"}
+                    </span>
                   </div>
                 </div>
               </div>
               <div className="resourceSectionH">
-                  <div className="hleft">
-                      <img src={armyIcon} alt="img" />
-                      <span className="title">
-                          Army
-                      </span>
-                  </div>
-                  <div className="hRight">
-                      <span className="value">
-                          Strong
-                      </span>
-                  </div>
+                <div className="hleft">
+                  <img src={armyIcon} alt="img" />
+                  <span className="title">Army</span>
+                </div>
+                <div className="hRight">
+                  <span className="value">Strong</span>
+                </div>
               </div>
               <div className="resourceSection">
-                  {
-                    userData.data.assets.map((a: any, idx: number)=>(
+                {userData.data.assets.map((a: any, idx: number) => {
+                  return state?.[a?.name] ? (
                     <div key={idx} className="resourceItem">
-                        <img width={40} src={a?.image} alt="asset" />
-                        <span className="resourceValue">
-                        {state?.[a?.name]} 
-                        </span>
-                  </div>
-                    ))
-                  }
+                      <img width={40} src={a?.image} alt="asset" />
+                      <span className="resourceValue">{state?.[a?.name]}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  );
+                })}
               </div>
             </div>
           </div>

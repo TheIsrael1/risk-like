@@ -1,124 +1,157 @@
-#AdminCreateModal{
-    .modalBackdrop{
-        position: fixed;
-        opacity: 0;
-        visibility: hidden;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 10;
-        background-color: rgba(0, 0, 0, 0.4);
-        transition: all .2s ease-in;
-        padding-top: 3rem;
+#AdminCreateModal {
+  .modalBackdrop {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease-in;
+    padding-top: 3rem;
 
-
-        &.show{
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal{
-            position: relative;
-            transition: all .2s ease-in;
-            transition-delay: .2s;
-            width: 40vw;
-            min-height: 50vh;
-            max-width: 100%;
-            max-height: 80%;
-            overflow-y: scroll;
-            background-color: $cardBg;
-            box-sizing: border-box;
-            border-radius: 8px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10; 
-            display: flex;
-            flex-direction: column;
-            scrollbar-width: 0;
-
-            &::-webkit-scrollbar{
-                display: none;
-            }
-            
-            .titleCon{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                min-height: 4rem;
-                
-                .title{
-                    font-size: 20px;
-                    font-weight: 800;
-                    color: #D1D1D1;
-                    text-transform: uppercase;
-                    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #D1D1D1;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                    text-shadow: 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.14), 0px 2.07958px 2.07958px rgba(0, 0, 0, 0.12), 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.2);
-                }
-
-               .imgBtn{
-                   position: absolute;
-                   top: 50%;
-                   transform: translate(-50%, -50%);
-                   right: 0;
-                   margin-right: 1rem;
-                   cursor: pointer; 
-                   padding: 4px;
-                   transition: .15s all ease;
-
-                   &:hover{
-                    border: 2px solid white;
-                   }
-
-               }
-
-                .bottomLight{
-                    background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0.56%, #FFFFFF 49.61%, rgba(255, 255, 255, 0) 100.25%);
-                    position: absolute;
-                    height: 2px;
-                    bottom: 0;
-                    width: 100%;
-                    margin: 0 auto;
-                }
-            }
-
-            .contentCon{
-                padding: 0 1rem;
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-
-                .modalBody{
-                    flex-grow: 1;
-                    padding-bottom: 1rem;
-                }
-
-                .modalBottom{
-                    padding-bottom: 1rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    
-                    .specialBtn{
-                        display: flex;
-                        align-items: center;
-                        cursor: pointer;
-                        .text{
-                            color: white;
-                            padding: 0 4px;
-                        }
-                    }
-                }
-
-                
-            }
-        }
-
+    &.show {
+      opacity: 1;
+      visibility: visible;
     }
+
+    .modal {
+      position: relative;
+      transition: all 0.2s ease-in;
+      transition-delay: 0.2s;
+      width: 40vw;
+      min-height: 50vh;
+      max-width: 100%;
+      max-height: 80%;
+      overflow-y: scroll;
+      background-color: $cardBg;
+      box-sizing: border-box;
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      scrollbar-width: 0;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .titleCon {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-height: 4rem;
+
+        .title {
+          font-size: 20px;
+          font-weight: 800;
+          color: #d1d1d1;
+          text-transform: uppercase;
+          background: linear-gradient(
+              180deg,
+              #ffffff 0%,
+              rgba(255, 255, 255, 0) 100%
+            ),
+            #d1d1d1;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-shadow: 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.14),
+            0px 2.07958px 2.07958px rgba(0, 0, 0, 0.12),
+            0px 2.07958px 4.15917px rgba(0, 0, 0, 0.2);
+        }
+
+        .imgBtn {
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          right: 0;
+          margin-right: 1rem;
+          cursor: pointer;
+          padding: 4px;
+          transition: 0.15s all ease;
+
+          &:hover {
+            border: 2px solid white;
+          }
+        }
+
+        .bottomLight {
+          background: linear-gradient(
+            270deg,
+            rgba(255, 255, 255, 0) 0.56%,
+            #ffffff 49.61%,
+            rgba(255, 255, 255, 0) 100.25%
+          );
+          position: absolute;
+          height: 2px;
+          bottom: 0;
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
+
+      .contentCon {
+        padding: 0 1rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        .modalBody {
+          flex-grow: 1;
+          padding-bottom: 1rem;
+
+          .modalBodySectionHead {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+          }
+        }
+
+        .modalBottom {
+          padding: 1rem 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      .specialBtn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .text {
+          color: white;
+          padding: 0 4px;
+        }
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0.5rem 0;
+        color: #d1d1d1;
+        background: linear-gradient(
+            180deg,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0) 100%
+          ),
+          #d1d1d1;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.14),
+          0px 2.07958px 2.07958px rgba(0, 0, 0, 0.12),
+          0px 2.07958px 4.15917px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
 }

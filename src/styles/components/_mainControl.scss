@@ -2,17 +2,32 @@
   background-color: $cardBg;
   border: 2px solid $lightBorder;
   border-radius: 10px;
-  max-width: 40rem;
-  min-width: 40rem;
   height: 8.5rem;
   display: flex;
   flex-direction: row;
   margin-right: 1rem;
   transition: 0.3s all ease-in;
   transition-delay: 0.1s;
+  overflow-x: scroll;
+  scrollbar-width: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes shadowFlex {
+    from {
+      box-shadow: none;
+    }
+    to {
+      box-shadow: 0 0 3px 2px $lightBorderActive;
+    }
+  }
 
   &.active {
     box-shadow: 0 0 3px 2px $lightBorderActive;
+    animation: shadowFlex 1s ease;
+    animation-iteration-count: 3;
   }
 
   .mainControlRight {
@@ -128,7 +143,7 @@
       }
 
       .notificationText {
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 400;
         color: #5f6163;
       }

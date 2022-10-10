@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import AdminCreateModal from "./AdminCreateModal";
 import AdminBtn from "./subComponents/AdminBtn";
 import InputBox from "./subComponents/InputBox";
@@ -10,11 +10,13 @@ import {
   createAsset,
   fetchAssetTypes,
   getAssets,
+  getNfts,
   getSingleAssetType,
 } from "../../services/assetsService";
 import { getTokens } from "../../services/tokenService";
 import { handleError } from "../Helpers/general";
 import { useNavigate } from "react-router";
+import MultiSelect from "./subComponents/MultiSelect";
 
 const AssetsView = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,10 +25,29 @@ const AssetsView = () => {
   const [assetTypeId, setAssetTypeId] = useState("");
   const [assetTypes, setAssetTypes] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [nfts, setNfts] = useState<any[]>([]);
   const [currencies, setCurrencies] = useState<any[]>([]);
   const [selectedCurrency, setSelectedCurency] = useState("");
+  const [createLoading, setCreateLoading] = useState(false);
+  const [assetDependencies, setAssetDependencies] = useState<any[]>([]);
+  const [nftDependencies, setNftDependencies] = useState("");
+  // Todo: Add asset dependencies
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const dependencyAssets = useMemo(() => {
+    const res = assets?.map((a: any) => {
+      return { value: a.id, label: a.name };
+    });
+    return res;
+  }, [assets]);
+
+  const dependencyNfts = useMemo(() => {
+    const res = nfts?.map((a: any) => {
+      return { value: a.id, label: a.name };
+    });
+    return res;
+  }, [nfts]);
 
   const formik = useFormik({
     initialValues: {
@@ -41,13 +62,14 @@ const AssetsView = () => {
       console.log("values", { ...values, assetTypeId, powers });
       handleCreatAsset({
         ...values,
-        asset_type_id: assetTypeId ,
-        currency: selectedCurrency ,
+        asset_type_id: assetTypeId,
+        currency: selectedCurrency,
         powers: [...powers, ...defaultPowers],
+        nft_dependency_id: nftDependencies,
+        asset_dependency_ids: assetDependencies,
       });
     },
   });
-
 
   const handlePowerInputChange = (
     i: number,
@@ -87,6 +109,7 @@ const AssetsView = () => {
 
   const handleCreatAsset = async (asset: any) => {
     try {
+      setCreateLoading(true);
       const { data } = await createAsset(asset);
       setAssets([data, ...assets]);
       formik.resetForm();
@@ -94,6 +117,8 @@ const AssetsView = () => {
       setPowers([]);
     } catch (err) {
       handleError(err);
+    } finally {
+      setCreateLoading(false);
     }
   };
 
@@ -104,7 +129,7 @@ const AssetsView = () => {
         data?.map((i: any) => {
           return { label: i.name, value: i.id };
         })
-      )
+      );
     } catch (err) {
       handleError(err);
     }
@@ -122,10 +147,20 @@ const AssetsView = () => {
     }
   }, []);
 
+  const getAllNfts = useCallback(async () => {
+    try {
+      const { data } = await getNfts();
+      setNfts(data);
+    } catch (err) {
+      handleError(err);
+    }
+  }, []);
+
   useEffect(() => {
     getAssetTypes();
     getCurrencies();
-  }, [getAssetTypes, getCurrencies]);
+    getAllNfts();
+  }, [getAssetTypes, getCurrencies, getAllNfts]);
 
   const fetchAssets = useCallback(async () => {
     try {
@@ -182,7 +217,7 @@ const AssetsView = () => {
             <AdminDropDown
               select={(i: string) => setCurrency(i)}
               label="Currency"
-              options={[{},...currencies]}
+              options={[{}, ...currencies]}
             />
             <InputBox
               formik={formik}
@@ -210,9 +245,20 @@ const AssetsView = () => {
             <AdminDropDown
               select={(i: string) => setAssetTypeId(i)}
               label="Asset Type"
-              options={[{},...assetTypes]}
+              options={[{}, ...assetTypes]}
+            />
+            <AdminDropDown
+              select={(i: string) => setNftDependencies(i)}
+              label="NFT Dependencies"
+              options={[{ label: "", value: "" }, ...dependencyNfts]}
+            />
+            <MultiSelect
+              label="Asset Dependencies"
+              options={dependencyAssets}
+              getValue={(v: any) => setAssetDependencies(v)}
             />
           </div>
+
           {defaultPowers?.map((p, idx) => (
             <div className="row" key={idx}>
               <InputBox
@@ -247,14 +293,18 @@ const AssetsView = () => {
           ))}
         </div>
         <div className="modalBottom">
-          <div>
+          <div className="d-flex flex-row">
             <div className="specialBtn" onClick={() => createNewPower()}>
               <img src={addIcon} alt="" />
               <div className="text">Powers</div>
             </div>
           </div>
           <div>
-            <AdminBtn onClick={() => formik.handleSubmit()} label="CREATE" />
+            <AdminBtn
+              loading={createLoading}
+              onClick={() => formik.handleSubmit()}
+              label="CREATE"
+            />
           </div>
         </div>
       </AdminCreateModal>
@@ -282,7 +332,7 @@ const AssetsView = () => {
           </thead>
           <tbody>
             {assets?.map?.((ass: any, idx) => (
-              <tr key={idx} onClick={()=> navigate(`assets/${ass?.id}`)}>
+              <tr key={idx} onClick={() => navigate(`assets/${ass?.id}`)}>
                 <td>{ass?.id}</td>
                 <td>{ass?.name}</td>
                 <td>{ass?.description}</td>
@@ -290,13 +340,13 @@ const AssetsView = () => {
                 <td>{`${ass?.moveable}`}</td>
                 <td>{ass?.price}</td>
                 <td>{ass?.total_quantity}</td>
-                <td style={{display: "flex", justifyContent: "center",}}>
-                  {ass?.image ? 
-                  <img src={ass?.image} alt="img" width={40} />  
-                  :
-                 "N/A"
-                  }
-              </td>
+                <td style={{ display: "flex", justifyContent: "center" }}>
+                  {ass?.image ? (
+                    <img src={ass?.image} alt="img" width={40} />
+                  ) : (
+                    "N/A"
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -1,32 +1,43 @@
-#NavNormalBadge{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 4px 12px;
-    border-radius: 18px;
-    background-color: $darkGrey;
-    margin: 1rem 0;
-    margin-left: 4px;
-     cursor: pointer; 
+#NavNormalBadge {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 18px;
+  background-color: $darkGrey;
+  margin: 1rem 0;
+  margin-left: 4px;
+  cursor: pointer;
 
+  .alert {
+    position: absolute;
+    top: -7.5px;
+    right: -5px;
+    background-color: $red;
+    padding: 4px 8px;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50px;
+    z-index: 999;
+  }
 
-    .left{
-        padding: 0 4px;
+  .left {
+    padding: 0 4px;
 
-        .img{
-            width: 23px;
-        }
-    
+    .img {
+      width: 23px;
     }
-    
-    .right{
-        margin-bottom: 8px;
+  }
 
-        .badgeName{
-            font-size: 12px;
-            font-weight: 400;
-            color: $white;
-        }
+  .right {
+    margin-bottom: 8px;
 
+    .badgeName {
+      font-size: 12px;
+      font-weight: 400;
+      color: $white;
     }
+  }
 }

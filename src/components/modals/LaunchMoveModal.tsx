@@ -29,32 +29,30 @@ interface LaunchAttackModalState {
   currData: any;
   commenceAttackView: boolean;
   chosenAssets: chosenAssets[];
-  resource: any
+  resource: any;
 }
 
-interface chosenAssets{
-    name?: string 
-    quantity?: number
-    user_asset_id?: string
-    asset_quantity?: number
+interface chosenAssets {
+  name?: string;
+  quantity?: number;
+  user_asset_id?: string;
+  asset_quantity?: number;
 }
-
 
 const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
   const [state, setState] = useState<LaunchAttackModalState>({
     currData: {},
     commenceAttackView: false,
     chosenAssets: [],
-    resource: {}
+    resource: {},
   });
 
-  const userId = sessionStorage.getItem("id") as string
-  const {timedToast, open: openToast, closeAll: closeToast} = useToast()
-  const dispatch = useDispatch()
+  const userId = sessionStorage.getItem("id") as string;
+  const { timedToast, open: openToast, closeAll: closeToast } = useToast();
+  const dispatch = useDispatch();
 
-  const { mineLocationsData, userData, gameControllerData, mapData} = useSelector(
-    (state: RootState) => state
-  );
+  const { mineLocationsData, userData, gameControllerData, mapData } =
+    useSelector((state: RootState) => state);
 
   const setCurrData = useCallback(
     (id: number) => {
@@ -63,29 +61,40 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
         return {
           ...prev,
           currData: data,
-          
         };
       });
     },
     [mineLocationsData.data]
   );
 
-
-  const getAssetId = (i: string) =>{
-   const id =  userData.data.userAssets?.find((a: any)=>a.asset.name === i)?.id
-   return id
-  }
+  const getAssetId = (i: string) => {
+    const id = userData.data.userAssets?.find(
+      (a: any) => a.asset.name === i
+    )?.id;
+    return id;
+  };
 
   const addToChosenAssets = (item: any) => {
     const redoItem = {
       user_asset_id: getAssetId(item.name),
-      asset_quantity: item.quantity
-    }
+      asset_quantity: item.quantity,
+    };
     setState((prev: any) => {
       return {
         ...prev,
-        chosenAssets: item.quantity > 0 ? [...prev.chosenAssets?.filter((i: any)=>i.user_asset_id !== redoItem.user_asset_id),
-             redoItem] : [...prev.chosenAssets?.filter((i: any)=>i.user_asset_id !== redoItem.user_asset_id)],
+        chosenAssets:
+          item.quantity > 0
+            ? [
+                ...prev.chosenAssets?.filter(
+                  (i: any) => i.user_asset_id !== redoItem.user_asset_id
+                ),
+                redoItem,
+              ]
+            : [
+                ...prev.chosenAssets?.filter(
+                  (i: any) => i.user_asset_id !== redoItem.user_asset_id
+                ),
+              ],
       };
     });
   };
@@ -99,127 +108,141 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
     });
   };
 
-const getUserAssetCount = (i: string) => {
-  const count = userData.data.userAssets?.find((a: any)=> a?.asset?.name === i)?.quantity    
-     return count;
+  const getUserAssetCount = (i: string) => {
+    const count = userData.data.userAssets?.find(
+      (a: any) => a?.asset?.name === i
+    )?.quantity;
+    return count;
   };
 
-  const getAssetNameWithId = (i: string)=>{
-    const name = userData.data.userAssets?.find((a: any)=> a?.id === i)?.asset?.name
-    return name
-  }
+  const getAssetNameWithId = (i: string) => {
+    const name = userData.data.userAssets?.find((a: any) => a?.id === i)?.asset
+      ?.name;
+    return name;
+  };
 
-  const getLocAssetCount = (data: any, i: string)=>{
-    const count = data?.assets?.find((asset: any)=> asset?.name === 
-    i)?.asset_quantity
-    return count ?? 0
-  }
+  const getLocAssetCount = (data: any, i: string) => {
+    const count = data?.assets?.find(
+      (asset: any) => asset?.name === i
+    )?.asset_quantity;
+    return count ?? 0;
+  };
 
-  const getAssetInfo = useCallback(async() => {
+  const getAssetInfo = useCallback(async () => {
     if (state.currData?.location_type === "base") {
-      userData.data.assets.forEach((a: any)=>{
-        setState((prev)=>{
-          return{
+      userData.data.assets.forEach((a: any) => {
+        setState((prev) => {
+          return {
             ...prev,
             resource: {
               ...prev.resource,
               [a.name]: getUserAssetCount(a.name) ?? 0,
-            }
-          }
-        })
-      })
-    } else if (state.currData?.location_type === "mine") {
-      try{
-        const {data} = await getLocationDetail(state?.currData?.id)
-        userData.data.assets.forEach((a: any)=>{
-          setState((prev: any)=>{
-            return{
-                ...prev,
-                resource: {
-                  ...prev.resource,
-                  [a.name]: getLocAssetCount(data, a.name) ?? 0,
-                }
-            }
-        })  
-        })
-       }catch(err){
-         timedToast?.(handleError(err))
-       }  
-    }
-  },[state.currData, userData.data.userAssets])
-
-  useEffect(()=>{
-    getAssetInfo()
-  },[getAssetInfo])
-
-  const closeModal=()=>{
-      toggle()
-      setState((prev)=>{
-          return{
+            },
+          };
+        });
+      });
+    } else if (
+      state.currData?.location_type === "mine" ||
+      state.currData?.location_type === "default"
+    ) {
+      try {
+        const { data } = await getLocationDetail(state?.currData?.id);
+        userData.data.assets.forEach((a: any) => {
+          setState((prev: any) => {
+            return {
               ...prev,
-              chosenAssets: []
-          }
-      })
-  }
+              resource: {
+                ...prev.resource,
+                [a.name]: getLocAssetCount(data, a.name) ?? 0,
+              },
+            };
+          });
+        });
+      } catch (err) {
+        timedToast?.(handleError(err));
+      }
+    }
+  }, [state.currData, userData.data.userAssets]);
 
-  const getChoosenAssets = () =>{
-    const ass = state.chosenAssets
-    return ass
-  }
+  useEffect(() => {
+    getAssetInfo();
+  }, [getAssetInfo]);
 
-const moveAsset = async() =>{
-  const initLocDetails = mineLocationsData.data.find((l: any)=> l.name === state.currData.name)
-    try{
-      if(state.chosenAssets.length){
-        await moveAssetAction(
-          {destination_id: gameControllerData.data.id,
+  const closeModal = () => {
+    toggle();
+    setState((prev) => {
+      return {
+        ...prev,
+        chosenAssets: [],
+      };
+    });
+  };
+
+  const getChoosenAssets = () => {
+    const ass = state.chosenAssets;
+    return ass;
+  };
+
+  const moveAsset = async () => {
+    const initLocDetails = mineLocationsData.data.find(
+      (l: any) => l.name === state.currData.name
+    );
+    try {
+      if (state.chosenAssets.length) {
+        await moveAssetAction({
+          destination_id: gameControllerData.data.id,
           initial_location_id: initLocDetails?.id,
           mover_id: userId,
-          assets: getChoosenAssets()
-          }
-          ) 
-          toggle()
-          dispatch(updateMapDataAction({mapAnimationDetails: [
-            {lat: initLocDetails.lat, lng: initLocDetails.long},
-            {lat: gameControllerData.data.lat, lng: gameControllerData.data.long}
-          ],
-          mapAnimationOngoing: true
-        })as any)
+          assets: getChoosenAssets(),
+        });
+        toggle();
+        dispatch(
+          updateMapDataAction({
+            mapAnimationDetails: [
+              { lat: initLocDetails.lat, lng: initLocDetails.long },
+              {
+                lat: gameControllerData.data.lat,
+                lng: gameControllerData.data.long,
+              },
+            ],
+            mapAnimationOngoing: true,
+          }) as any
+        );
         openToast?.(`Moving assets from ${initLocDetails.name} 
-        to ${gameControllerData.data.name}...`)
-      }else{
-        timedToast?.("You need to select assets")
+        to ${gameControllerData.data.name}...`);
+      } else {
+        timedToast?.("You need to select assets");
       }
-    }catch(err){
-      dispatch(updateMapDataAction({mapAnimationDetails: []}) as any)
-      closeToast?.()
-      timedToast?.(handleError(err))
+    } catch (err) {
+      dispatch(updateMapDataAction({ mapAnimationDetails: [] }) as any);
+      closeToast?.();
+      timedToast?.(handleError(err));
     }
-}
+  };
 
-useEffect(()=>{
-if(!mapData.data.mapAnimationOngoing && state.chosenAssets.length){
-  toggle()
-  toggleView()
-  dispatch(updateUserAssets(userId) as any)
-  dispatch(backgroupUserLocUpdate(userId) as any)
-  // dispatch(backgroudLocationUpdate() as any)
-  getAssetInfo()
-  closeToast?.()
-}
-},[mapData.data.mapAnimationOngoing])
-
-const cleanUp = () =>{
-  toggle();
-  toggleView();
-  setState((prev)=>{
-    return{
-      ...prev,
-      chosenAssets: [],
-      resource: {},
+  useEffect(() => {
+    if (!mapData.data.mapAnimationOngoing && state.chosenAssets.length) {
+      toggle();
+      toggleView();
+      dispatch(updateUserAssets(userId) as any);
+      dispatch(backgroupUserLocUpdate(userId) as any);
+      // dispatch(backgroudLocationUpdate() as any)
+      getAssetInfo();
+      closeToast?.();
     }
-  })
-}
+  }, [mapData.data.mapAnimationOngoing]);
+
+  const cleanUp = () => {
+    toggle();
+    toggleView();
+    setState((prev) => {
+      return {
+        ...prev,
+        chosenAssets: [],
+        resource: {},
+      };
+    });
+  };
   return (
     <div id="LaunchAttackModal">
       <div className={`launchModalBackdrop ${open && `show`}`}>
@@ -228,7 +251,9 @@ const cleanUp = () =>{
             <div className="top">
               <div className="left">
                 <div>
-                  <span className="topText">Choose Location to Move Assets From</span>
+                  <span className="topText">
+                    Choose Location to Move Assets From
+                  </span>
                 </div>
                 <LocationSelectionModal
                   setAttackForce={(id: number) => {
@@ -242,14 +267,13 @@ const cleanUp = () =>{
                   src={cancel}
                   alt="cancel"
                   onClick={() => {
-                    closeModal()
+                    closeModal();
                   }}
                 />
               </div>
             </div>
             <div className="centerArea">
-              {
-                userData.data.assets.map((a: any, idx: number)=>(
+              {userData.data.assets.map((a: any, idx: number) => (
                 <div key={idx} className="centerAreaItem">
                   <div className="imgCon">
                     <img width={40} alt="soilder" src={a?.image} />
@@ -264,15 +288,14 @@ const cleanUp = () =>{
 
                   <CountSelect
                     setAssetsToUse={(i: number) =>
-                      addToChosenAssets({ name: a?.name, quantity: i})
+                      addToChosenAssets({ name: a?.name, quantity: i })
                     }
                     initialCount={state.resource[a?.name]}
                   />
 
                   <span className="max">MAX</span>
                 </div>
-                ))
-              }
+              ))}
             </div>
 
             <div className="bottom">
@@ -295,13 +318,9 @@ const cleanUp = () =>{
               />
             </div>
           </div>
-        )
+        ) : (
+          //  deployment view >>>
 
-         : 
-         
-        //  deployment view >>>
-        
-         (
           <div className="launchmodal wider">
             <div className="top">
               <div className="left row">
@@ -350,21 +369,21 @@ const cleanUp = () =>{
               </div>
               <div className="sectionRight">
                 <div className="sectionRow">
-                  {
-                    userData.data.assets.map((a:any, idx: number)=>(
+                  {userData.data.assets.map((a: any, idx: number) => (
                     <div key={idx} className="centerItem">
                       <img width={40} src={a?.image} alt="img" />
                       <div className="item">
                         <span className="title">{titleCase(a?.name)}</span>
                         <span className="value">
-                          {state.chosenAssets?.find((ca: any)=> getAssetNameWithId(ca?.user_asset_id) 
-                          === a?.name )?.asset_quantity ?? 0} {" "}
+                          {state.chosenAssets?.find(
+                            (ca: any) =>
+                              getAssetNameWithId(ca?.user_asset_id) === a?.name
+                          )?.asset_quantity ?? 0}{" "}
                           moved
                         </span>
                       </div>
                     </div>
-                    ))
-                  }
+                  ))}
                 </div>
               </div>
             </div>

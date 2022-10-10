@@ -1,7 +1,6 @@
 @import "./variables";
 @import "./mixins";
 
-
 // screens
 @import "./screens/intro";
 @import "./screens/homeBase";
@@ -47,10 +46,10 @@
 @import "./components/adminImgUpload";
 @import "./components/adminDetails";
 @import "./components/buttonLoader";
+@import "./components/notificationGallery";
 
 //global
 @import "./global/transitions";
-
 
 //libraries
 @import "react-alice-carousel/lib/scss/alice-carousel.scss";
