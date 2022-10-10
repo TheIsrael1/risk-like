@@ -75,7 +75,7 @@ const CoinView = () => {
       <AlertModal
         open={confirmationOpen}
         toggle={() => setConfirmationOpen(!confirmationOpen)}
-        description={`Sure you want to purchase this amount of ${cart?.name} ?`}
+        description={`Continue with ${cart?.name} purchase ?`}
         title={`Confirm`}
         img={cart?.image}
         getResponse={(i: boolean) => getResponse(i)}

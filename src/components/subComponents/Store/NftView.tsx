@@ -87,7 +87,7 @@ const NftView = () => {
       <AlertModal
         open={state.openBuyConfirmation}
         toggle={() => toggleBuyConfirmation(false)}
-        description={`Are you sure you want to purchase the ${state.cart.name} NFT`}
+        description={`Acquire ${state.cart.name} NFT?`}
         title={`Confirm`}
         img={storeData?.nfts[0].img}
         getResponse={(i: boolean) => getResponse(i)}
