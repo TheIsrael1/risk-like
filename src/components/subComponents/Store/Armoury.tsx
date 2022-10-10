@@ -115,7 +115,7 @@ const Armoury = () => {
       <AlertModal
         open={state.openBuyConfirmation}
         toggle={() => toggleBuyConfirmation(false)}
-        description={`Are you sure you want to purchase this ${state.cart.name}`}
+        description={`Continue with ${state.cart.name} purchase`}
         title={`Confirm`}
         img={state.cart?.image}
         getResponse={(i: boolean) => getResponse(i)}
