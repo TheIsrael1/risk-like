@@ -108,16 +108,11 @@ const Onboarding = () => {
   const getUserLocation = () => {
     setLoading(true);
     navigator.geolocation.getCurrentPosition(function (position) {
-      //   let lat = position.coords.latitude;
-      //   let long = position.coords.longitude;
-      createBaseLocation(46.30088254489876, -102.51604961984236);
+      let lat = position.coords.latitude;
+      let long = position.coords.longitude;
+      createBaseLocation(lat, long);
     });
   };
-
-  // useEffect(()=>{
-  //     const ok = getCountryNameFromCoord(42.46739820323233, 87.08297409668968)
-  //     console.log("good", ok)
-  // },[])
 
   return (
     <div id="Onboarding">

@@ -16,8 +16,6 @@ import { createLocation } from "../../services/locations";
 import { initialMineLocations } from "../../redux/Actions/mineLocationsAction";
 import { useDispatch } from "react-redux";
 import { getTokens } from "../../services/tokenService";
-import { handleError } from "../Helpers/general";
-import { useToast } from "../Toast/ToastContexProvidert";
 import { toggleNotificationGallery } from "../../redux/Actions/notificationAction";
 
 const GameController = () => {
@@ -37,7 +35,6 @@ const GameController = () => {
     "Looking for mines in your area..."
   );
   let dispatch = useDispatch();
-  // const { timedToast: toast } = useToast();
 
   const findNeighbours = useCallback(async () => {
     // try {

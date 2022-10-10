@@ -15,7 +15,7 @@ const NavNormalBadge = ({
 }: NavNormalBadgeInterface) => {
   return (
     <div id="NavNormalBadge" onClick={() => toggle?.()}>
-      {alert && <div className="alert">{alert}</div>}
+      {alert ? <div className="alert">{alert}</div> : <></>}
       <div className="left">
         <img src={img} className="img" alt="img" />
       </div>
