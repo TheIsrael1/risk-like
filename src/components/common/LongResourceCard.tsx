@@ -30,16 +30,28 @@ const LongResourceCard = ({
     >
       <div className={`longcardTop ${`hasContent`}`}>
         <span className="topSpan">{eth} ETH</span>
-        <img src={ethIcon} width={14} alt="img" className="topImg" />
+        <img
+          loading="lazy"
+          src={ethIcon}
+          width={14}
+          alt="img"
+          className="topImg"
+        />
       </div>
       <div className="borderTop" />
       <div className="longCardBottom">
-        <img src={img} width={100} alt="cardImg" className="cardImg" />
+        <img
+          loading="lazy"
+          src={img}
+          width={100}
+          alt="cardImg"
+          className="cardImg"
+        />
         <div className="cardDetails">
           <span className="cardName">{nftName}</span>
           <span className="cardSubName">{nftSubName}</span>
           <div className="likesCon">
-            <img src={likeIcon} alt="like" />
+            <img loading="lazy" src={likeIcon} alt="like" />
             <span className="likesSpan">+{likes}</span>
           </div>
         </div>

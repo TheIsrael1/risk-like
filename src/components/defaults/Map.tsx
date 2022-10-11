@@ -623,6 +623,7 @@ const Map = () => {
         {!mapData.data.mapAnimationOngoing && (
           <>
             <img
+              loading="lazy"
               width={50}
               src={locationBtn}
               alt=""
@@ -630,6 +631,7 @@ const Map = () => {
               onClick={() => panToMyLocation()}
             />
             <img
+              loading="lazy"
               width={50}
               src={baseSelectionBtn}
               alt=""
@@ -641,6 +643,7 @@ const Map = () => {
               zoomOut={() => decreaseZoom()}
             />
             <img
+              loading="lazy"
               width={150}
               src={worldMapBtn}
               alt=""

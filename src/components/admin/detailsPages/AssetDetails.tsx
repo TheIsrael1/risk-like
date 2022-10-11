@@ -51,7 +51,7 @@ const AssetDetails = () => {
       <div className="adminDetailsWraper">
         <div className="top">
           <div className="titleCon" onClick={() => window.history.back()}>
-            <img src={arrowBack} alt="arrow" width={30} />
+            <img loading="lazy" src={arrowBack} alt="arrow" width={30} />
             <div className="pageTitleCon">
               <h3 className="pageTitle">ASSET DETAILS</h3>
               <span className="subTitle">{/* icon or something */}</span>

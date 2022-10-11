@@ -81,6 +81,7 @@ const NotificationGallery = ({ title }: NotificationGalleryInterface) => {
       <div id="NotificationGallery">
         <div className="arrow">
           <img
+            loading="lazy"
             onClick={() => toggleBackwards()}
             width={30}
             src={arrowLeftBig}
@@ -94,7 +95,7 @@ const NotificationGallery = ({ title }: NotificationGalleryInterface) => {
             </div>
           )}
           <div className="icon">
-            <img src={notificationIcon} alt="" />
+            <img loading="lazy" src={notificationIcon} alt="" />
           </div>
           {!notifications.length && (
             <div className="noNotification">
@@ -107,6 +108,7 @@ const NotificationGallery = ({ title }: NotificationGalleryInterface) => {
         </div>
         <div className="arrow">
           <img
+            loading="lazy"
             onClick={() => toggleFoward()}
             width={30}
             src={arrowRightBig}

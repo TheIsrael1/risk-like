@@ -91,7 +91,7 @@ const TokenView = () => {
                 <td>{loc?.name}</td>
                 <td style={{ display: "flex", justifyContent: "center" }}>
                   {loc?.image ? (
-                    <img src={loc?.image} alt="img" width={40} />
+                    <img loading="lazy" src={loc?.image} alt="img" width={40} />
                   ) : (
                     "N/A"
                   )}

@@ -153,7 +153,7 @@ const NFT = () => {
           <div className="modalBottom">
             <div className="d-flex flex-row">
               <div className="specialBtn" onClick={() => createNewPower()}>
-                <img src={addIcon} alt="" />
+                <img loading="lazy" src={addIcon} alt="" />
                 <div className="text">Powers</div>
               </div>
             </div>
@@ -195,7 +195,7 @@ const NFT = () => {
                 {/* <td>{checkNullText(ass?.link)}</td>
                 <td style={{ display: "flex", justifyContent: "center" }}>
                   {ass?.image ? (
-                    <img src={ass?.image} alt="img" width={40} />
+                    <img loading="lazy"  src={ass?.image} alt="img" width={40} />
                   ) : (
                     "N/A"
                   )}

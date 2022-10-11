@@ -94,7 +94,7 @@ const Nav = () => {
             </div>
           </div>
           <div className="centerLogo">
-            <img src={riskLike} className="logoImg" alt="logo" />
+            <img loading="lazy" src={riskLike} className="logoImg" alt="logo" />
           </div>
           <div className="navItemsRowRight">
             <FoodDropdown />

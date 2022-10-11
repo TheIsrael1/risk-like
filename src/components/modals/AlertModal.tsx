@@ -26,19 +26,25 @@ const AlertModal = ({
       <div id="MoveLocationWarning">
         <div className="modalWrapper">
           <div className="iconCon">
-            <img width={70} height={120} src={img ?? alertIcon} alt="" />
+            <img
+              loading="lazy"
+              width={70}
+              height={120}
+              src={img ?? alertIcon}
+              alt=""
+            />
           </div>
-          <p className="description">
-              {description}
-          </p>
+          <p className="description">{description}</p>
           <div className="btnCon">
             <img
+              loading="lazy"
               width={200}
               src={btnNo}
               alt="no"
               onClick={() => getResponse(false)}
             />
             <img
+              loading="lazy"
               width={200}
               src={btnYes}
               alt="yes"

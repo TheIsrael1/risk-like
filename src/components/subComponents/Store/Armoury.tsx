@@ -137,10 +137,22 @@ const Armoury = () => {
         }}
         animationType={`fadeout`}
         renderPrevButton={({ isDisabled }) => (
-          <img width={100} src={arrowLeftBig} alt="" className="arrowL" />
+          <img
+            loading="lazy"
+            width={100}
+            src={arrowLeftBig}
+            alt=""
+            className="arrowL"
+          />
         )}
         renderNextButton={({ isDisabled }) => (
-          <img width={100} src={arrowRightBig} alt="" className="arrowR" />
+          <img
+            loading="lazy"
+            width={100}
+            src={arrowRightBig}
+            alt=""
+            className="arrowR"
+          />
         )}
       >
         {state.currData?.map?.((item: any, idx: number) => (

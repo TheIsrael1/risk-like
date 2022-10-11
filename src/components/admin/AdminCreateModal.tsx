@@ -23,7 +23,13 @@ const AdminCreateModal = ({
               <div className="title">{label}</div>
             </div>
             <div className="imgBtn" onClick={() => close()}>
-              <img src={cancelBtn} width={12} alt="" className="cancelBtn" />
+              <img
+                loading="lazy"
+                src={cancelBtn}
+                width={12}
+                alt=""
+                className="cancelBtn"
+              />
             </div>
           </div>
           <div className="contentCon">{children}</div>

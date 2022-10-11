@@ -5,7 +5,7 @@ interface GeneralModalInterface {
   open: boolean;
   toggle: () => void;
   title: string;
-  noClose?: boolean
+  noClose?: boolean;
   children: ReactChild;
 }
 
@@ -14,7 +14,7 @@ const GeneralModal = ({
   toggle,
   title,
   children,
-  noClose
+  noClose,
 }: GeneralModalInterface) => {
   return (
     <div id="GeneralModal">
@@ -23,14 +23,16 @@ const GeneralModal = ({
           <div className="titleCon">
             <div className="title">{title}</div>
             <div className="imgCon">
-             {!noClose && 
-              <img
-                width={45}
-                src={cancelBtn}
-                alt=""
-                className="cancelBtn"
-                onClick={() => toggle()}
-              />}
+              {!noClose && (
+                <img
+                  loading="lazy"
+                  width={45}
+                  src={cancelBtn}
+                  alt=""
+                  className="cancelBtn"
+                  onClick={() => toggle()}
+                />
+              )}
             </div>
             <div className="bottomLight"></div>
           </div>

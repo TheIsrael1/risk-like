@@ -263,6 +263,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
               </div>
               <div className="right">
                 <img
+                  loading="lazy"
                   width={14}
                   src={cancel}
                   alt="cancel"
@@ -276,7 +277,12 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
               {userData.data.assets.map((a: any, idx: number) => (
                 <div key={idx} className="centerAreaItem">
                   <div className="imgCon">
-                    <img width={40} alt="soilder" src={a?.image} />
+                    <img
+                      loading="lazy"
+                      width={40}
+                      alt="soilder"
+                      src={a?.image}
+                    />
                   </div>
 
                   <div className="itemCount">
@@ -310,6 +316,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
                 </div>
               </div>
               <img
+                loading="lazy"
                 width={100}
                 className="commenceAttack"
                 alt="attack"
@@ -324,11 +331,18 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
           <div className="launchmodal wider">
             <div className="top">
               <div className="left row">
-                <img width={28} src={thumbs} alt="" className="thumbs" />
+                <img
+                  loading="lazy"
+                  width={28}
+                  src={thumbs}
+                  alt=""
+                  className="thumbs"
+                />
                 <span className="topText">Your Assets have been moved</span>
               </div>
               <div className="right">
                 <img
+                  loading="lazy"
                   width={14}
                   src={cancel}
                   alt="cancel"
@@ -342,7 +356,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
             <div className="centerArea deploymentDetails">
               <div className="sectionLeft">
                 <div className="centerItem">
-                  <img src={distanceIcon} alt="img" />
+                  <img loading="lazy" src={distanceIcon} alt="img" />
                   <div className="item">
                     <span className="title">Distance</span>
                     <span className="value">
@@ -351,7 +365,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
                   </div>
                 </div>
                 <div className="centerItem">
-                  <img src={etaIcon} alt="img" />
+                  <img loading="lazy" src={etaIcon} alt="img" />
                   <div className="item">
                     <span className="title">ETA</span>
                     <span className="value">
@@ -360,7 +374,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
                   </div>
                 </div>
                 <div className="centerItem">
-                  <img src={deployFromIcon} alt="img" />
+                  <img loading="lazy" src={deployFromIcon} alt="img" />
                   <div className="item">
                     <span className="title">Moved From</span>
                     <span className="value">{state.currData?.name}</span>
@@ -371,7 +385,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
                 <div className="sectionRow">
                   {userData.data.assets.map((a: any, idx: number) => (
                     <div key={idx} className="centerItem">
-                      <img width={40} src={a?.image} alt="img" />
+                      <img loading="lazy" width={40} src={a?.image} alt="img" />
                       <div className="item">
                         <span className="title">{titleCase(a?.name)}</span>
                         <span className="value">
@@ -389,7 +403,7 @@ const LaunchMoveModal = ({ open, toggle }: LaunchAttackModalInterface) => {
             </div>
             <div className="bottom">
               <div className="bottomLeft" />
-              {/* <img
+              {/* <img loading="lazy" 
                 className="commenceAttack"
                 alt="attack"
                 src={cancelDeploymentBtn}

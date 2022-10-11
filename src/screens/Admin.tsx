@@ -36,7 +36,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("users")}
               >
                 <div className="imgCon">
-                  <img src={profileIcon} alt="img" />
+                  <img loading="lazy" src={profileIcon} alt="img" />
                 </div>
                 <div className="itemTitle">Users</div>
               </div>
@@ -45,7 +45,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("tokens")}
               >
                 <div className="imgCon">
-                  <img src={coin} alt="img" />
+                  <img loading="lazy" src={coin} alt="img" />
                 </div>
                 <div className="itemTitle">Tokens</div>
               </div>
@@ -56,7 +56,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("assetTypes")}
               >
                 <div className="imgCon">
-                  <img width={30} src={tank} alt="" />
+                  <img loading="lazy" width={30} src={tank} alt="" />
                 </div>
                 <div className="itemTitle">Asset Types</div>
               </div>
@@ -65,7 +65,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("assets")}
               >
                 <div className="imgCon">
-                  <img src={soilder} alt="" />
+                  <img loading="lazy" src={soilder} alt="" />
                 </div>
                 <div className="itemTitle">Assets</div>
               </div>
@@ -74,7 +74,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("nfts")}
               >
                 <div className="imgCon">
-                  <img width={30} src={nftIcon} alt="" />
+                  <img loading="lazy" width={30} src={nftIcon} alt="" />
                 </div>
                 <div className="itemTitle">NFTs</div>
               </div>
@@ -85,7 +85,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("locations")}
               >
                 <div className="imgCon">
-                  <img src={location} alt="" />
+                  <img loading="lazy" src={location} alt="" />
                 </div>
                 <div className="itemTitle">Locations</div>
               </div>
@@ -96,7 +96,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("mysteryBox")}
               >
                 <div className="imgCon">
-                  <img src={mysteryBox} width={30} alt="" />
+                  <img loading="lazy" src={mysteryBox} width={30} alt="" />
                 </div>
                 <div className="itemTitle">Mystery Box</div>
               </div>
@@ -107,7 +107,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("tokenImgUpload")}
               >
                 <div className="imgCon">
-                  <img src={upload} alt="" width={30} />
+                  <img loading="lazy" src={upload} alt="" width={30} />
                 </div>
                 <div className="itemTitle">Token Images</div>
               </div>
@@ -118,7 +118,7 @@ const Admin = () => {
                 onClick={() => setCurrNavItem("assetImgUpload")}
               >
                 <div className="imgCon">
-                  <img src={upload} alt="" width={30} />
+                  <img loading="lazy" src={upload} alt="" width={30} />
                 </div>
                 <div className="itemTitle">Asset Images</div>
               </div>
@@ -126,6 +126,7 @@ const Admin = () => {
           </aside>
           <div className={`admin_content_area ${asideOpen ? `asideOpen` : ``}`}>
             <img
+              loading="lazy"
               className="arrowMenu"
               src={arrowMenu}
               alt="arrow"

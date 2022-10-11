@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 import homeSettlement from "../../../assets/icons/MapMarkers/homeSettlement.svg";
-
 
 const BasePlacement = () => {
   return (
-    <div><img src={homeSettlement} alt="" /></div>
-  )
-}
+    <div>
+      <img loading="lazy" src={homeSettlement} alt="" />
+    </div>
+  );
+};
 
-export default BasePlacement
+export default BasePlacement;

@@ -17,6 +17,7 @@ const WideModal = ({ open, title, toggle, children }: WideModalInterface) => {
             <div className="title">{title}</div>
             <div className="imgCon">
               <img
+                loading="lazy"
                 width={45}
                 src={cancelBtn}
                 alt=""

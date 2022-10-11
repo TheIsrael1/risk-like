@@ -34,7 +34,13 @@ const ShortCard = ({
           </div>
           <div className="borderTop" />
           <div className={`shortCardBody ${locked ? `locked` : ``}`}>
-            <img width={100} height={100} src={resourceImg} alt="img" />
+            <img
+              loading="lazy"
+              width={100}
+              height={100}
+              src={resourceImg}
+              alt="img"
+            />
             <span className="cardText">{resourceName}</span>
           </div>
         </div>
@@ -42,6 +48,7 @@ const ShortCard = ({
         <div className="bottomDetail">
           {currency && (
             <img
+              loading="lazy"
               alt="currency"
               src={
                 currency === "bronze"
@@ -55,7 +62,9 @@ const ShortCard = ({
             />
           )}
           <span className="bottomSpan">{price}</span>
-          {!currency && <img src={ethIcon} width={16} alt="img" />}
+          {!currency && (
+            <img loading="lazy" src={ethIcon} width={16} alt="img" />
+          )}
         </div>
       </div>
     </>

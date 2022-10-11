@@ -92,6 +92,7 @@ const LocationInfoModal = ({
             </div>
             <div className="right">
               <img
+                loading="lazy"
                 width={14}
                 src={cancel}
                 alt="cancel"
@@ -109,12 +110,12 @@ const LocationInfoModal = ({
           </div>
           <div className="centerArea">
             <div className="sectionLeft">
-              <img src={mine} alt="img" />
+              <img loading="lazy" src={mine} alt="img" />
             </div>
             <div className="sectionRight">
               <div className="sectionRow">
                 <div className="centerItem">
-                  <img src={peopleMiningIcon} alt="img" />
+                  <img loading="lazy" src={peopleMiningIcon} alt="img" />
                   <div className="item">
                     <span className="title">People Minning</span>
                     <span className="value">
@@ -123,7 +124,7 @@ const LocationInfoModal = ({
                   </div>
                 </div>
                 <div className="centerItem">
-                  <img src={productionRateIcon} alt="img" />
+                  <img loading="lazy" src={productionRateIcon} alt="img" />
                   <div className="item">
                     <span className="title">Production rate</span>
                     <span className="value">
@@ -134,14 +135,14 @@ const LocationInfoModal = ({
               </div>
               <div className="sectionRow">
                 <div className="centerItem">
-                  <img src={locationIcon} alt="img" />
+                  <img loading="lazy" src={locationIcon} alt="img" />
                   <div className="item">
                     <span className="title">Location</span>
                     <span className="value">{locationName ?? "N/A"}</span>
                   </div>
                 </div>
                 <div className="centerItem">
-                  <img src={mineTypeIcon} alt="img" />
+                  <img loading="lazy" src={mineTypeIcon} alt="img" />
                   <div className="item">
                     <span className="title">Mine Type</span>
                     <span className="value">
@@ -152,7 +153,7 @@ const LocationInfoModal = ({
               </div>
               <div className="resourceSectionH">
                 <div className="hleft">
-                  <img src={armyIcon} alt="img" />
+                  <img loading="lazy" src={armyIcon} alt="img" />
                   <span className="title">Army</span>
                 </div>
                 <div className="hRight">
@@ -163,7 +164,12 @@ const LocationInfoModal = ({
                 {userData.data.assets.map((a: any, idx: number) => {
                   return state?.[a?.name] ? (
                     <div key={idx} className="resourceItem">
-                      <img width={40} src={a?.image} alt="asset" />
+                      <img
+                        loading="lazy"
+                        width={40}
+                        src={a?.image}
+                        alt="asset"
+                      />
                       <span className="resourceValue">{state?.[a?.name]}</span>
                     </div>
                   ) : (

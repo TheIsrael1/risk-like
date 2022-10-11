@@ -113,12 +113,13 @@ const SelectionDrop = React.memo(
           }}
         >
           <div className="campNameCon">
-            <img width={20} alt="campIcon" src={campIcon} />
+            <img loading="lazy" width={20} alt="campIcon" src={campIcon} />
             <span className="campName">{item?.name}</span>
           </div>
           <span className="navText">ETA: {item?.eta ?? "N/A"}</span>
           <span className="navText">Distance: {item?.distance ?? "N/A"}</span>
           <img
+            loading="lazy"
             width={12}
             src={yellowDropArrow}
             alt=""
@@ -132,7 +133,7 @@ const SelectionDrop = React.memo(
         >
           {userData.data.assets.map((a: any, idx: number) => (
             <div key={idx} className="selectionContentItem">
-              <img width={40} src={a?.image} alt="asset" />
+              <img loading="lazy" width={40} src={a?.image} alt="asset" />
               <span className="count">{state?.[a?.name]}</span>
             </div>
           ))}

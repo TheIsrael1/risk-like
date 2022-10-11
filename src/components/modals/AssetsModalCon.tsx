@@ -26,6 +26,7 @@ const AssetsModalCon = ({
       {cancelBtn && (
         <div className="cancelCon">
           <img
+            loading="lazy"
             src={cancel}
             className="cancelBtn"
             alt="cancelBtn"

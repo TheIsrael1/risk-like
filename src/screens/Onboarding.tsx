@@ -148,6 +148,7 @@ const Onboarding = () => {
             </div>
             <div>
               <img
+                loading="lazy"
                 onClick={() => {
                   !word ? timedToast?.(`You need to enter a word`) : setView(2);
                 }}
@@ -161,11 +162,12 @@ const Onboarding = () => {
         ) : view === 2 ? (
           <div className="content">
             <div className="logoCon">
-              <img src={metamaskFox} alt="img" />
+              <img loading="lazy" src={metamaskFox} alt="img" />
               <span className="title">METAMASK</span>
             </div>
             <div>
               <img
+                loading="lazy"
                 onClick={() => connectWallet()}
                 className="btn"
                 width={200}
@@ -182,7 +184,8 @@ const Onboarding = () => {
                 <a href="https://metamask.io/">
                   <span className="link">Link</span>
                 </a>
-                to get Metamask <img width={24} src={metamaskFox} alt="img" />
+                to get Metamask{" "}
+                <img loading="lazy" width={24} src={metamaskFox} alt="img" />
               </div>
             </div>
           </div>
@@ -205,6 +208,7 @@ const Onboarding = () => {
             </div>
             <div>
               <img
+                loading="lazy"
                 onClick={() => {
                   !userDetails.username
                     ? timedToast?.(`You need to enter a username`)
@@ -236,6 +240,7 @@ const Onboarding = () => {
             </div>
             <div>
               <img
+                loading="lazy"
                 onClick={() => {
                   !userDetails.email
                     ? timedToast?.(`You need to enter your email`)
@@ -262,6 +267,7 @@ const Onboarding = () => {
                 <ButtonLoader />
               ) : (
                 <img
+                  loading="lazy"
                   onClick={() => doApiCall()}
                   className="btn"
                   width={200}
@@ -284,6 +290,7 @@ const Onboarding = () => {
                 <ButtonLoader />
               ) : (
                 <img
+                  loading="lazy"
                   onClick={() => {
                     getUserLocation();
                   }}

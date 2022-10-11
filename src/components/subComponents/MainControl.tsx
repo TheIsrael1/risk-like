@@ -141,7 +141,12 @@ const MainControl = () => {
       <div className="mainControlLeft">
         <span className="spanH">Location Status</span>
         <div className="spanBody">
-          <img key={"SETTLEMENT"} src={homeSettlement} alt="mineStatus" />
+          <img
+            loading="lazy"
+            key={"SETTLEMENT"}
+            src={homeSettlement}
+            alt="mineStatus"
+          />
 
           <div className="item">
             <span className="itemH">Country</span>
@@ -205,12 +210,12 @@ const MainControl = () => {
         </div>
         {gameControllerData.data.owner_id !== userId ? (
           <div className="notificationBadge">
-            <img src={goodNotification} alt="notification" />
+            <img loading="lazy" src={goodNotification} alt="notification" />
             <span className="notificationText">This is an enemy's base</span>
           </div>
         ) : (
           <div className="notificationBadge">
-            <img src={goodNotification} alt="notification" />
+            <img loading="lazy" src={goodNotification} alt="notification" />
             <span className="notificationText">This is your base location</span>
           </div>
         )}
@@ -218,13 +223,14 @@ const MainControl = () => {
       <div className="mainControlRight">
         <span className="spanH">Actions</span>
         <img
+          loading="lazy"
           onClick={() => {
             moveBaseAction();
           }}
           src={moveBaseBtn}
           alt="btn"
         />
-        <img src={newBaseBtn} alt="btn" />
+        <img loading="lazy" src={newBaseBtn} alt="btn" />
       </div>
     </div>
   ) : state.gameControllerData?.location_type === "mine" ? (
@@ -245,6 +251,7 @@ const MainControl = () => {
         <span className="spanH">Location Status</span>
         <div className="spanBody">
           <img
+            loading="lazy"
             src={
               // state.gameControllerData.status === "active"
               true ? mineActive : mineInactive
@@ -323,7 +330,7 @@ const MainControl = () => {
         </div>
         {gameControllerData.data.owner_id !== userId ? (
           <div className="notificationBadge">
-            <img src={goodNotification} alt="notification" />
+            <img loading="lazy" src={goodNotification} alt="notification" />
             <span className="notificationText">
               This Location is not yours, you need to attack this mine to take
               control
@@ -331,7 +338,7 @@ const MainControl = () => {
           </div>
         ) : (
           <div className="notificationBadge">
-            <img src={goodNotification} alt="notification" />
+            <img loading="lazy" src={goodNotification} alt="notification" />
             <span className="notificationText">
               This Location is yours, go ahead and move assets here
             </span>
@@ -342,6 +349,7 @@ const MainControl = () => {
         <span className="spanH">Actions</span>
         {gameControllerData.data.owner_id !== userId ? (
           <img
+            loading="lazy"
             src={launhAttackBtn}
             alt="btn"
             onClick={() => {
@@ -350,6 +358,7 @@ const MainControl = () => {
           />
         ) : (
           <img
+            loading="lazy"
             src={moveHereBtn}
             alt="btn"
             onClick={() => {
@@ -376,7 +385,7 @@ const MainControl = () => {
       <div className="mainControlLeft">
         <span className="spanH">Location Status</span>
         <div className="spanBody">
-          <img src={locationPin} alt="" />
+          <img loading="lazy" src={locationPin} alt="" />
 
           <div className="item">
             <span className="itemH">Location</span>
@@ -406,14 +415,14 @@ const MainControl = () => {
         </div>
         {gameControllerData.data.owner_id !== userId ? (
           <div className="notificationBadge">
-            <img src={goodNotification} alt="notification" />
+            <img loading="lazy" src={goodNotification} alt="notification" />
             <span className="notificationText">
               This Location is unclaimed, attack to take control and win spoils
             </span>
           </div>
         ) : (
           <div className="notificationBadge">
-            <img src={goodNotification} alt="notification" />
+            <img loading="lazy" src={goodNotification} alt="notification" />
             <span className="notificationText">
               This Location is yours, go ahead and move assets here
             </span>
@@ -424,6 +433,7 @@ const MainControl = () => {
         <span className="spanH">Actions</span>
         {gameControllerData.data.owner_id !== userId ? (
           <img
+            loading="lazy"
             src={launhAttackBtn}
             alt="btn"
             onClick={() => {
@@ -432,6 +442,7 @@ const MainControl = () => {
           />
         ) : (
           <img
+            loading="lazy"
             src={moveHereBtn}
             alt="btn"
             onClick={() => {

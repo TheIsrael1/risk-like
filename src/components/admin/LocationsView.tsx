@@ -18,10 +18,9 @@ const LocationsView = () => {
   const [locationType, setLocationType] = useState("");
   const [properties, setProperties] = useState<any[]>([]);
 
-
-  const adminId = sessionStorage.getItem("id")
-  const navigate = useNavigate()
-  const {timedToast} = useToast()
+  const adminId = sessionStorage.getItem("id");
+  const navigate = useNavigate();
+  const { timedToast } = useToast();
 
   const formik = useFormik({
     initialValues: {
@@ -66,13 +65,13 @@ const LocationsView = () => {
 
   const handleCreateLocation = async (loc: any) => {
     try {
-      const {data} = await createLocation(loc)
-      setLocations([data, ...locations])
-      formik.resetForm()
-      setModalOpen(false)
-      setProperties([])
+      const { data } = await createLocation(loc);
+      setLocations([data, ...locations]);
+      formik.resetForm();
+      setModalOpen(false);
+      setProperties([]);
     } catch (err) {
-      timedToast?.(handleError(err))
+      timedToast?.(handleError(err));
     }
   };
 
@@ -81,7 +80,7 @@ const LocationsView = () => {
       const { data } = await getLocations();
       setLocations(data);
     } catch (err) {
-      timedToast?.(handleError(err))
+      timedToast?.(handleError(err));
     }
   }, []);
 
@@ -89,12 +88,8 @@ const LocationsView = () => {
     getAllLocations();
   }, [getAllLocations]);
 
-
-
-
   return (
     <div id="adminViews">
-        
       <AdminCreateModal
         open={modalOpen}
         close={() => setModalOpen(false)}
@@ -129,9 +124,9 @@ const LocationsView = () => {
               select={(i: string) => setLocationType(i)}
               label="Asset Type"
               options={[
-                  {label: "Base", value: "base"}, 
-                  {label: "Mine", value: "mine"},                 
-                ]}
+                { label: "Base", value: "base" },
+                { label: "Mine", value: "mine" },
+              ]}
             />
           </div>
           {properties?.map((p, idx) => (
@@ -152,9 +147,9 @@ const LocationsView = () => {
           ))}
         </div>
         <div className="modalBottom">
-          <div> 
+          <div>
             <div className="specialBtn" onClick={() => createNewProperty()}>
-              <img src={addIcon} alt="" />
+              <img loading="lazy" src={addIcon} alt="" />
               <div className="text">Properties</div>
             </div>
           </div>
@@ -166,12 +161,10 @@ const LocationsView = () => {
       <div className="top">
         <h3 className="tableName">Locations</h3>
         <div>
-            <span className="createBtn"
-            onClick={()=>setModalOpen(true)}
-            >
+          <span className="createBtn" onClick={() => setModalOpen(true)}>
             Create Location
-            </span>
-          </div>
+          </span>
+        </div>
       </div>
       <div className="tableArea">
         <table>
@@ -186,7 +179,7 @@ const LocationsView = () => {
           </thead>
           <tbody>
             {locations?.map?.((loc: any, idx) => (
-              <tr key={idx} onClick={()=> navigate(`locations/${loc?.id}`)}>
+              <tr key={idx} onClick={() => navigate(`locations/${loc?.id}`)}>
                 <td>{loc?.id}</td>
                 <td>{loc?.name}</td>
                 <td>{loc?.location_type}</td>

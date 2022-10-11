@@ -31,6 +31,7 @@ const NotificationCard = () => {
         <div className="notBtn">
           {notifiationOpen ? (
             <img
+              loading="lazy"
               onClick={() => setExpanded(false)}
               className=""
               src={cancelBtn}
@@ -39,6 +40,7 @@ const NotificationCard = () => {
             />
           ) : (
             <img
+              loading="lazy"
               onClick={() => setExpanded(true)}
               className=""
               src={expandBtn}

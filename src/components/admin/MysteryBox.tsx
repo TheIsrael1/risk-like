@@ -174,7 +174,7 @@ const MysteryBox = () => {
             <h3>Add Assets</h3>
             {formData.assets.length < 1 && (
               <div className="specialBtn" onClick={() => createNew("assets")}>
-                <img src={addIcon} alt="" />
+                <img loading="lazy" src={addIcon} alt="" />
               </div>
             )}
           </div>
@@ -200,7 +200,7 @@ const MysteryBox = () => {
           {formData.assets.length > 0 &&
             formData.assets.length < assets.length && (
               <div className="specialBtn" onClick={() => createNew("assets")}>
-                <img src={addIcon} alt="" />
+                <img loading="lazy" src={addIcon} alt="" />
                 <div className="text">Assets</div>
               </div>
             )}
@@ -209,7 +209,7 @@ const MysteryBox = () => {
             <h3>Add Token</h3>
             {formData.tokens.length < 1 && (
               <div className="specialBtn" onClick={() => createNew("tokens")}>
-                <img src={addIcon} alt="" />
+                <img loading="lazy" src={addIcon} alt="" />
               </div>
             )}
           </div>
@@ -235,7 +235,7 @@ const MysteryBox = () => {
           {formData.tokens.length > 0 &&
             formData.tokens.length < tokens.length && (
               <div className="specialBtn" onClick={() => createNew("tokens")}>
-                <img src={addIcon} alt="" />
+                <img loading="lazy" src={addIcon} alt="" />
                 <div className="text">Tokens</div>
               </div>
             )}
@@ -244,7 +244,7 @@ const MysteryBox = () => {
             <h3>Add Nfts</h3>
             {formData.NFT.length < 1 && (
               <div className="specialBtn" onClick={() => createNew("NFT")}>
-                <img src={addIcon} alt="" />
+                <img loading="lazy" src={addIcon} alt="" />
               </div>
             )}
           </div>
@@ -269,7 +269,7 @@ const MysteryBox = () => {
           ))}
           {formData.NFT.length > 0 && formData.NFT.length < nfts.length && (
             <div className="specialBtn" onClick={() => createNew("NFT")}>
-              <img src={addIcon} alt="" />
+              <img loading="lazy" src={addIcon} alt="" />
               <div className="text">NFT</div>
             </div>
           )}
