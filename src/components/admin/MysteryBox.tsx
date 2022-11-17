@@ -14,6 +14,7 @@ import { getTokens } from "../../services/tokenService";
 import AdminDropDown from "./subComponents/AdminDropDown";
 // import { useNavigate } from "react-router";
 import addIcon from "../../assets/icons/addIconAnime.png";
+import { useNavigate } from "react-router";
 
 interface formItemInterface {
   item_id: string;
@@ -27,6 +28,7 @@ interface formDataInterface {
 }
 
 const MysteryBox = () => {
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [mysteryBoxes, setMysteryBoxes] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
@@ -307,7 +309,7 @@ const MysteryBox = () => {
           </thead>
           <tbody>
             {mysteryBoxes?.map((item: any, idx) => (
-              <tr key={idx}>
+              <tr onClick={() => navigate(`mysterybox/${item?.id}`)} key={idx}>
                 <td>{item?.id}</td>
                 <td>{getItemCount(item?.items, "asset")}</td>
                 <td>{getItemCount(item?.items, "token")}</td>

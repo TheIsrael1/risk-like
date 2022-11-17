@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo, useContext } from 'react';
+import { createContext, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import Toast from './Toast';
 import "../../styles/toast.scss"

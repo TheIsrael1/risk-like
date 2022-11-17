@@ -22,7 +22,6 @@ const NftView = () => {
 
   const userId = sessionStorage.getItem("id") as string;
 
-  const dispatch = useDispatch();
   const { timedToast } = useToast();
 
   const getAllNfts = useCallback(async () => {

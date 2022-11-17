@@ -55,9 +55,17 @@ export const createNft = async (data: any) => axios.post(`/nft`, data);
 
 export const getNfts = async () => axios.get(`/nft`);
 
+export const getSingleNft = async (id: any) => axios.get(`/nft/${id}`);
+
+export const getUserNfts = async (user_id: string) =>
+  axios.get(`/users/${user_id}/nfts`);
+
 // !Mystery box
 
 export const mysteryBoxCreate = async (data: any) =>
   axios.post(`/mystery-box`, data);
 
 export const fetchMysteryBoxes = async () => axios.get(`/mystery-box`);
+
+export const getSingleMysteryBox = async (id: any) =>
+  axios.get(`/mystery-box/${id}`);

@@ -70,7 +70,7 @@ const GameController = () => {
 
       // getting random mine name
       const randomMineNames = [] as string[];
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 12; i++) {
         randomMineNames.push(`${randomWords(1)[0]} ${randomWords(1)[0]}`);
       }
       const { data: tokens } = await getTokens();

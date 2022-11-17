@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import arrowMenu from "../assets/icons/arrowMenu.svg";
 import coin from "../assets/icons/gold.svg";
@@ -19,10 +19,46 @@ import AssetImgUpload from "../components/admin/uploadViews/AssetImgUpload";
 import AdminGuard from "../Routes/AdminGuard";
 import MysteryBox from "../components/admin/MysteryBox";
 import NFT from "../components/admin/NFT";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+type AdiminTabsInterface =
+  | "users"
+  | "tokens"
+  | "assets"
+  | "locations"
+  | "assetTypes"
+  | "tokenImgUpload"
+  | "assetImgUpload"
+  | "mysteryBox"
+  | "nfts";
 
 const Admin = () => {
+  const navigate = useNavigate();
   const [asideOpen, setAsideOpen] = useState(true);
-  const [currNavItem, setCurrNavItem] = useState("users");
+  const [currNavItem, setCurrNavItem] = useState<AdiminTabsInterface>("users");
+  const [searchParams] = useSearchParams();
+
+  const tabs: Record<AdiminTabsInterface, JSX.Element> = {
+    assetImgUpload: <AssetImgUpload />,
+    assets: <AssetsView />,
+    assetTypes: <AssetTypes />,
+    locations: <LocationsView />,
+    mysteryBox: <MysteryBox />,
+    nfts: <NFT />,
+    tokenImgUpload: <TokenImgUpload />,
+    tokens: <TokenView />,
+    users: <UsersView />,
+  };
+
+  useEffect(() => {
+    if (searchParams.get("tab")) {
+      setCurrNavItem(searchParams.get("tab") as AdiminTabsInterface);
+    }
+  }, [currNavItem, searchParams]);
+
+  const changCurrView = (i: AdiminTabsInterface) => {
+    navigate(`/admin/dashboard?tab=${i}`);
+  };
 
   return (
     <AdminGuard>
@@ -33,7 +69,7 @@ const Admin = () => {
             <div className="itemsArea">
               <div
                 className={`asideItem ${currNavItem === "users" && "active"}`}
-                onClick={() => setCurrNavItem("users")}
+                onClick={() => changCurrView("users")}
               >
                 <div className="imgCon">
                   <img loading="lazy" src={profileIcon} alt="img" />
@@ -42,7 +78,7 @@ const Admin = () => {
               </div>
               <div
                 className={`asideItem ${currNavItem === "tokens" && "active"}`}
-                onClick={() => setCurrNavItem("tokens")}
+                onClick={() => changCurrView("tokens")}
               >
                 <div className="imgCon">
                   <img loading="lazy" src={coin} alt="img" />
@@ -53,7 +89,7 @@ const Admin = () => {
                 className={`asideItem ${
                   currNavItem === "assetTypes" && "active"
                 }`}
-                onClick={() => setCurrNavItem("assetTypes")}
+                onClick={() => changCurrView("assetTypes")}
               >
                 <div className="imgCon">
                   <img loading="lazy" width={30} src={tank} alt="" />
@@ -62,7 +98,7 @@ const Admin = () => {
               </div>
               <div
                 className={`asideItem ${currNavItem === "assets" && "active"}`}
-                onClick={() => setCurrNavItem("assets")}
+                onClick={() => changCurrView("assets")}
               >
                 <div className="imgCon">
                   <img loading="lazy" src={soilder} alt="" />
@@ -71,7 +107,7 @@ const Admin = () => {
               </div>
               <div
                 className={`asideItem ${currNavItem === "nfts" && "active"}`}
-                onClick={() => setCurrNavItem("nfts")}
+                onClick={() => changCurrView("nfts")}
               >
                 <div className="imgCon">
                   <img loading="lazy" width={30} src={nftIcon} alt="" />
@@ -82,7 +118,7 @@ const Admin = () => {
                 className={`asideItem ${
                   currNavItem === "locations" && "active"
                 }`}
-                onClick={() => setCurrNavItem("locations")}
+                onClick={() => changCurrView("locations")}
               >
                 <div className="imgCon">
                   <img loading="lazy" src={location} alt="" />
@@ -93,7 +129,7 @@ const Admin = () => {
                 className={`asideItem ${
                   currNavItem === "mysteryBox" && "active"
                 }`}
-                onClick={() => setCurrNavItem("mysteryBox")}
+                onClick={() => changCurrView("mysteryBox")}
               >
                 <div className="imgCon">
                   <img loading="lazy" src={mysteryBox} width={30} alt="" />
@@ -104,7 +140,7 @@ const Admin = () => {
                 className={`asideItem ${
                   currNavItem === "tokenImgUpload" && "active"
                 }`}
-                onClick={() => setCurrNavItem("tokenImgUpload")}
+                onClick={() => changCurrView("tokenImgUpload")}
               >
                 <div className="imgCon">
                   <img loading="lazy" src={upload} alt="" width={30} />
@@ -115,7 +151,7 @@ const Admin = () => {
                 className={`asideItem ${
                   currNavItem === "assetImgUpload" && "active"
                 }`}
-                onClick={() => setCurrNavItem("assetImgUpload")}
+                onClick={() => changCurrView("assetImgUpload")}
               >
                 <div className="imgCon">
                   <img loading="lazy" src={upload} alt="" width={30} />
@@ -139,17 +175,7 @@ const Admin = () => {
                 </div>
                 <div>{/* profile details */}</div>
               </div>
-              <div className="body">
-                {currNavItem === "tokens" && <TokenView />}
-                {currNavItem === "assets" && <AssetsView />}
-                {currNavItem === "locations" && <LocationsView />}
-                {currNavItem === "assetTypes" && <AssetTypes />}
-                {currNavItem === "users" && <UsersView />}
-                {currNavItem === "tokenImgUpload" && <TokenImgUpload />}
-                {currNavItem === "assetImgUpload" && <AssetImgUpload />}
-                {currNavItem === "mysteryBox" && <MysteryBox />}
-                {currNavItem === "nfts" && <NFT />}
-              </div>
+              <div className="body">{tabs[currNavItem]}</div>
             </div>
           </div>
         </div>

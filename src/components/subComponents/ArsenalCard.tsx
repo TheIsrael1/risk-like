@@ -3,9 +3,11 @@ import store from "../../assets/images/store.png";
 import Store from "./Store/Store";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Reducers";
+import Inventory from "./Inventory";
 
 const ArsenalCard = () => {
   const [storeOpen, setStoreOpen] = useState(false);
+  const [inventoryOpen, setInventoryOpen] = useState(false);
   const { userAssets, assets } = useSelector(
     (state: RootState) => state.userData.data
   );
@@ -21,9 +23,14 @@ const ArsenalCard = () => {
     return count;
   };
 
+  const toggleInventory = () => {
+    setInventoryOpen(!inventoryOpen);
+  };
+
   return (
     <>
       <Store open={storeOpen} toggle={toggle} />
+      <Inventory open={inventoryOpen} toggle={toggleInventory} />
       <div id="ArsenalCard">
         <div className="arsenalLeft">
           {assets?.map((ass: any, idx: number) => (
@@ -57,6 +64,10 @@ const ArsenalCard = () => {
             </div>
         </div> */}
         <div className="arsenalRight">
+          <div className="btnCon" onClick={() => toggleInventory()}>
+            <img loading="lazy" src={store} className="img" alt="store" />
+            <span className="span">Inventory</span>
+          </div>
           <div className="btnCon" onClick={() => toggle()}>
             <img loading="lazy" src={store} className="img" alt="store" />
             <span className="span">Store</span>

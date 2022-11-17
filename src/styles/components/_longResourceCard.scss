@@ -1,100 +1,106 @@
-#LongResourceCard{
-    height: 20rem;
-    min-width: 12rem;
-    max-width: 12rem;
-    background: linear-gradient(180deg, #6D7778 0%, #414A45 100%);
-    box-shadow: -5px 15px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 2rem;
-    transition: all .2s ease-in;
-     cursor: pointer; 
+#LongResourceCard {
+  height: 20rem;
+  min-width: 12rem;
+  max-width: 12rem;
+  background: linear-gradient(180deg, #6d7778 0%, #414a45 100%);
+  box-shadow: -5px 15px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
 
-    
-    &:hover{
-        transform: scale(.95);
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  .longcardTop {
+    min-height: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &.hasContent {
+      padding: 0.5rem 0;
     }
 
-    .longcardTop{
-        min-height: 1rem;
+    .topSpan {
+      font-size: 20px;
+      font-weight: 400;
+      font-family: "Righteous";
+      color: $white;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .longCardBottom {
+    flex-grow: 1;
+    background: #171d19;
+    position: relative;
+    display: grid;
+    place-items: center;
+
+    .card_count {
+      position: absolute;
+      color: white;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .cardDetails {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+
+      .cardName {
+        font-size: 20px;
+        font-weight: 700;
+        color: $textDisabledLight;
+        margin-bottom: 2px;
+      }
+
+      .cardSubName {
+        font-size: 16px;
+        font-weight: 700;
+        color: $textDisabledLight;
+        margin-bottom: 2px;
+      }
+
+      .likesCon {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
 
-        &.hasContent{
-            padding: .5rem 0;   
+        .likesSpan {
+          font-size: 12px;
+          font-weight: 700;
+          color: $textDisabledLight;
+          margin-left: 4px;
         }
-
-        .topSpan{
-            font-size: 20px;
-            font-weight: 400;
-            font-family: 'Righteous';
-            color: $white;
-            margin-right: .5rem;
-        }
+      }
     }
+  }
 
-    .longCardBottom{
-        flex-grow: 1;
-        background: #171D19;
-        position: relative;
-        display: grid;
-        place-items: center;
+  .borderTop {
+    height: 8px;
+    width: 100%;
+    background: linear-gradient(268.19deg, #f3ba09 8.46%, #ffe680 102.44%);
+    border-radius: 16px 16px 0px 0px;
+  }
 
-        .cardDetails{
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            margin-left: 1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            flex-direction: column;
-            z-index: 1;
-
-            .cardName{
-                font-size: 20px;
-                font-weight: 700;
-                color: $textDisabledLight;
-                margin-bottom: 2px;
-            }
-
-            .cardSubName{
-                font-size: 16px;
-                font-weight: 700;
-                color: $textDisabledLight;
-                margin-bottom: 2px;
-            }
-
-            .likesCon{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-
-                .likesSpan{
-                    font-size: 12px;
-                    font-weight: 700;
-                    color: $textDisabledLight;
-                    margin-left: 4px;
-                }
-            }
-        }
-    }
-
-    .borderTop{
-        height: 8px;
-        width: 100%;
-        background: linear-gradient(268.19deg, #F3BA09 8.46%, #FFE680 102.44%);
-        border-radius: 16px 16px 0px 0px;
-    }
-
-    .borderBottom{
-        height: 8px;
-        width: 100%;
-        background: linear-gradient(268.19deg, #F3BA09 8.46%, #FFE680 102.44%);
-        border-radius: 16px 16px 0px 0px;
-        transform: matrix(1, 0, 0, -1, 0, 0);
-        // margin-bottom: 1rem;
-    }
+  .borderBottom {
+    height: 8px;
+    width: 100%;
+    background: linear-gradient(268.19deg, #f3ba09 8.46%, #ffe680 102.44%);
+    border-radius: 16px 16px 0px 0px;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+    // margin-bottom: 1rem;
+  }
 }

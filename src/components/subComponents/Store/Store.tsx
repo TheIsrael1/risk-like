@@ -34,7 +34,7 @@ const Store = ({ open, toggle }: StoreInterface) => {
   };
 
   return (
-    <WideModal open={open} title={`store`} toggle={toggle}>
+    <WideModal open={open} title={`STORE`} toggle={toggle}>
       <div id="Store">
         <div className="navCon">
           <div className="topLight" />

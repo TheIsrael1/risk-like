@@ -3,12 +3,14 @@ import likeIcon from "../../assets/images/store/heartIcon.svg";
 import ethIcon from "../../assets/images/store/ethIcon.svg";
 
 interface LongResourceCardInterface {
-  eth: number;
+  eth?: number;
   nftName: string;
   nftSubName: string;
   likes: number;
   img: string;
   clicked?: () => void;
+  forInventory?: boolean;
+  count?: number;
 }
 
 const LongResourceCard = ({
@@ -18,6 +20,8 @@ const LongResourceCard = ({
   nftSubName,
   img,
   clicked,
+  forInventory,
+  count,
 }: LongResourceCardInterface) => {
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) =>
     e.preventDefault();
@@ -29,17 +33,22 @@ const LongResourceCard = ({
       onDragStart={(e) => handleDragStart(e)}
     >
       <div className={`longcardTop ${`hasContent`}`}>
-        <span className="topSpan">{eth} ETH</span>
-        <img
-          loading="lazy"
-          src={ethIcon}
-          width={14}
-          alt="img"
-          className="topImg"
-        />
+        {!forInventory && (
+          <>
+            <span className="topSpan">{`${eth} ETH`}</span>
+            <img
+              loading="lazy"
+              src={ethIcon}
+              width={14}
+              alt="img"
+              className="topImg"
+            />
+          </>
+        )}
       </div>
       <div className="borderTop" />
       <div className="longCardBottom">
+        {forInventory && <div className="card_count"> x{count}</div>}
         <img
           loading="lazy"
           src={img}
