@@ -19,7 +19,6 @@ import {
 } from "../../redux/Actions/userAction";
 import { doAttack } from "../../services/attackService";
 import { handleError } from "../Helpers/general";
-import { backgroudLocationUpdate } from "../../redux/Actions/mineLocationsAction";
 import { getLocationDetail } from "../../services/locations";
 import { updateMapDataAction } from "../../redux/Actions/mapDataAction";
 import titleCase from "../Helpers/titleCase";
@@ -27,6 +26,7 @@ import {
   getNotifications,
   toggleNotificationGallery,
 } from "../../redux/Actions/notificationAction";
+import ButtonLoader from "../utility/BtnLoader";
 
 interface LaunchAttackModalInterface {
   open: boolean;
@@ -55,6 +55,7 @@ const LaunchAttackModal = ({ open, toggle }: LaunchAttackModalInterface) => {
     chosenAssets: [],
     resource: {},
   });
+  const [attackLoading, setAttackLoading] = useState(false);
 
   const [attackResult, setAttackResult] = useState<any>();
 
@@ -169,6 +170,7 @@ const LaunchAttackModal = ({ open, toggle }: LaunchAttackModalInterface) => {
 
   const triggerAttack = async () => {
     try {
+      setAttackLoading(true);
       if (state.chosenAssets.length) {
         const { data } = await doAttack({
           attacker_id: userId,
@@ -207,6 +209,8 @@ const LaunchAttackModal = ({ open, toggle }: LaunchAttackModalInterface) => {
       dispatch(updateMapDataAction({ mapAnimationDetails: [] }) as any);
       closeToast?.();
       timedToast?.(handleError(err));
+    } finally {
+      setAttackLoading(false);
     }
   };
 
@@ -311,13 +315,17 @@ const LaunchAttackModal = ({ open, toggle }: LaunchAttackModalInterface) => {
                   <span className="value">{state.currData?.distance ?? 0}</span>
                 </div>
               </div>
-              <img
-                loading="lazy"
-                className="commenceAttack"
-                alt="attack"
-                src={attackBtn}
-                onClick={() => triggerAttack()}
-              />
+              {attackLoading ? (
+                <ButtonLoader />
+              ) : (
+                <img
+                  loading="lazy"
+                  className="commenceAttack"
+                  alt="attack"
+                  src={attackBtn}
+                  onClick={() => triggerAttack()}
+                />
+              )}
             </div>
           </div>
         ) : (
