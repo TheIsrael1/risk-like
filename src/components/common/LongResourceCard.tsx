@@ -11,6 +11,7 @@ interface LongResourceCardInterface {
   clicked?: () => void;
   forInventory?: boolean;
   count?: number;
+  active?: boolean;
 }
 
 const LongResourceCard = ({
@@ -22,6 +23,7 @@ const LongResourceCard = ({
   clicked,
   forInventory,
   count,
+  active,
 }: LongResourceCardInterface) => {
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) =>
     e.preventDefault();
@@ -31,6 +33,7 @@ const LongResourceCard = ({
       id="LongResourceCard"
       onClick={clicked}
       onDragStart={(e) => handleDragStart(e)}
+      className={active ? `active` : ``}
     >
       <div className={`longcardTop ${`hasContent`}`}>
         {!forInventory && (

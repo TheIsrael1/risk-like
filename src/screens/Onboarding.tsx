@@ -12,6 +12,7 @@ import { setNewUserFlag } from "../redux/Actions/userAction";
 import { useDispatch } from "react-redux";
 import { getCountryNameFromCoord } from "../components/Helpers/general";
 import ButtonLoader from "../components/utility/BtnLoader";
+import Button from "../components/utility/Button";
 // import { getCountryNameFromCoord } from '../components/Helpers/general'
 
 declare var window: any;
@@ -21,6 +22,7 @@ const Onboarding = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [error, setError] = useState(false);
 
   const [userDetails, setuserDetails] = useState({
     username: "",
@@ -70,8 +72,9 @@ const Onboarding = () => {
       setUserId(`${data?.id}`);
       setUser(data?.token, data?.id, data?.name, data?.email, data?.address);
       dispatch(setNewUserFlag(true) as any);
-    } catch (err) {
-      timedToast?.("An error occured");
+    } catch (err: any) {
+      timedToast?.(`${err?.response?.data?.detail}` ?? "An error occured");
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -98,10 +101,9 @@ const Onboarding = () => {
       await createBase(base);
       timedToast?.(`Your base location has been created`);
       setTimeout(() => navigate("/home-base"), 2000);
-    } catch (err) {
-      timedToast?.(`An Error Occured`);
-    } finally {
-      // setLoading(false)
+    } catch (err: any) {
+      timedToast?.(`${err?.response?.data?.detail}` ?? "An error occured");
+      setError(true);
     }
   };
 
@@ -288,6 +290,16 @@ const Onboarding = () => {
             <div>
               {loading ? (
                 <ButtonLoader />
+              ) : error ? (
+                <Button
+                  name="Go Back"
+                  onClick={() => {
+                    setView(1);
+                    setError(false);
+                  }}
+                  type="danger"
+                  size="big"
+                />
               ) : (
                 <img
                   loading="lazy"

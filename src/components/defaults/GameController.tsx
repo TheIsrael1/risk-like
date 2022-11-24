@@ -17,6 +17,7 @@ import { initialMineLocations } from "../../redux/Actions/mineLocationsAction";
 import { useDispatch } from "react-redux";
 import { getTokens } from "../../services/tokenService";
 import { toggleNotificationGallery } from "../../redux/Actions/notificationAction";
+import { fetchMysteryBoxes } from "../../services/assetsService";
 
 const GameController = () => {
   const { mapAnimationOngoing } = useSelector(
@@ -73,8 +74,26 @@ const GameController = () => {
       for (let i = 0; i < 12; i++) {
         randomMineNames.push(`${randomWords(1)[0]} ${randomWords(1)[0]}`);
       }
+
+      // get tokens
       const { data: tokens } = await getTokens();
       const currencyArr = tokens?.map((t: any) => t?.name);
+
+      // get mysteryBoxes
+      const { data: mysteryBoxes }: { data: [] } = await fetchMysteryBoxes();
+      const totalMysteryBoxChance = mysteryBoxes.reduce((acc, curr: any) => {
+        return acc + (curr?.chance ?? 0);
+      }, 0);
+
+      const mysteryBoxByChance = () => {
+        const randomMysteryBox = mysteryBoxes[
+          Math.floor(Math.random() * mysteryBoxes.length)
+        ] as any;
+        const randomNumber = Math.floor(Math.random() * 100);
+        const chance =
+          ((randomMysteryBox?.chance ?? 0) / totalMysteryBoxChance) * 100;
+        return chance > randomNumber ? { mystery_id: randomMysteryBox.id } : {};
+      };
 
       //getting random coordnate within radius
       const R = 10000;
@@ -118,6 +137,7 @@ const GameController = () => {
             lat: a.latitude,
             location_type: "default",
             google_id: "",
+            ...mysteryBoxByChance(),
           };
           const { data } = await createLocation(loc);
           return data;

@@ -1,5 +1,6 @@
 #LongResourceCard {
-  height: 20rem;
+  height: auto;
+  min-height: 20rem;
   min-width: 12rem;
   max-width: 12rem;
   background: linear-gradient(180deg, #6d7778 0%, #414a45 100%);
@@ -10,9 +11,22 @@
   margin: 0 2rem;
   transition: all 0.2s ease-in;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     transform: scale(0.95);
+  }
+
+  &.active {
+    &::after {
+      content: " ";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background: rgba(49, 59, 71, 0.49);
+      backdrop-filter: blur(2px);
+      border-radius: 9px;
+    }
   }
 
   .longcardTop {
@@ -91,16 +105,15 @@
   .borderTop {
     height: 8px;
     width: 100%;
-    background: linear-gradient(268.19deg, #f3ba09 8.46%, #ffe680 102.44%);
+    background: linear-gradient(268.19deg, $gold 8.46%, #ffe680 102.44%);
     border-radius: 16px 16px 0px 0px;
   }
 
   .borderBottom {
     height: 8px;
     width: 100%;
-    background: linear-gradient(268.19deg, #f3ba09 8.46%, #ffe680 102.44%);
+    background: linear-gradient(268.19deg, $gold 8.46%, #ffe680 102.44%);
     border-radius: 16px 16px 0px 0px;
     transform: matrix(1, 0, 0, -1, 0, 0);
-    // margin-bottom: 1rem;
   }
 }

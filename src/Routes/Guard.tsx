@@ -7,6 +7,7 @@ import { initialMineLocations } from "../redux/Actions/mineLocationsAction";
 import { initialUserDetails } from "../redux/Actions/userAction";
 import { useNavigate } from "react-router";
 import { getNotifications } from "../redux/Actions/notificationAction";
+import { useToast } from "../components/Toast/ToastContexProvidert";
 
 const Guard: React.FC<any> = (props) => {
   const { mineLocationsData, userData } = useSelector(
@@ -14,6 +15,7 @@ const Guard: React.FC<any> = (props) => {
   );
   let dispatch = useDispatch();
   const navigate = useNavigate();
+  const { timedToast: toast } = useToast();
 
   const userId = sessionStorage.getItem("id") as string;
   const userType = sessionStorage.getItem("userType") as string;
@@ -30,7 +32,8 @@ const Guard: React.FC<any> = (props) => {
         fetchApplicationData();
       }, 3000);
     } else {
-      navigate("/");
+      navigate("/login");
+      toast?.(`You are not logged in`);
     }
   }, [fetchApplicationData, userId, navigate, userType]);
 

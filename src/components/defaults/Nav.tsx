@@ -12,8 +12,14 @@ import { approximateNumber } from "../Helpers/general";
 import { useDispatch } from "react-redux";
 import { toggleNotificationTab } from "../../redux/Actions/notificationAction";
 import NotificationGallery from "../modals/NotificationGallery";
+import Button from "../utility/Button";
+import { useNavigate } from "react-router";
+import { useToast } from "../Toast/ToastContexProvidert";
+import AlertModal from "../modals/AlertModal";
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const { timedToast: toast } = useToast();
   const { userData, mapData } = useSelector((state: RootState) => state);
   const { notifications } = useSelector(
     (state: RootState) => state.notificationData.data
@@ -28,6 +34,7 @@ const Nav = () => {
   };
 
   const [mines, setMines] = useState<any>({});
+  const [logout, setLogout] = useState(false);
 
   const getTokenMines = (tokName: any) => {
     const MineLocations = userData.data.userLocations?.filter(
@@ -70,8 +77,31 @@ const Nav = () => {
     dispatch(toggleNotificationTab(flag) as any);
   };
 
+  const handleLogout = () => {
+    sessionStorage.clear();
+    navigate(`/login`);
+    toast?.(`You are now logged out`);
+  };
+
+  const handleUserResponse = (i: boolean) => {
+    if (i) {
+      handleLogout();
+    } else {
+      setLogout(false);
+    }
+  };
+
   return (
     <>
+      <AlertModal
+        description="Are you sure you want to logout?"
+        getResponse={(i: boolean) => {
+          handleUserResponse(i);
+        }}
+        title="Logout"
+        open={logout}
+        toggle={() => setLogout(false)}
+      />
       <NotificationGallery title={"Notifications"} />
       <div
         id="Nav"
@@ -106,6 +136,13 @@ const Nav = () => {
               toggle={() => setExpanded(true)}
             />
             <CommentsDropdown />
+            <div className="LogoutBtn">
+              <Button
+                onClick={() => setLogout(true)}
+                name="Logout"
+                type="danger"
+              />
+            </div>
           </div>
         </div>
       </div>

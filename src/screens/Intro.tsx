@@ -12,6 +12,7 @@ const Intro = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [userModal, setUserModal] = useState(false);
+  // const userId = sessionStorage.getItem("id") as string;
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 3000);

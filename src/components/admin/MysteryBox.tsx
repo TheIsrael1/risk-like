@@ -25,6 +25,7 @@ interface formDataInterface {
   tokens: formItemInterface[];
   assets: formItemInterface[];
   NFT: formItemInterface[];
+  chance: number | string;
 }
 
 const MysteryBox = () => {
@@ -38,6 +39,7 @@ const MysteryBox = () => {
     tokens: [],
     assets: [],
     NFT: [],
+    chance: 0,
   });
   const [createLoading, setCreateLoading] = useState(false);
   const [formActive, setFormActive] = useState(false);
@@ -117,6 +119,15 @@ const MysteryBox = () => {
     });
   };
 
+  const handleChance = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        chance: parseInt(e.target.value),
+      };
+    });
+  };
+
   const createNew = (i: "assets" | "NFT" | "tokens") => {
     setFormActive(true);
     setFormData((prev) => {
@@ -151,6 +162,7 @@ const MysteryBox = () => {
       tokens: [],
       assets: [],
       NFT: [],
+      chance: 0,
     });
     setFormActive(false);
     setModalOpen(false);
@@ -171,6 +183,17 @@ const MysteryBox = () => {
         label="Create Asset"
       >
         <div className="modalBody">
+          <div className="row">
+            <InputBox
+              label={"Mystery Box Chance"}
+              name={"chance"}
+              type="number"
+              onChange={(e) => {
+                handleChance(e);
+              }}
+              value={formData.chance}
+            />
+          </div>
           {/* Assets */}
           <div className="row">
             <h3>Add Assets</h3>
@@ -305,6 +328,7 @@ const MysteryBox = () => {
               <th>Assets</th>
               <th>Tokens</th>
               <th>NFTs</th>
+              <th>Chance</th>
             </tr>
           </thead>
           <tbody>
@@ -314,6 +338,7 @@ const MysteryBox = () => {
                 <td>{getItemCount(item?.items, "asset")}</td>
                 <td>{getItemCount(item?.items, "token")}</td>
                 <td>{getItemCount(item?.items, "NFT")}</td>
+                <td>{item?.chance ?? 0}</td>
               </tr>
             ))}
           </tbody>

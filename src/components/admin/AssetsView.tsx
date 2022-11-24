@@ -31,6 +31,7 @@ const AssetsView = () => {
   const [createLoading, setCreateLoading] = useState(false);
   const [assetDependencies, setAssetDependencies] = useState<any[]>([]);
   const [nftDependencies, setNftDependencies] = useState("");
+  const [defaultFlag, setIsDefaultFlag] = useState(false);
   // Todo: Add asset dependencies
 
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ const AssetsView = () => {
         powers: [...powers, ...defaultPowers],
         nft_dependency_id: nftDependencies,
         asset_dependency_ids: assetDependencies,
+        default: defaultFlag,
       });
     },
   });
@@ -252,6 +254,17 @@ const AssetsView = () => {
               label="NFT Dependencies"
               options={[{ label: "", value: "" }, ...dependencyNfts]}
             />
+            <AdminDropDown
+              select={(i: string) =>
+                i === "true" ? setIsDefaultFlag(true) : setIsDefaultFlag(false)
+              }
+              label="Default Asset"
+              options={[
+                { label: "", value: "" },
+                { label: "True", value: "true" },
+                { label: "False", value: "false" },
+              ]}
+            />
             <MultiSelect
               label="Asset Dependencies"
               options={dependencyAssets}
@@ -325,6 +338,7 @@ const AssetsView = () => {
               <th>Descrpition</th>
               <th>Currency</th>
               <th>Moveable</th>
+              <th>Is Default Asset</th>
               <th>Price</th>
               <th>Total Quantity</th>
               <th>Image</th>
@@ -338,6 +352,7 @@ const AssetsView = () => {
                 <td>{ass?.description}</td>
                 <td>{ass?.currency}</td>
                 <td>{`${ass?.moveable}`}</td>
+                <td>{`${ass?.default}`}</td>
                 <td>{ass?.price}</td>
                 <td>{ass?.total_quantity}</td>
                 <td style={{ display: "flex", justifyContent: "center" }}>

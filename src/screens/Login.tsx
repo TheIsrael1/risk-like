@@ -10,6 +10,7 @@ import { setUser } from "../services";
 import { setUserDetails } from "../redux/Actions/userAction";
 import { useDispatch } from "react-redux";
 import ButtonLoader from "../components/utility/BtnLoader";
+import Button from "../components/utility/Button";
 
 declare var window: any;
 
@@ -18,6 +19,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [error, setError] = useState(false);
 
   const [userDetails, setuserDetails] = useState({
     address: "",
@@ -47,6 +49,7 @@ const Login = () => {
       setView(4);
     } catch (err) {
       timedToast?.("An error occured");
+      setError(true);
     }
   };
 
@@ -63,8 +66,9 @@ const Login = () => {
       navigate("/home-base");
     } catch (err: any) {
       timedToast?.(`${err?.response?.data?.detail}` ?? "An error occured");
+      setError(true);
     } finally {
-      // setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -145,6 +149,16 @@ const Login = () => {
             <div>
               {loading ? (
                 <ButtonLoader />
+              ) : error ? (
+                <Button
+                  name="Go Back"
+                  onClick={() => {
+                    setView(1);
+                    setError(false);
+                  }}
+                  type="danger"
+                  size="big"
+                />
               ) : (
                 <img
                   loading="lazy"

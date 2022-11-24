@@ -1,0 +1,71 @@
+.special_button {
+  &__danger {
+    background: url("../../assets/icons/actionBtnBg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &:active {
+      transform: translateY(3px);
+    }
+    .img {
+      width: 16px;
+    }
+
+    .span {
+      font-size: 12px;
+      font-weight: bold;
+      color: $white;
+      margin-left: 2px;
+    }
+  }
+
+  &__success {
+    background: url("../../assets/icons/actionBtnBgSuccess.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &:active {
+      transform: translateY(3px);
+    }
+    .img {
+      width: 16px;
+    }
+
+    .span {
+      font-size: 12px;
+      font-weight: bold;
+      color: $white;
+      margin-left: 2px;
+    }
+  }
+
+  &__small {
+    width: 5rem;
+    height: 2rem;
+
+    .span {
+      font-size: 12px;
+    }
+  }
+
+  &__big {
+    width: 8rem;
+    height: 3rem;
+
+    .span {
+      font-size: 16px;
+    }
+  }
+}

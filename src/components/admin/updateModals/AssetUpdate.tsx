@@ -42,10 +42,11 @@ const AssetUpdate = ({
       const filtered = {
         name: asset?.name,
         description: asset?.description,
-        moveable: asset?.moveable,
+        moveable: asset?.moveable === "true" ? true : false,
         price: asset?.price,
         total_quantity: asset?.total_quantity,
         asset_type_id: asset?.asset_type_id,
+        default: asset?.default === "true" ? true : false,
       };
       const { data } = await updateSingleAsset(id, { ...filtered, powers });
       updateLoc(data);
@@ -105,6 +106,14 @@ const AssetUpdate = ({
           <AdminDropDown
             select={(i: string) => handleInputChange("moveable", i)}
             label="Moveable"
+            options={[
+              { label: "True", value: "true" },
+              { label: "False", value: "false" },
+            ]}
+          />
+          <AdminDropDown
+            select={(i: string) => handleInputChange("default", i)}
+            label="Is Default Asset"
             options={[
               { label: "True", value: "true" },
               { label: "False", value: "false" },

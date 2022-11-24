@@ -1,8 +1,7 @@
 import React from "react";
 import GeneralModal from "./GeneralModal";
 import alertIcon from "../../assets/icons/warningAlertIcon.svg";
-import btnYes from "../../assets/icons/warningBtnYes.svg";
-import btnNo from "../../assets/icons/warningBtnNo.svg";
+import Button from "../utility/Button";
 
 interface MoveLocationInterface {
   open: boolean;
@@ -29,26 +28,24 @@ const AlertModal = ({
             <img
               loading="lazy"
               width={70}
-              height={120}
+              height={80}
               src={img ?? alertIcon}
               alt=""
             />
           </div>
           <p className="description">{description}</p>
           <div className="btnCon">
-            <img
-              loading="lazy"
-              width={200}
-              src={btnNo}
-              alt="no"
+            <Button
+              name="No"
               onClick={() => getResponse(false)}
+              type="danger"
+              size="big"
             />
-            <img
-              loading="lazy"
-              width={200}
-              src={btnYes}
-              alt="yes"
+            <Button
+              name="Yes"
               onClick={() => getResponse(true)}
+              type="success"
+              size="big"
             />
           </div>
         </div>

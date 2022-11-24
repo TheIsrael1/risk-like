@@ -74,6 +74,12 @@
       flex-direction: row;
       position: relative;
       padding: 0;
+
+      .LogoutBtn {
+        padding: 4px 12px;
+        margin: 1rem 0;
+        margin-left: 4px;
+      }
     }
   }
 }
